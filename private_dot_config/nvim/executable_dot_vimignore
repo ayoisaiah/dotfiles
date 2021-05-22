@@ -1,0 +1,12 @@
+.git/
+_site/
+node_modules/
+*.jpeg
+*.jpg
+*.png
+*.mp4
+*.webp
+*.gif
+*.woff*
+yarn.lock
+package-lock.json
