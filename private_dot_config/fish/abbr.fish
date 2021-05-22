@@ -40,3 +40,6 @@ abbr rf 'source ~/.config/fish/config.fish'
 
 # Start DynamoDB locally
 abbr ddb 'cd ~/.dynamolocal; java -Djava.library.path=./DynamoDBLocal_lib/ -jar DynamoDBLocal.jar'
+
+# Sync local time
+abbr ntp 'sudo ntpdate pool.ntp.org'
