@@ -150,7 +150,7 @@ let g:fzf_preview_buffers_jump = 1
 nmap <Leader>f [fzf-p]
 xmap <Leader>f [fzf-p]
 
-nnoremap <silent> <c-p>     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> <c-p>     :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
 nnoremap <silent> <leader>b     :<C-u>CocCommand fzf-preview.Buffers<CR>
 nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
 nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
