@@ -63,10 +63,3 @@ noremap <Leader>d "*d
 noremap <Leader>p "*p
 noremap <Leader>P "*P
 vnoremap <C-c> "*y
-
-" Map common Ex command mistakes
-cmap WQ wq
-cmap Wq wq
-cmap W w
-cmap Q q
-cmap E e
