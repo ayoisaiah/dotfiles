@@ -1,46 +1,58 @@
+" Required:
+" Add the dein installation directory into runtimepath
+set runtimepath+=/home/ayo/.cache/dein/repos/github.com/Shougo/dein.vim
+
 " #PLUGINS {{{
-call plug#begin('~/.local/share/nvim/plugged')
+call dein#begin('~/.cache/dein')
+call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('wsdjeg/dein-ui.vim')
 
 " Markdown
-Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+call dein#add('plasticboy/vim-markdown')
+call dein#add('vim-pandoc/vim-pandoc-syntax')
 
 " Fuzzy searching
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
 " Git
-Plug 'tpope/vim-fugitive' " Git wrapper for vim
-Plug 'airblade/vim-gitgutter'
-Plug 'rhysd/git-messenger.vim' " Show Git info in a popup
+call dein#add('tpope/vim-fugitive') " Git wrapper for vim
+call dein#add('airblade/vim-gitgutter')
+call dein#add('rhysd/git-messenger.vim') " Show Git info in a popup
 
 " Appearance and themes
-Plug 'ghifarit53/tokyonight-vim' " Colour scheme
-Plug 'itchyny/lightline.vim' " Status line customisation
-Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins
+call dein#add('ghifarit53/tokyonight-vim') " Colour scheme
+call dein#add('itchyny/lightline.vim') " Status line customisation
+call dein#add('ryanoasis/vim-devicons') " Adds file type icons to Vim plugins
 
 " Autocompletion, formatting, linting & intellisense
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " IDE-like features
-Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'SirVer/ultisnips' " Snippets
+call dein#add('neoclide/coc.nvim', {'merged': '0'}) " IDE-like features
+call dein#add('neoclide/coc-prettier', { 'merged': 0, 'build': 'yarn install --frozen-lockfile' })
+call dein#add('SirVer/ultisnips') " Snippets
 
 " Utilities
-Plug 'romainl/vim-qf' " Quick fix settings, commands and mappings
-Plug 'airblade/vim-rooter' " Change vim working directory to project directory
-Plug 'moll/vim-bbye' " Delete buffers without closing windows
-Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
-Plug 'mattn/emmet-vim' " Makes writing HTML and CSS much easier
-Plug 'ervandew/supertab' " Use <Tab> for autocompletion in insert mode
-Plug 'tpope/vim-surround' " Mappings for surroundings like brackets, quotes, e.t.c.
-Plug 'tpope/vim-commentary' " Comment stuff out easily
-Plug 'tpope/vim-repeat' " Enhance the dot command
-Plug 'tpope/vim-unimpaired' " Custom mappings for some ex commands
-Plug 'luochen1990/rainbow' " Use different colours for parenthesis levels
-Plug 'ludovicchabant/vim-gutentags' " Manage tag files automatically
-Plug 'wakatime/vim-wakatime' " Auto generated metrics and time tracking
-Plug 'miyakogi/conoline.vim' " Highlight the line of the cusor in the current window
+call dein#add('romainl/vim-qf') " Quick fix settings, commands and mappings
+call dein#add('moll/vim-bbye') " Delete buffers without closing windows
+call dein#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
+call dein#add('mattn/emmet-vim') " Makes writing HTML and CSS much easier
+call dein#add('ervandew/supertab') " Use <Tab> for autocompletion in insert mode
+call dein#add('tpope/vim-surround') " Mappings for surroundings like brackets, quotes, e.t.c.
+call dein#add('tpope/vim-commentary') " Comment stuff out easily
+call dein#add('tpope/vim-repeat') " Enhance the dot command
+call dein#add('tpope/vim-unimpaired') " Custom mappings for some ex commands
+call dein#add('luochen1990/rainbow') " Use different colours for parenthesis levels
+call dein#add('ludovicchabant/vim-gutentags') " Manage tag files automatically
+call dein#add('wakatime/vim-wakatime') " Auto generated metrics and time tracking
+call dein#add('miyakogi/conoline.vim') " Highlight the line of the cusor in the current window
+call dein#add('airblade/vim-rooter') " Change vim working directory to project directory
 
 " Treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-call plug#end()
+call dein#add('nvim-treesitter/nvim-treesitter', {'merged': 0})
+call dein#add('nvim-treesitter/nvim-treesitter-textobjects')
+
+call dein#end()
+
+if dein#check_install()
+ call dein#install()
+endif
 "}}}
