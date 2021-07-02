@@ -6,10 +6,6 @@ set background=dark
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
-" transparent bg
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-" For Vim<8, replace EndOfBuffer by NonText
-autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
 " }}}
 
 " #CONOLINE {{{
@@ -77,15 +73,6 @@ nmap <leader>do <Plug>(coc-codeaction)
 vmap <leader>fc  <Plug>(coc-format-selected)
 nmap <silent> <leader>fc <Plug>(coc-format-selected)
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -148,8 +135,11 @@ nnoremap <Leader>T :FzfTags<CR>
 " FZF-PREVIEW {{{
 let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages --ignore-file "/home/ayo/.vimignore" -g \!"* *"' "
 let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
-let g:fzf_preview_use_dev_icons = 1
-let g:fzf_preview_buffers_jump = 1
+let g:fzf_preview_use_dev_icons = 0
+let g:fzf_preview_buffers_jump = 0
+
+let $BAT_THEME = 'gruvbox'
+let $FZF_PREVIEW_PREVIEW_BAT_THEME = 'gruvbox'
 
 nmap <Leader>f [fzf-p]
 xmap <Leader>f [fzf-p]
@@ -165,10 +155,10 @@ nnoremap <silent> <leader>gt    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>.
 nnoremap <silent> <leader>t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
 nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
 nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
-nnoremap <silent> [fzf-p]cd     :<C-u>:CocCommand fzf-preview.CocDiagnostics<CR>
-nnoremap <silent> [fzf-p]cc     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
-nnoremap <silent> [fzf-p]cr     :<C-u>CocCommand fzf-preview.CocReferences<CR>
-nnoremap <silent> [fzf-p]ct     :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
+nnoremap <silent> <leader>cd     :<C-u>CocCommand fzf-preview.CocDiagnostics<CR>
+nnoremap <silent> <leader>cc     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
+nnoremap <silent> <leader>cr     :<C-u>CocCommand fzf-preview.CocReferences<CR>
+nnoremap <silent> <leader>ct     :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
 nnoremap <silent> [fzf-p]ga     :<C-u>CocCommand fzf-preview.GitActions<CR>
 nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
 " }}}
@@ -241,6 +231,22 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
+  },
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
   },
 }
 EOF
