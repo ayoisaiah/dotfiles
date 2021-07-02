@@ -34,7 +34,6 @@ snippet img "Image" b
 	caption="$3"
 	width="$4"
 	height="$5"
-	loading="$6"
 >}}$0
 endsnippet
 
@@ -84,11 +83,13 @@ $2
 endsnippet
 
 snippet cc "Code caption" b
-<span class="code-caption">
-	<a class="code-link" target="_blank" rel="noreferrer" href="$1">
-		$2
-	</a>$0
-</span>
+<figcaption class="figcaption">
+	<p>
+		<a class="code-link" target="_blank" rel="noreferrer" href="$1">
+			$2
+		</a>$0
+	</p>
+</figcaption>
 endsnippet
 
 snippet abt "Abbreviation with title"
