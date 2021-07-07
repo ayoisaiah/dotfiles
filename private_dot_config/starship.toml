@@ -1,0 +1,47 @@
+add_newline = false
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[⚡](bold green) "
+error_symbol = "[❌](bold red) "
+
+[aws]
+disabled = true
+
+[time]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[directory]
+truncation_length = 8
+
+[hostname]
+disabled = true
+
+[nodejs]
+symbol = "🤢"
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+disabled = false
+
+[git_status]
+conflicted = "🚩"
+ahead = "💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "💥"
+
+[shell]
+fish_indicator = "🦈"
+bash_indicator = "🌞"
+disabled = false
