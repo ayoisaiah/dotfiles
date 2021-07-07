@@ -11,21 +11,14 @@ set -gx LC_CTYPE "en_US.UTF-8"
 set -gx EDITOR "nvim"
 set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --follow --ignore-file '/home/ayo/.vimignore'"
 
+# PATH
+set PATH /usr/local/bin $PATH
+
 set -gx PATH $PATH "$HOME/bin"
 set -gx PATH $PATH "$HOME/.local/bin"
-set -gx PATH $PATH "$HOME/bin/flutter/bin"
-set -gx ANDROID_HOME "$HOME/Android"
-set -gx PATH $PATH "$ANDROID_HOME/cmdline-tools/tools/bin"
-set -gx PATH $PATH "$ANDROID_HOME/cmdline-tools/tools/bin"
-
-set -gx GEM_HOME "$HOME/.rvm/bin:$PATH"
-set -gx GEM_HOME "$HOME/.gems"
-set -gx PATH $PATH "$HOME/.gems/bin"
-set -gx PATH $PATH "/home/ayo/.gem/ruby/2.7.0/bin"
-
 set -gx PATH $PATH "/home/ayo/.yarn/bin"
 
-# Golang
+## Golang
 set -gx PATH $PATH "/usr/local/go/bin"
 set -gx PATH $PATH "$HOME/go/bin"
 set -gx GOBIN "$HOME/go/bin"
@@ -33,17 +26,13 @@ set -gx GOPATH "$HOME/go"
 set -gx GOROOT "/usr/local/go"
 set -Ux GO111MODULE "on"
 
-# Snap
-set -gx PATH $PATH "/var/lib/snapd/snap/bin"
-
-# Rust
+## Rust
 set -gx PATH $PATH "/home/ayo/.cargo/bin"
 
-# Deno
+## Deno
 set -gx DENO_INSTALL "/home/ayo/.deno"
-set -gx PATH $PATH "$DENO_INSTALL/bin:$PATH"
 
-# FZF stuff
-set -U FZF_LEGACY_KEYBINDINGS 0 # Disable FZF.fish legacy bindings
+# SHELL
+zoxide init fish | source # Better cd
 
-zoxide init fish | source
+starship init fish | source # Universal shell prompt
