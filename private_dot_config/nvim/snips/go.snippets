@@ -96,3 +96,10 @@ endsnippet
 snippet lf "Log.fatalln" b
 log.Fatalln($1)$0
 endsnippet
+
+snippet pp "Pretty print" b
+func prettyPrint(i interface{}) string {
+	s, _ := json.MarshalIndent(i, "", "\t")
+	return string(s)
+}
+endsnippet
