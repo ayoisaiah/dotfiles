@@ -11,6 +11,7 @@
     "typescript",
     "typescriptreact",
     "json",
+    "ruby",
     "html"
   ],
   "prettier.singleQuote": true,
@@ -62,5 +63,8 @@
         "command": ["golangci-lint", "run", "--out-format", "json"]
       }
     }
-  }
+  },
+  "solargraph.autoformat": true,
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true
 }

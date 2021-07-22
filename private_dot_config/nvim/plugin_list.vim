@@ -21,7 +21,7 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('rhysd/git-messenger.vim') " Show Git info in a popup
 
 " Appearance and themes
-call dein#add('ghifarit53/tokyonight-vim') " Colour scheme
+call dein#add('folke/tokyonight.nvim') " Colour scheme
 call dein#add('itchyny/lightline.vim') " Status line customisation
 call dein#add('ryanoasis/vim-devicons') " Adds file type icons to Vim plugins
 
