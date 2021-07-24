@@ -41,3 +41,6 @@ set -gx DENO_INSTALL "/home/ayo/.deno"
 zoxide init fish | source # Better cd
 
 starship init fish | source # Universal shell prompt
+
+# Bat
+set -gx BAT_THEME "gruvbox-dark"

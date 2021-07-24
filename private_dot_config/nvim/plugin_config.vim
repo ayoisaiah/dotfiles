@@ -137,8 +137,8 @@ let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
 let g:fzf_preview_use_dev_icons = 0
 let g:fzf_preview_buffers_jump = 0
 
-let $BAT_THEME = 'gruvbox'
-let $FZF_PREVIEW_PREVIEW_BAT_THEME = 'gruvbox'
+let $BAT_THEME = 'gruvbox-dark'
+let $FZF_PREVIEW_PREVIEW_BAT_THEME = 'gruvbox-dark'
 
 nmap <Leader>f [fzf-p]
 xmap <Leader>f [fzf-p]
