@@ -1,3 +1,4 @@
+command_timeout = 1000
 add_newline = false
 
 [character]
@@ -20,7 +21,7 @@ truncation_length = 8
 disabled = true
 
 [nodejs]
-symbol = "🤢"
+symbol = "💚"
 
 [battery]
 full_symbol = "🔋 "
