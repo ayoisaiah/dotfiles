@@ -11,7 +11,7 @@ alias y="yarn --ignore-engines"
 alias go="/usr/local/go/bin/go"
 
 # Replace ls with lsd
-alias ls="lsd --icon"
+alias ls="lsd --icon always"
 
 # Replace cat with bat
 alias cat="bat"

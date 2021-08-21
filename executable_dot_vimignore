@@ -6,6 +6,7 @@ vendor/
 *.jpg
 *.png
 *.mp4
+*.webm
 *.mp3
 *.ogg
 *.webp
