@@ -1,8 +1,8 @@
-command_timeout = 1000
+command_timeout = 500
 add_newline = false
 
 [character]
-success_symbol = "[⚡](bold green) "
+success_symbol = "[😎](bold green) "
 error_symbol = "[❌](bold red) "
 
 [aws]
@@ -21,13 +21,13 @@ truncation_length = 8
 disabled = true
 
 [nodejs]
-symbol = "💚"
+symbol = "🤪"
+
+[golang]
+symbol = "💙"
 
 [battery]
-full_symbol = "🔋 "
-charging_symbol = "⚡️ "
-discharging_symbol = "💀 "
-disabled = false
+disabled = true
 
 [git_status]
 conflicted = "🚩"
@@ -43,5 +43,7 @@ deleted = "💥"
 
 [shell]
 fish_indicator = "🦈"
-bash_indicator = "🌞"
+bash_indicator = "💲"
+powershell_indicator = "💪"
+unknown_indicator = "💻"
 disabled = false
