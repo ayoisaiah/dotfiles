@@ -229,17 +229,6 @@ require("indent_blankline").setup {
     buftype_exclude = {"terminal"}
 }
 
--- #NVIM-BASE16
-local base16 = require 'base16'
--- base16(base16.themes["outrun-dark"], true)
-local hardcore = base16.theme_from_array {
-	"1d2021"; "303030"; "353535"; "4A4A4A";
-	"707070"; "cdcdcd"; "e5e5e5"; "ffffff";
-	"fb4934"; "fd971f"; "e6db74"; "a6e22e";
-	"708387"; "66d9ef"; "9e6ffe"; "e8b882";
-}
-base16(hardcore, true)
-
 -- #NVIM-AUTOPAIRS
 require('nvim-autopairs').setup{}
 
