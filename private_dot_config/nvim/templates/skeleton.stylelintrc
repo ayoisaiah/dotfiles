@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "declaration-colon-newline-after": null,
+    "scss/selector-no-redundant-nesting-selector": true,
+    "max-empty-lines": 5,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["mixin", "include", "each", "function", "content"]
+      }
+    ]
+  }
+}
+

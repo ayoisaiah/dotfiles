@@ -1,0 +1,186 @@
+# VARIABLES
+snippet cv "Const variable" b
+const $1 = $2;$0
+endsnippet
+
+snippet lv "Let variable" b
+let $1 = $2;$0
+endsnippet
+
+# OBJECTS
+snippet db "Destructuring Object Syntax"
+const { $1 } = $2;$0
+endsnippet
+
+# REACT
+snippet rc "React Class"
+import React, { Component } from 'react';
+
+class $1 extends Component {
+	render() {
+		return (
+				<div>$2</div>
+		)
+	}
+}
+
+export default $1;
+endsnippet
+
+snippet sst "React setState" b
+this.setState({
+	$1
+});
+$0
+endsnippet
+
+snippet rf "React function"
+import React from 'react';
+
+const $1 = ($2) => {
+	return (
+		$0
+	);
+};
+
+export default $1;
+endsnippet
+
+# CONSOLE
+snippet clg "console.log"
+console.log($1);$0
+endsnippet
+
+snippet ce "console.error"
+console.error$0
+endsnippet
+
+snippet cd "console.dir"
+console.dir($1);$0
+endsnippet
+
+snippet cw "console.warn"
+console.warn($1);$0
+endsnippet
+
+snippet de "Debugger"
+debugger;$0
+endsnippet
+
+# DOM
+snippet ael "addEventListener"
+$1.addEventListener('$2', event => {
+	$3
+});$0
+endsnippet
+
+snippet gc "getElementsByClassName"
+$1.getElementsByClassName('$2');$0
+endsnippet
+
+snippet did "getElementById"
+document.getElementById('$1');$0
+endsnippet
+
+# PROMISES
+snippet thenCatch "adds then and catch declaration to a promise"
+.then($1 => {
+	$2
+})
+.catch(error => {
+	$3
+});$0
+endsnippet
+
+snippet prom "Create a new Promise"
+new Promise((resolve, reject) => {
+	$1
+});$0
+endsnippet
+
+# FUNCTIONS
+snippet fn "Regular function" b
+function $1($2) {
+	$3
+}
+$0
+endsnippet
+
+snippet afn "Create anonymous function"
+($1) => {$2};$0
+endsnippet
+
+snippet df "Default function exports"
+function $1($2) {
+	$0
+}
+
+export default $1;
+endsnippet
+
+snippet cf "Const function" b
+const $1 = ($2) => {
+	$3
+};
+$0
+endsnippet
+
+snippet iife "IIFE" b
+(function $1($2) {
+	$3
+})();$0
+endsnippet
+
+# NODE
+snippet me "Module Exports"
+module.exports = $0
+endsnippet
+
+snippet rq "Node require"
+const $1 = require('$2');$0
+endsnippet
+
+snippet drq "Default Node require"
+const $1 = require('$1');$0
+endsnippet
+
+# MISC
+snippet env
+process.env.$1
+endsnippet
+
+snippet de "Default Exports" b
+const $1 = ($2) => {
+	$3
+};
+$0
+export default $1;
+endsnippet
+
+snippet imp "imports entire module import fs from 'fs'" b
+import $1 from '$2';$0
+endsnippet
+
+snippet dimp "Default import"
+import $1 from '$2$1';$0
+endsnippet
+
+snippet if "if statement" b
+if ($1) {
+	$2
+}$0
+endsnippet
+
+snippet el "else statemnet"
+else {
+	$1
+}$0
+endsnippet
+
+snippet tc "try-catch" b
+try {
+	$1
+} catch ($2) {
+	$3
+}$0
+endsnippet
