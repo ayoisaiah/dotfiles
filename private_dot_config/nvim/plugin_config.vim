@@ -3,8 +3,6 @@
 " #THEME {{{
 set termguicolors
 set background=dark
-let g:tokyonight_style = 'night' " available: night, storm, day
-colorscheme tokyonight
 " }}}
 
 " #CONOLINE {{{
@@ -24,7 +22,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'filename', 'modified'] ]
@@ -126,40 +124,85 @@ let g:UltiSnipsSnippetDirectories=["snips"]
 let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/ayo/.vimignore'"
 "}}}
 
-" FZF.VIM {{{
+" #FZF.VIM {{{
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <Leader>T :FzfTags<CR>
 " }}}
 
-" FZF-PREVIEW {{{
-let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages --ignore-file "/home/ayo/.vimignore" -g \!"* *"' "
-let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
-let g:fzf_preview_use_dev_icons = 0
-let g:fzf_preview_buffers_jump = 0
+" {{{ #TELESCOPE
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--ignore-file',
+      '$HOME/.vimignore'
+    },
+    file_ignore_patterns = {
+      'node_modules',
+      '.ogg',
+      '.git',
+      'vendor',
+      '.jpeg',
+      '.jpg',
+      '.png',
+      '.mp4',
+      '.mp3',
+      '.ogg',
+      '.webp',
+      '.gif',
+      '.woff*',
+      '.cr2',
+      '.dng',
+      '.keep',
+      'yarn.lock',
+      'package-lock.json'
+    },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      ignore_current_buffer = true,
+      sort_lastused = true,
+    },
+  },
+}
+require('telescope').load_extension('ultisnips')
+require('telescope').load_extension('coc')
+EOF
 
-let $BAT_THEME = 'gruvbox-dark'
-let $FZF_PREVIEW_PREVIEW_BAT_THEME = 'gruvbox-dark'
-
-nmap <Leader>f [fzf-p]
-xmap <Leader>f [fzf-p]
-
-nnoremap <silent> <c-p>     :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
-nnoremap <silent> <leader>b     :<C-u>CocCommand fzf-preview.Buffers<CR>
-nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
-nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
-nnoremap <silent> [fzf-p]ch    :<C-u>CocCommand fzf-preview.Changes<CR>
-nnoremap <silent> [fzf-p]li     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
-nnoremap <silent> <leader>gt    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>.<CR>
-nnoremap <silent> <leader>t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
-nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
-nnoremap <silent> <leader>cd     :<C-u>CocCommand fzf-preview.CocDiagnostics<CR>
-nnoremap <silent> <leader>cc     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
-nnoremap <silent> <leader>cr     :<C-u>CocCommand fzf-preview.CocReferences<CR>
-nnoremap <silent> <leader>ct     :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
-nnoremap <silent> [fzf-p]ga     :<C-u>CocCommand fzf-preview.GitActions<CR>
-nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> <c-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>gt <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>T <cmd>lua require('telescope.builtin').tags()<cr>
+nnoremap <leader>S <cmd>lua require('telescope.builtin').spell_suggest()<cr>
+nnoremap <leader>t <cmd>lua require('telescope.builtin').current_buffer_tags()<cr>
+nnoremap <leader>fp <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap <leader>c: <cmd>lua require('telescope.builtin').commands()<cr>
+nnoremap <leader>: <cmd>lua require('telescope.builtin').command_history()<cr>
+nnoremap <leader>/ <cmd>lua require('telescope.builtin').search_history()<cr>
+nnoremap <leader>o <cmd>lua require('telescope.builtin').oldfiles()<cr>
+nnoremap <leader>Q <cmd>lua require('telescope.builtin').quickfix()<cr>
+nnoremap <leader>l <cmd>lua require('telescope.builtin').loclist()<cr>
+nnoremap <leader>h <cmd>lua require('telescope.builtin').highlights()<cr>
+nnoremap <leader>" <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <leader>i <cmd>lua require('telescope.builtin').treesitter()<cr>
+nnoremap <silent> <leader>cd :Telescope coc diagnostics<cr>
+nnoremap <silent> <leader>cr :Telescope coc references<cr>
+nnoremap <silent> <leader>u :Telescope ultisnips<cr>
 " }}}
 
 " #VIM-FUGITIVE {{{
@@ -218,11 +261,7 @@ if executable("rg")
 endif
 " }}}
 
-" #GITGUTTER {{{
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-" }}}
-
+" {{{ #TREESITTER
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -230,6 +269,9 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
+  },
+  matchup = {
+    enable = true,
   },
   textobjects = {
     select = {
@@ -250,3 +292,67 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 " }}}
+
+" {{{ #NVIM-BUFFERLINE
+lua << EOF
+require("bufferline").setup{}
+EOF
+nnoremap <silent> <leader>gb :BufferLinePick<CR>
+nnoremap <silent> <leader>gc :BufferLinePickClose<CR>
+" }}}
+
+" {{{ #INDENT BLANKLINE
+lua << EOF
+require("indent_blankline").setup {
+    char = "|",
+    buftype_exclude = {"terminal"}
+}
+EOF
+" }}}
+
+" {{{ #BASE-16
+lua << EOF
+local base16 = require 'base16'
+-- base16(base16.themes["outrun-dark"], true)
+local hardcore = base16.theme_from_array {
+	"1d2021"; "303030"; "353535"; "4A4A4A";
+	"707070"; "cdcdcd"; "e5e5e5"; "ffffff";
+	"fb4934"; "fd971f"; "e6db74"; "a6e22e";
+	"708387"; "66d9ef"; "9e6ffe"; "e8b882";
+}
+base16(hardcore, true)
+EOF
+" }}}
+
+" {{{ #NVIM-AUTOPAIRS
+lua << EOF
+require('nvim-autopairs').setup{}
+EOF
+" }}}
+
+" {{{ #NEOSCROLL
+lua << EOF
+require('neoscroll').setup()
+EOF
+" }}}
+
+" {{{ #NVIM-COMMENT
+lua << EOF
+require('nvim_comment').setup()
+EOF
+" }}}
+
+" {{{ #GITSIGNS
+lua << EOF
+require('gitsigns').setup {
+  keymaps = {
+    -- Default keymap options
+    noremap = true,
+
+    ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+  },
+}
+EOF
+" }}}
+

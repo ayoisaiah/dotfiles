@@ -36,23 +36,6 @@ nnoremap <Leader>rc :so ~/.config/nvim/init.vim<CR>
 " Create the file under cursor
 :map <leader>gf :e <cfile><CR>
 
-" Switching tabs quickly
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<CR>
-
-nnoremap <C-left> :tabprevious<CR>
-nnoremap <C-right> :tabnext<CR>
-nnoremap <C-t> :tabnew<CR>
-nnoremap <leader>w :tabclose<CR>
-
 " Keep search matches in the middle of the screen
 nnoremap n nzz
 nnoremap N Nzz

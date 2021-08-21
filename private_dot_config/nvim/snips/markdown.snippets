@@ -31,7 +31,15 @@ snippet img "Image" b
 {{< img
 	src="$1"
 	alt="$2"
-	caption="$3"
+	width="$4"
+	height="$5"
+>}}$0
+endsnippet
+
+snippet video "Video" b
+{{< video
+	webm="$1"
+	mp4="$2"
 	width="$4"
 	height="$5"
 >}}$0
