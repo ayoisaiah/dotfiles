@@ -44,3 +44,8 @@ starship init fish | source # Universal shell prompt
 
 # Bat
 set -gx BAT_THEME "gruvbox-dark"
+
+# Volta
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH $PATH "$VOLTA_HOME/bin"
+
