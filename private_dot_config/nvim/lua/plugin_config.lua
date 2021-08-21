@@ -190,7 +190,7 @@ map('n', '<leader>tu', ':Telescope ultisnips<CR>', { noremap = true, silent = tr
 
 -- #TREESITTER
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
+  ensure_installed = { 'javascript', 'go', 'typescript', 'lua', 'dockerfile', 'c', 'bash', 'fish', 'gomod', 'css', 'html', 'json', 'rust', 'toml', 'yaml', 'tsx', 'regex', 'scss', 'vim', 'zig', 'ruby'},
   highlight = {
     enable = true,
   },

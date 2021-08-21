@@ -110,4 +110,6 @@ au BufRead,BufNewFile,BufReadPost *.json set syntax=json
 " Spell checking for markdown files
 autocmd BufRead,BufNewFile *.md setlocal spell
 
+" Auto update dotfiles
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 ]])
