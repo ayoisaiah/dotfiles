@@ -225,8 +225,8 @@ require'nvim-treesitter.configs'.setup {
 
 -- #NVIM-BUFFERLINE
 require("bufferline").setup{}
-map('n', '<leader>gb', ':BufferLinePick<CR>', { noremap = true, silent = true })
-map('n', '<leader>gc', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
+map('n', '<leader>gP', ':BufferLinePick<CR>', { noremap = true, silent = true })
+map('n', '<leader>gC', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
 
 -- #INDENT BLANKLINE
 require("indent_blankline").setup {
@@ -246,8 +246,8 @@ require('gitsigns').setup {
     -- Default keymap options
     noremap = true,
 
-    ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-    ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+    ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>zz'"},
+    ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>zz'"},
   },
 }
 
