@@ -13,7 +13,7 @@ vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when th
 
 return require('packer').startup(function()
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
 
   -- Markdown
   use { 'plasticboy/vim-markdown' }
@@ -26,17 +26,15 @@ return require('packer').startup(function()
   use { 'fhill2/telescope-ultisnips.nvim' }
 
   -- Git
-  use { 'tpope/vim-fugitive' } -- Git wrapper for vim
+  use { 'tpope/vim-fugitive', event = 'VimEnter' } -- Git wrapper for vim
   use { 'lewis6991/gitsigns.nvim' } -- Git signs
-  use { 'rhysd/git-messenger.vim' } -- Show Git info in a popup
+  use { 'rhysd/git-messenger.vim', event = 'VimEnter' } -- Show Git info in a popup
 
   -- Appearance and themes
   use {
     -- Status line customisation
     'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- your statusline
-    config = function() require'my_statusline' end,
+    branch = 'main'
   }
   use { 'yamatsum/nvim-nonicons' } -- Dev icons
   use { 'kyazdani42/nvim-web-devicons' } -- Dev icons
@@ -45,7 +43,11 @@ return require('packer').startup(function()
   use { 'norcalli/nvim-base16.lua' } -- Theme colours
 
   -- Autocompletion, formatting, linting & intellisense
-  use { 'neoclide/coc.nvim', run = 'yarn install --frozen-lockfile'  } -- Intellisense, LSP and other language smarts
+  use { 
+    'neoclide/coc.nvim', -- Intellisense, LSP and other language smarts
+    ft = { 'go' },
+    run = 'yarn install --frozen-lockfile'
+  }
   use { 'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile' }
   use { 'SirVer/ultisnips' } -- Snippets engine
 
@@ -53,19 +55,20 @@ return require('packer').startup(function()
   use { 'romainl/vim-qf' } -- Quick fix settings, commands and mappings
   use { 'moll/vim-bbye' } -- Delete buffers without closing windows
   use { 'windwp/nvim-autopairs' } -- Insert or delete brackets, parens, quotes in pair.
-  use { 'mattn/emmet-vim' } -- Makes writing HTML and CSS much easier
+  use { 'mattn/emmet-vim', event = 'VimEnter', ft = {'html', 'markdown', 'css', 'scss'} } -- Makes writing HTML and CSS much easier
   use { 'ervandew/supertab' } -- Use <Tab> for autocompletion in insert mode
   use { 'tpope/vim-surround' } -- Mappings for surroundings like brackets, quotes, e.t.c.
   use { 'terrortylor/nvim-comment' } -- Comment stuff out easily
   use { 'tpope/vim-repeat' } -- Enhance the dot command
-  use { 'tpope/vim-unimpaired' } -- Custom mappings for some ex commands
+  use { 'tpope/vim-unimpaired', event = 'VimEnter' } -- Custom mappings for some ex commands
   use { 'luochen1990/rainbow' } -- Use different colours for parenthesis levels
   use { 'ludovicchabant/vim-gutentags' } -- Manage tag files automatically
-  use { 'wakatime/vim-wakatime' } -- Auto generated metrics and time tracking
+  use { 'wakatime/vim-wakatime', event = 'VimEnter' } -- Auto generated metrics and time tracking
   use { 'miyakogi/conoline.vim' } -- Highlight the line of the cusor in the current window
   use { 'airblade/vim-rooter' } -- Change vim working directory to project directory
   use { 'karb94/neoscroll.nvim' } -- Smooth scrolling
-  use { 'andymass/vim-matchup' } -- Highlight, navigate, and operate on sets of matching text
+  use { 'andymass/vim-matchup', event = 'VimEnter' } -- Highlight, navigate, and operate on sets of matching text
+  use { 'tweekmonster/startuptime.vim' }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

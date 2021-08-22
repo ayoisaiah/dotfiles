@@ -8,41 +8,46 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-
-nnoremap <silent> <Leader>k :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 ]])
 
--- Use `[c` and `]c` to navigate diagnosticsU
-map('n', ']c', '<Plug>(coc-diagnostic-next)', { noremap = true, silent = true })
-map('n', '[c', '<Plug>(coc-diagnostic-prev)', { noremap = true, silent = true })
+-- Scroll the popup up menu
+map('n', ']z', ':call coc#float#scroll(1)<cr>', { noremap = true, silent = true })
+map('n', '[z', ':call coc#float#scroll(0)<cr>', { noremap = true, silent = true })
+
+-- Use `[c` and `]c` to navigate diagnostics
+map('n', ']c', '<Plug>(coc-diagnostic-next)', {})
+map('n', '[c', '<Plug>(coc-diagnostic-prev)', {})
 
 -- Hide floating windows
-map('n', '<leader>fh', '<Plug>(coc-float-hid)', { noremap = true, silent = true })
+map('n', '<leader>fh', '<Plug>(coc-float-hid)', {})
 
 -- Show documentation in preview window
-map('n', 'K', '<Plug>(coc-float-hid)', { noremap = true, silent = true })
+local e = vim.api.nvim_eval
+function _G.show_coc_documentation()
+	local filetype = vim.bo.filetype
+
+	if filetype == 'vim' or filetype == 'help' then
+		local cword = e('expand("<cword>")')
+		vim.cmd('help ' .. cword)
+	elseif e('coc#rpc#ready()') > 0 then
+		e("CocActionAsync('doHover')")
+	else
+		-- following will run "man" in vim
+		local keywordprg = vim.o.keywordprg
+		local cword = e('expand("<cword>")')
+		vim.cmd(string.format('%s %s', keywordprg, cword))
+	end
+end
+map('n', '<leader>k', '<cmd>lua show_coc_documentation()<cr>', {})
 
 -- Remap keys for gotos
-map('n', 'gr', '<Plug>(coc-references)', { noremap = true, silent = true })
-map('n', 'gi', '<Plug>(coc-implementation)', { noremap = true, silent = true })
-map('n', 'gd', '<Plug>(coc-definition)', { noremap = true, silent = true })
-map('n', 'gy', '<Plug>(coc-type-definition)', { noremap = true, silent = true })
+map('n', 'gr', '<Plug>(coc-references)', {})
+map('n', 'gi', '<Plug>(coc-implementation)', {})
+map('n', 'gd', '<Plug>(coc-definition)', {})
+map('n', 'gy', '<Plug>(coc-type-definition)', {})
 
 -- Remap for rename current word
-map('n', '<leader>rn', '<Plug>(coc-rename)', { noremap = true })
-
--- Scroll the popup up menu
--- map('n', '<C-f>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"', { noremap = true, silent = true, nowait = true, expr = true })
--- map('n', '<C-b>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"', { noremap = true, silent = true, nowait = true, expr = true })
--- map('i', '<C-f>', 'coc#float#has_scroll() ? "\<c-r>-coc#float#scroll(1)\<cr>" : "\<Right>"', { noremap = true, silent = true, nowait = true, expr = true })
--- map('i', '<C-b>', 'coc#float#has_scroll() ? "\<c-r>-coc#float#scroll(0)\<cr>" : "\<Left>"', { noremap = true, silent = true, nowait = true, expr = true })
+map('n', '<leader>rn', '<Plug>(coc-rename)', {})
 
 -- Close all floating windows if any
 map('n', '<Esc>', ':call coc#float#close_all() <CR>', { noremap = true, silent = true })
@@ -231,9 +236,6 @@ require("indent_blankline").setup {
 
 -- #NVIM-AUTOPAIRS
 require('nvim-autopairs').setup{}
-
--- #NEOSCROLL
-require('neoscroll').setup()
 
 -- #NVIM-COMMENT
 require('nvim_comment').setup()

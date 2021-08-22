@@ -24,9 +24,6 @@ map('v', '<C-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 -- turn off search highlighting
 map('n', '<leader><space>', ':nohlsearch<CR>', { noremap = true })
 
--- Apply vim configurations without restarting
-map('n', '<leader>rc', ':so ~/.config/nvim/init.vim<CR>', { noremap = true })
-
 map('', '<leader>gf', ':e <cfile><CR>', {}) -- Create the file under cursor
 
 -- Keep search matches in the middle of the screen
