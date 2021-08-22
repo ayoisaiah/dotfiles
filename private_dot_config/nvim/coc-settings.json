@@ -66,5 +66,10 @@
   },
   "solargraph.autoformat": true,
   "solargraph.diagnostics": true,
-  "solargraph.formatting": true
+  "solargraph.formatting": true,
+  "Lua": {
+    "diagnostics": {
+      "globals": ["vim"]
+    }
+  }
 }
