@@ -31,7 +31,7 @@ map('n', 'n', 'nzz', { noremap = true})
 map('n', 'N', 'Nzz', { noremap = true})
 
 -- Copy and paste to the system clipboard
-map('n', '<leader>y', '"*y', { noremap = true})
-map('n', '<leader>d', '"*d', { noremap = true})
-map('n', '<leader>p', '"*p', { noremap = true})
-map('n', '<leader>P', '"*P', { noremap = true})
+map('', '<leader>y', '"*y', { noremap = true})
+map('', '<leader>d', '"*d', { noremap = true})
+map('', '<leader>p', '"*p', { noremap = true})
+map('', '<leader>P', '"*P', { noremap = true})

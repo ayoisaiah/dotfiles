@@ -9,7 +9,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
   -- Packer can manage itself
   use { 'wbthomason/packer.nvim' }
 
@@ -29,12 +29,7 @@ return require('packer').startup(function(use)
   use { 'rhysd/git-messenger.vim', event = 'VimEnter' } -- Show Git info in a popup
 
   -- Appearance and themes
-  use {
-    -- Status line customisation
-    'glepnir/galaxyline.nvim',
-    branch = 'main'
-  }
-  use { 'yamatsum/nvim-nonicons' } -- Dev icons
+  use { 'hoob3rt/lualine.nvim' } -- Statusline
   use { 'kyazdani42/nvim-web-devicons' } -- Dev icons
   use { 'akinsho/nvim-bufferline.lua' } -- Better nvim buffers
   use { 'lukas-reineke/indent-blankline.nvim' } -- Indenting
@@ -79,9 +74,9 @@ require('plugins.conoline')
 require('plugins.emmet-vim')
 require('plugins.gitsigns')
 require('plugins.indent-blankline')
+require('plugins.lualine')
 require('plugins.nvim-autopairs')
 require('plugins.nvim-bufferline')
-require('plugins.nvim-colorizer')
 require('plugins.nvim-comment')
 require('plugins.rainbow')
 require('plugins.supertab')
