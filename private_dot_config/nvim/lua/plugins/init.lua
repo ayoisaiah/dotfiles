@@ -1,8 +1,6 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
--- #PLUGINS
-
 -- Auto install packer.nvim if not exists
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -11,7 +9,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- Packer can manage itself
   use { 'wbthomason/packer.nvim' }
 
@@ -43,9 +41,8 @@ return require('packer').startup(function()
   use { 'norcalli/nvim-base16.lua' } -- Theme colours
 
   -- Autocompletion, formatting, linting & intellisense
-  use { 
+  use {
     'neoclide/coc.nvim', -- Intellisense, LSP and other language smarts
-    ft = { 'go' },
     run = 'yarn install --frozen-lockfile'
   }
   use { 'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile' }
@@ -56,6 +53,7 @@ return require('packer').startup(function()
   use { 'moll/vim-bbye' } -- Delete buffers without closing windows
   use { 'windwp/nvim-autopairs' } -- Insert or delete brackets, parens, quotes in pair.
   use { 'mattn/emmet-vim', event = 'VimEnter', ft = {'html', 'markdown', 'css', 'scss'} } -- Makes writing HTML and CSS much easier
+  use { 'norcalli/nvim-colorizer.lua', ft = { 'html', 'css', 'scss', 'javascript' } } -- Highlight colours
   use { 'ervandew/supertab' } -- Use <Tab> for autocompletion in insert mode
   use { 'tpope/vim-surround' } -- Mappings for surroundings like brackets, quotes, e.t.c.
   use { 'terrortylor/nvim-comment' } -- Comment stuff out easily
@@ -74,3 +72,25 @@ return require('packer').startup(function()
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 end)
+
+-- Config
+require('plugins.coc-nvim')
+require('plugins.conoline')
+require('plugins.emmet-vim')
+require('plugins.gitsigns')
+require('plugins.indent-blankline')
+require('plugins.nvim-autopairs')
+require('plugins.nvim-bufferline')
+require('plugins.nvim-colorizer')
+require('plugins.nvim-comment')
+require('plugins.rainbow')
+require('plugins.supertab')
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.ultisnips')
+require('plugins.vim-bbye')
+require('plugins.vim-fugitive')
+require('plugins.vim-gutentags')
+require('plugins.vim-markdown')
+require('plugins.vim-pandoc')
+require('plugins.vim-qf')
