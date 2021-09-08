@@ -1,4 +1,5 @@
 alias vim="/home/ayo/bin/nvim.appimage"
+alias nvim="/home/ayo/bin/nvim.appimage"
 
 alias vi="/usr/bin/vim"
 
@@ -12,6 +13,9 @@ alias go="/usr/local/go/bin/go"
 
 # Replace ls with lsd
 alias ls="lsd --icon always"
+
+alias brl="br -dp"
+alias brgs="br -gc :gs"
 
 # Replace cat with bat
 alias cat="bat"
