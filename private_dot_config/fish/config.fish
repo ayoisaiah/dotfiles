@@ -36,6 +36,7 @@ set -gx PATH $PATH "/home/ayo/.cargo/bin"
 
 ## Deno
 set -gx DENO_INSTALL "/home/ayo/.deno"
+set -gx PATH $PATH "$DENO_INSTALL/bin"
 
 # SHELL
 zoxide init fish | source # Better cd
@@ -50,4 +51,9 @@ set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH $PATH "$VOLTA_HOME/bin"
 
 # Set vi bndings as default
-fish_vi_key_bindings
+function fish_user_key_bindings
+    fish_default_key_bindings -M insert
+    fish_vi_key_bindings --no-erase insert
+end
+
+fish_user_key_bindings
