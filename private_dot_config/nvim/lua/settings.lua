@@ -1,7 +1,7 @@
 -- # ALIASES
 local g = vim.g
 local o = vim.opt
-local cmd = vim.api.nvim_command
+local exec = vim.api.nvim_exec
 
 -- More natural split opening.
 o.splitbelow = true
@@ -75,14 +75,13 @@ g.loaded_netrwPlugin = 1
 g.loaded_python_provider = 0
 g.python_host_prog = ''
 
-cmd([[
-" Templates
-" Prefill new files created by vim with contents from the following templates
+-- Templates
+-- Prefill new files created by vim with contents from the following templates
+exec([[
 augroup templates
   autocmd BufNewFile *.html 0r ~/.config/nvim/templates/skeleton.html
   autocmd BufNewFile *.scss 0r ~/.config/nvim/templates/skeleton.scss
   autocmd BufNewFile *.css 0r ~/.config/nvim/templates/skeleton.scss
-  autocmd BufNewFile *.rs 0r ~/.config/nvim/templates/skeleton.rs
   autocmd BufNewFile LICENCE 0r ~/.config/nvim/templates/skeleton.LICENCE
   autocmd BufNewFile LICENSE 0r ~/.config/nvim/templates/skeleton.LICENCE
   autocmd BufNewFile .gitignore 0r ~/.config/nvim/templates/skeleton.gitignore
@@ -90,26 +89,26 @@ augroup templates
   autocmd BufNewFile .eslintrc.json 0r ~/.config/nvim/templates/skeleton.eslintrc
   autocmd BufNewFile .prettierrc.json 0r ~/.config/nvim/templates/skeleton.prettierrc
 augroup END
+]], false)
 
+-- Auto update dotfiles
+exec([[ autocmd BufWritePost ~/.local/share/chezmoi/* silent! !chezmoi apply ]], false)
+
+-- Spell checking for markdown files
+exec([[ autocmd BufRead,BufNewFile *.md setlocal spell ]], false)
+
+-- Strip trailing whitespace from all files
+exec([[
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
+]], false)
+
+-- Toggle relative number mode
+exec([[
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
-
-" Strip trailing whitespace from all files
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
-
-" Automatically remove the preview window after autocompletion
-autocmd CompleteDone * pclose
-
-au BufRead,BufNewFile,BufReadPost *.json set syntax=json
-
-" Spell checking for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
-
-" Auto update dotfiles
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
-]])
+]], false)
