@@ -53,15 +53,13 @@ require('packer').startup(function(use)
   use { 'tpope/vim-surround' } -- Mappings for surroundings like brackets, quotes, e.t.c.
   use { 'terrortylor/nvim-comment' } -- Comment stuff out easily
   use { 'tpope/vim-repeat' } -- Enhance the dot command
-  use { 'tpope/vim-unimpaired', event = 'VimEnter' } -- Custom mappings for some ex commands
+  use { 'tpope/vim-unimpaired' } -- Custom mappings for some ex commands
   use { 'luochen1990/rainbow' } -- Use different colours for parenthesis levels
   use { 'ludovicchabant/vim-gutentags' } -- Manage tag files automatically
   use { 'wakatime/vim-wakatime', event = 'VimEnter' } -- Auto generated metrics and time tracking
   use { 'miyakogi/conoline.vim' } -- Highlight the line of the cusor in the current window
   use { 'airblade/vim-rooter' } -- Change vim working directory to project directory
-  use { 'karb94/neoscroll.nvim' } -- Smooth scrolling
   use { 'andymass/vim-matchup', event = 'VimEnter' } -- Highlight, navigate, and operate on sets of matching text
-  use { 'tweekmonster/startuptime.vim' }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

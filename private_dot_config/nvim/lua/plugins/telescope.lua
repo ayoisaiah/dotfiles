@@ -54,7 +54,7 @@ require('telescope').load_extension('ultisnips')
 require('telescope').load_extension('coc')
 
 map('n', '<c-p>', '<cmd>lua require("telescope.builtin").find_files()<CR>', { noremap = true, silent = true })
-map('n', '<leader>tg', '<cmd>lua require("telescope.builtin").live_grep()<CR>', { noremap = true, silent = true })
+map('n', '<leader>gt', '<cmd>lua require("telescope.builtin").live_grep()<CR>', { noremap = true, silent = true })
 map('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers()<CR>', { noremap = true, silent = true })
 map('n', '<leader>th', '<cmd>lua require("telescope.builtin").help_tags()<CR>', { noremap = true, silent = true })
 map('n', '<leader>T', '<cmd>lua require("telescope.builtin").tags()<CR>', { noremap = true, silent = true })
