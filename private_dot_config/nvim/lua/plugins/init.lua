@@ -22,6 +22,7 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim' }
   use { 'fannheyward/telescope-coc.nvim' }
   use { 'fhill2/telescope-ultisnips.nvim' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Git
   use { 'tpope/vim-fugitive', event = 'VimEnter' } -- Git wrapper for vim

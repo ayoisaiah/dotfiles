@@ -12,28 +12,7 @@ require('telescope').setup{
       '--column',
       '--smart-case',
       '--ignore-file',
-      '$HOME/.vimignore'
-    },
-    file_ignore_patterns = {
-      'node_modules',
-      '.ogg',
-      '.git',
-      'vendor',
-      '.jpeg',
-      '.jpg',
-      '.png',
-      '.mp4',
-      '.webm',
-      '.mp3',
-      '.ogg',
-      '.webp',
-      '.gif',
-      '.woff*',
-      '.cr2',
-      '.dng',
-      '.keep',
-      'yarn.lock',
-      'package-lock.json'
+      '/home/ayo/.vimignore'
     },
     mappings = {
       i = {
@@ -50,11 +29,14 @@ require('telescope').setup{
     },
   },
 }
+
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('ultisnips')
 require('telescope').load_extension('coc')
 
-map('n', '<c-p>', '<cmd>lua require("telescope.builtin").find_files({ hidden = true })<CR>', { noremap = true, silent = true })
+map('n', '<c-p>', '<cmd>lua require("telescope.builtin").find_files({ hidden = true, find_command = { "rg", "--files", "--hidden", "--follow", "--ignore-file", "/home/ayo/.vimignore" } })<CR>', { noremap = true, silent = true })
 map('n', '<leader>gt', '<cmd>lua require("telescope.builtin").live_grep()<CR>', { noremap = true, silent = true })
+map('n', '<leader>tg', '<cmd>lua require("telescope.builtin").git_files()<CR>', { noremap = true, silent = true })
 map('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers()<CR>', { noremap = true, silent = true })
 map('n', '<leader>th', '<cmd>lua require("telescope.builtin").help_tags()<CR>', { noremap = true, silent = true })
 map('n', '<leader>T', '<cmd>lua require("telescope.builtin").tags()<CR>', { noremap = true, silent = true })

@@ -11,7 +11,8 @@ vendor/
 *.ogg
 *.webp
 *.gif
-*.woff*
+*.woff
+testdata/
 *.cr2
 *.dng
 *.keep
