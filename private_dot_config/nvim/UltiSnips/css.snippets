@@ -11,14 +11,11 @@ snippet stc "Subtitle comment" b
 $0
 endsnippet
 
-snippet reset "Simple CSS reset" b
-/**
- *
- * Inheriting box sizing slightly better best-practice
- * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
- *
- */
+snippet ic "Inline Comment"
+/* [$1] */$0
+endsnippet
 
+snippet reset "Simple CSS reset" b
 html {
   box-sizing: border-box;
 }
@@ -30,4 +27,46 @@ html {
 }
 
 $0
+endsnippet
+
+snippet mq "Media Query" b
+@media screen and (#{$$1}) {
+	$0
+}
+endsnippet
+
+snippet c "CSS Comment" b
+/**
+ *
+ * $1
+ *
+ */
+
+$0
+endsnippet
+
+snippet mx "Include Sass Mixin" b
+@include $1 {
+	$2
+}
+$0
+endsnippet
+
+snippet su "@Supports" b
+@supports ($1) {
+	$2
+}
+$0
+endsnippet
+
+snippet fabsc "Flexbox Absolute Center" b
+display: flex;
+justify-content: center;
+align-items: center;$0
+endsnippet
+
+snippet dm "Dark mode" b
+@media (prefers-color-scheme: dark) {
+	$1
+}$0
 endsnippet
