@@ -9,6 +9,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
+require('impatient')
 require('packer').startup(function(use)
   -- Packer can manage itself
   use { 'wbthomason/packer.nvim' }
@@ -44,12 +45,16 @@ require('packer').startup(function(use)
   use { 'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile' }
   use { 'SirVer/ultisnips' } -- Snippets engine
 
+  -- Treesitter
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+
   -- Utilities
   use { 'romainl/vim-qf' } -- Quick fix settings, commands and mappings
   use { 'moll/vim-bbye' } -- Delete buffers without closing windows
   use { 'windwp/nvim-autopairs' } -- Insert or delete brackets, parens, quotes in pair.
-  use { 'mattn/emmet-vim', event = 'VimEnter', ft = {'html', 'markdown', 'css', 'scss'} } -- Makes writing HTML and CSS much easier
-  use { 'norcalli/nvim-colorizer.lua', ft = { 'html', 'css', 'scss', 'javascript' } } -- Highlight colours
+  use { 'mattn/emmet-vim', event = 'VimEnter', ft = {'html', 'markdown', 'css', 'scss'} } -- Shortcuts for writing HTML and CSS
+  use { 'norcalli/nvim-colorizer.lua', ft = { 'html', 'css', 'scss', 'javascript' } } -- Colour highlighting
   use { 'ervandew/supertab' } -- Use <Tab> for autocompletion in insert mode
   use { 'tpope/vim-surround' } -- Mappings for surroundings like brackets, quotes, e.t.c.
   use { 'terrortylor/nvim-comment' } -- Comment stuff out easily
@@ -61,10 +66,7 @@ require('packer').startup(function(use)
   use { 'miyakogi/conoline.vim' } -- Highlight the line of the cusor in the current window
   use { 'airblade/vim-rooter' } -- Change vim working directory to project directory
   use { 'andymass/vim-matchup', event = 'VimEnter' } -- Highlight, navigate, and operate on sets of matching text
-
-  -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'lewis6991/impatient.nvim' } -- Speed up startup time
 end)
 
 -- Config
@@ -88,3 +90,4 @@ require('plugins.vim-gutentags')
 require('plugins.vim-markdown')
 require('plugins.vim-pandoc')
 require('plugins.vim-qf')
+require('plugins.vim-rooter')
