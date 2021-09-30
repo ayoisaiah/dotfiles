@@ -35,3 +35,6 @@ map('', '<leader>y', '"*y', { noremap = true})
 map('', '<leader>d', '"*d', { noremap = true})
 map('', '<leader>p', '"*p', { noremap = true})
 map('', '<leader>P', '"*P', { noremap = true})
+
+map('n', '<C-h>', '<C-w>h', { noremap = true})
+map('n', '<C-l>', '<C-w>l', { noremap = true})
