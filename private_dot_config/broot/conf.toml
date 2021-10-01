@@ -1,0 +1,5 @@
+[[verbs]]
+invocation = "edit"
+key = "F2"
+shortcut = "e"
+execution = "~/bin/nvim.appimage {file}"
