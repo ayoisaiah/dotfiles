@@ -57,7 +57,7 @@ require('packer').startup(function(use)
   use { 'norcalli/nvim-colorizer.lua', ft = { 'html', 'css', 'scss', 'javascript' } } -- Colour highlighting
   use { 'ervandew/supertab' } -- Use <Tab> for autocompletion in insert mode
   use { 'tpope/vim-surround' } -- Mappings for surroundings like brackets, quotes, e.t.c.
-  use { 'terrortylor/nvim-comment' } -- Comment stuff out easily
+  use { 'numtostr/comment.nvim' } -- Comment stuff out easily
   use { 'tpope/vim-repeat' } -- Enhance the dot command
   use { 'tpope/vim-unimpaired' } -- Custom mappings for some ex commands
   use { 'luochen1990/rainbow' } -- Use different colours for parenthesis levels
