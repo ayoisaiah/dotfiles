@@ -1,4 +1,4 @@
-command_timeout = 500
+command_timeout = 2000
 add_newline = false
 
 [character]
