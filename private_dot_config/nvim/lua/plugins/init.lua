@@ -1,13 +1,19 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
--- Auto install packer.nvim if not exists
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-vim.cmd [[packadd packer.nvim]]
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+
+-- Auto compile when there are changes in plugins.lua
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 
 require('impatient')
 require('packer').startup(function(use)
@@ -67,6 +73,10 @@ require('packer').startup(function(use)
   use { 'airblade/vim-rooter' } -- Change vim working directory to project directory
   use { 'andymass/vim-matchup', event = 'VimEnter' } -- Highlight, navigate, and operate on sets of matching text
   use { 'lewis6991/impatient.nvim' } -- Speed up startup time
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- Config
