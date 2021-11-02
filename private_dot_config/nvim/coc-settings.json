@@ -10,13 +10,16 @@
     "javascript",
     "typescript",
     "typescriptreact",
+    "svelte",
+    "css",
+    "scss",
     "json",
     "ruby",
     "html"
   ],
   "prettier.singleQuote": true,
   "prettier.eslintIntegration": true,
-  "prettier.stylelintIntegration": false,
+  "prettier.stylelintIntegration": true,
   "prettier.disableSuccessMessage": true,
   "suggest.removeDuplicateItems": true,
   "go.enable": true,
@@ -67,6 +70,7 @@
   "solargraph.autoformat": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
+  "svelte.plugin.typescript.diagnostics.enable": false,
   "Lua": {
     "diagnostics": {
       "globals": ["vim"]
