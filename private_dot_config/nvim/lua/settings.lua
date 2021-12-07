@@ -24,8 +24,8 @@ g.nobackup = true
 g.nowritebackup = true
 
 o.textwidth = 80
-o.formatoptions = o.formatoptions + 't'
-o.colorcolumn = o.colorcolumn + '+1'
+o.formatoptions = o.formatoptions + "t"
+o.colorcolumn = o.colorcolumn + "+1"
 o.showmatch = true
 o.lazyredraw = true
 
@@ -34,7 +34,7 @@ o.lazyredraw = true
 -- The `:b` command can also be used to do the same for open buffers
 
 -- Search all subfolders
-o.path = o.path + '**'
+o.path = o.path + "**"
 
 o.termguicolors = true -- enable 24-bit TUI colours
 
@@ -42,17 +42,18 @@ o.termguicolors = true -- enable 24-bit TUI colours
 o.wildmenu = true
 
 -- Ignore node_modules and images from search results
-o.wildignore = o.wildignore + '**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*webm,*.ogg,*.dng,*.jpeg,*.map,*.woff*'
+o.wildignore = o.wildignore
+	+ "**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*webm,*.ogg,*.dng,*.jpeg,*.map,*.woff*"
 
 -- Show Invisibles
 o.list = true
-o.listchars = 'tab:→→,eol:¬,space:.'
+o.listchars = "tab:→→,eol:¬,space:."
 
 -- Automatically hide buffer with unsaved changes without showing warning
 o.hidden = true
 
 -- Treat all numbers as decimal regardless of whether they are padded with zeros
-o.nrformats = ''
+o.nrformats = ""
 
 -- Change case sensitivity behaviour
 o.ignorecase = true -- needed for smartcase to work
@@ -60,10 +61,10 @@ o.smartcase = true -- make searches case insensitive except if uppercase charate
 
 o.updatetime = 100
 
-o.complete = o.complete + 'kspell' -- Enable word completion
+o.complete = o.complete + "kspell" -- Enable word completion
 
-o.shell = '/usr/bin/bash'
-g['$SHELL'] = '/usr/bin/bash'
+o.shell = "/usr/bin/bash"
+g["$SHELL"] = "/usr/bin/bash"
 
 g.loaded_matchit = 1 -- Disable matchit plugin
 
@@ -73,11 +74,12 @@ g.loaded_netrwPlugin = 1
 
 -- Disable python2 provider
 g.loaded_python_provider = 0
-g.python_host_prog = ''
+g.python_host_prog = ""
 
 -- Templates
 -- Prefill new files created by vim with contents from the following templates
-exec([[
+exec(
+	[[
 augroup templates
   autocmd BufNewFile *.html 0r ~/.config/nvim/templates/skeleton.html
   autocmd BufNewFile *.scss 0r ~/.config/nvim/templates/skeleton.scss
@@ -89,7 +91,9 @@ augroup templates
   autocmd BufNewFile .eslintrc.json 0r ~/.config/nvim/templates/skeleton.eslintrc
   autocmd BufNewFile .prettierrc.json 0r ~/.config/nvim/templates/skeleton.prettierrc
 augroup END
-]], false)
+]],
+	false
+)
 
 -- Auto update dotfiles
 exec([[ autocmd BufWritePost ~/.local/share/chezmoi/* silent! !chezmoi apply ]], false)
@@ -98,17 +102,23 @@ exec([[ autocmd BufWritePost ~/.local/share/chezmoi/* silent! !chezmoi apply ]],
 exec([[ autocmd BufRead,BufNewFile *.md setlocal spell ]], false)
 
 -- Strip trailing whitespace from all files
-exec([[
+exec(
+	[[
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\s\+$//e
-]], false)
+]],
+	false
+)
 
 -- Toggle relative number mode
-exec([[
+exec(
+	[[
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
-]], false)
+]],
+	false
+)
