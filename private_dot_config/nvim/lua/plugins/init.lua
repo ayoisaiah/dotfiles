@@ -41,12 +41,15 @@ require('packer').startup(function(use)
   use { 'norcalli/nvim-base16.lua' } -- Theme colours
 
   -- Autocompletion, formatting, linting & intellisense
-  use {
-    'neoclide/coc.nvim', -- Intellisense, LSP and other language smarts
-    run = 'yarn install --frozen-lockfile'
-  }
-  use { 'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile' }
+  use { 'neovim/nvim-lspconfig' }
+  use { 'tami5/lspsaga.nvim' }
   use { 'SirVer/ultisnips' } -- Snippets engine
+  use { 'hrsh7th/cmp-cmdline' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'mhartington/formatter.nvim' }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -77,7 +80,7 @@ require('packer').startup(function(use)
 end)
 
 -- Config
-require('plugins.coc-nvim')
+-- require('plugins.coc-nvim')
 require('plugins.conoline')
 require('plugins.emmet-vim')
 require('plugins.gitsigns')
@@ -85,6 +88,10 @@ require('plugins.indent-blankline')
 require('plugins.lualine')
 require('plugins.nvim-autopairs')
 require('plugins.nvim-bufferline')
+require('plugins.nvim-lspconfig')
+require('plugins.nvim-cmp')
+require('plugins.formatter-nvim')
+require('plugins.lspsaga')
 require('plugins.comment')
 require('plugins.rainbow')
 require('plugins.supertab')
