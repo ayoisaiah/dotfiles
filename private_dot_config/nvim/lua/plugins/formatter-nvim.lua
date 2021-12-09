@@ -1,11 +1,43 @@
 require("formatter").setup({
 	filetype = {
+		json = {
+			function()
+				return {
+					exe = "prettier",
+					args = {
+						"--stdin-filepath",
+						vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+						"--config",
+						"$HOME/.prettierrc.json",
+					},
+					stdin = true,
+				}
+			end,
+		},
+		typescript = {
+			function()
+				return {
+					exe = "prettier",
+					args = {
+						"--stdin-filepath",
+						vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+						"--config",
+						"$HOME/.prettierrc.json",
+					},
+					stdin = true,
+				}
+			end,
+		},
 		javascript = {
 			function()
 				return {
 					exe = "prettier",
-					args = "--config",
-					"$HOME/.prettierrc.json",
+					args = {
+						"--stdin-filepath",
+						vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+						"--config",
+						"$HOME/.prettierrc.json",
+					},
 					stdin = true,
 				}
 			end,
@@ -33,7 +65,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.go FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.go,*.json FormatWrite
 augroup END
 ]],
 	true
