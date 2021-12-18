@@ -54,6 +54,9 @@ require("formatter").setup({
 			function()
 				return {
 					exe = "stylua",
+					args = {
+						"-",
+					},
 					stdin = true,
 				}
 			end,
@@ -65,7 +68,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.go,*.json FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.go,*.json,*.lua FormatWrite
 augroup END
 ]],
 	true
