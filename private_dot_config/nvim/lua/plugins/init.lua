@@ -68,7 +68,6 @@ require("packer").startup(function(use)
 	use({ "windwp/nvim-autopairs" }) -- Insert or delete brackets, parens, quotes in pair.
 	use({ "mattn/emmet-vim", event = "VimEnter", ft = { "html", "markdown", "css", "scss" } }) -- Shortcuts for writing HTML and CSS
 	use({ "norcalli/nvim-colorizer.lua", ft = { "html", "css", "scss", "javascript" } }) -- Colour highlighting
-	use({ "ervandew/supertab" }) -- Use <Tab> for autocompletion in insert mode
 	use({ "tpope/vim-surround" }) -- Mappings for surroundings like brackets, quotes, e.t.c.
 	use({ "numtostr/comment.nvim" }) -- Comment stuff out easily
 	use({ "tpope/vim-repeat" }) -- Enhance the dot command
