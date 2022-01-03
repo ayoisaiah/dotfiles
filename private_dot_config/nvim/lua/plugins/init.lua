@@ -86,7 +86,6 @@ require("packer").startup(function(use)
 end)
 
 -- Config
--- require('plugins.coc-nvim')
 require("plugins.conoline")
 require("plugins.emmet-vim")
 require("plugins.gitsigns")

@@ -1,6 +1,7 @@
 # GIT
 abbr g 'git'
 abbr ga 'git add'
+abbr gaa 'git add -A'
 abbr gb 'git branch'
 abbr gbd 'git branch -d'
 abbr gbdd 'git branch -D'
