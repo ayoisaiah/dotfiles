@@ -24,16 +24,15 @@ require("packer").startup(function(use)
 	-- Packer can manage itself
 	use({ "wbthomason/packer.nvim" })
 
-	-- Markdown
-	use({ "plasticboy/vim-markdown" })
-	use({ "vim-pandoc/vim-pandoc-syntax" })
-
 	-- Telescope
-	use({ "nvim-lua/plenary.nvim" })
-	use({ "nvim-telescope/telescope.nvim" })
-	use({ "fannheyward/telescope-coc.nvim" })
-	use({ "fhill2/telescope-ultisnips.nvim" })
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "fhill2/telescope-ultisnips.nvim" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+		},
+	})
 
 	-- Git
 	use({ "tpope/vim-fugitive", event = "VimEnter" }) -- Git wrapper for vim
@@ -51,16 +50,26 @@ require("packer").startup(function(use)
 	use({ "neovim/nvim-lspconfig" })
 	use({ "tami5/lspsaga.nvim" })
 	use({ "SirVer/ultisnips" }) -- Snippets engine
-	use({ "hrsh7th/cmp-cmdline" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/nvim-cmp" })
-	use({ "mhartington/formatter.nvim" })
+	use({ "mhartington/formatter.nvim" }) --Auto formatting
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "hrsh7th/cmp-cmdline" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+		},
+	})
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		requires = {
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		},
+	})
 
 	-- Utilities
 	use({ "romainl/vim-qf" }) -- Quick fix settings, commands and mappings
@@ -79,6 +88,8 @@ require("packer").startup(function(use)
 	use({ "airblade/vim-rooter" }) -- Change vim working directory to project directory
 	use({ "andymass/vim-matchup", event = "VimEnter" }) -- Highlight, navigate, and operate on sets of matching text
 	use({ "lewis6991/impatient.nvim" }) -- Speed up startup time
+	use({ "folke/todo-comments.nvim" }) -- Highlight and search for TODO comments
+	use({ "folke/trouble.nvim" }) -- Diagnostics
 
 	if packer_bootstrap then
 		require("packer").sync()
@@ -106,7 +117,7 @@ require("plugins.ultisnips")
 require("plugins.vim-bbye")
 require("plugins.vim-fugitive")
 require("plugins.vim-gutentags")
-require("plugins.vim-markdown")
-require("plugins.vim-pandoc")
 require("plugins.vim-qf")
 require("plugins.vim-rooter")
+require("plugins.todo-comments")
+require("plugins.trouble")

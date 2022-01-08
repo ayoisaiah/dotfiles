@@ -1,6 +1,8 @@
 local map = vim.api.nvim_set_keymap
 
 local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -19,7 +21,9 @@ require("telescope").setup({
 				["<esc>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
+				["<c-t>"] = trouble.open_with_trouble,
 			},
+			n = { ["<c-t>"] = trouble.open_with_trouble },
 		},
 	},
 	pickers = {
@@ -32,7 +36,6 @@ require("telescope").setup({
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ultisnips")
-require("telescope").load_extension("coc")
 
 map(
 	"n",
@@ -67,6 +70,4 @@ map("n", "<leader>tl", '<cmd>lua require("telescope.builtin").loclist()<CR>', { 
 map("n", "<leader>th", '<cmd>lua require("telescope.builtin").highlights()<CR>', { noremap = true, silent = true })
 map("n", "<leader>tr", '<cmd>lua require("telescope.builtin").registers()<CR>', { noremap = true, silent = true })
 map("n", "<leader>ti", '<cmd>lua require("telescope.builtin").treesitter()<CR>', { noremap = true, silent = true })
-map("n", "<leader>tcd", ":Telescope coc diagnostics<CR>", { noremap = true, silent = true })
-map("n", "<leader>tcr", ":Telescope coc references<CR>", { noremap = true, silent = true })
 map("n", "<leader>tu", ":Telescope ultisnips<CR>", { noremap = true, silent = true })

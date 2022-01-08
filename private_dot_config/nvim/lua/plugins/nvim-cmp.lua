@@ -1,4 +1,8 @@
 local cmp = require("cmp")
+local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+require("cmp_nvim_ultisnips").setup({})
 
 cmp.setup({
 	snippet = {
@@ -63,10 +67,7 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		}),
+		["<C-e>"] = cmp.config.disable,
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({
@@ -91,12 +92,10 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
--- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig")["gopls"].setup({
-	capabilities = capabilities,
-})
-
-require("lspconfig")["tsserver"].setup({
-	capabilities = capabilities,
-})
+local servers = { "gopls", "tsserver" }
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup({
+		-- on_attach = my_custom_on_attach,
+		capabilities = capabilities,
+	})
+end

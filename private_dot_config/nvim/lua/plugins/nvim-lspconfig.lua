@@ -1,4 +1,10 @@
-require("lspconfig").gopls.setup({})
+require("lspconfig").gopls.setup({
+	settings = {
+		gopls = {
+			gofumpt = true,
+		},
+	},
+})
 require("lspconfig").tsserver.setup({})
 require("lspconfig").bashls.setup({})
 require("lspconfig").cssls.setup({})
@@ -17,3 +23,23 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 map("n", "<space>d", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+
+do
+	local method = "textDocument/publishDiagnostics"
+	local default_handler = vim.lsp.handlers[method]
+	vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
+		default_handler(err, method, result, client_id, bufnr, config)
+		local diagnostics = vim.lsp.diagnostic.get_all()
+		local qflist = {}
+		for bufnr, diagnostic in pairs(diagnostics) do
+			for _, d in ipairs(diagnostic) do
+				d.bufnr = bufnr
+				d.lnum = d.range.start.line + 1
+				d.col = d.range.start.character + 1
+				d.text = d.message
+				table.insert(qflist, d)
+			end
+		end
+		vim.lsp.util.set_qflist(qflist)
+	end
+end
