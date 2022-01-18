@@ -24,6 +24,8 @@ local opts = { noremap = true, silent = true }
 
 map("n", "<space>d", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
+-- display diagnostics in the quickfix list
+-- https://github.com/neovim/nvim-lspconfig/issues/69#issuecomment-789541466
 do
 	local method = "textDocument/publishDiagnostics"
 	local default_handler = vim.lsp.handlers[method]
