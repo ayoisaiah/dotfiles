@@ -10,6 +10,10 @@ saga.setup({
 		quit = "<Esc>",
 		exec = "<CR>",
 	},
+	code_action_keys = {
+		quit = "<Esc>",
+		exec = "<CR>",
+	},
 	finder_definition_icon = "🔱 ",
 	finder_reference_icon = "🐤 ",
 	max_preview_lines = 20,
