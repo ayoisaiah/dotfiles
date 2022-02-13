@@ -2,6 +2,7 @@ local fn = vim.fn
 
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
+	---@diagnostic disable-next-line: lowercase-global
 	packer_bootstrap = fn.system({
 		"git",
 		"clone",
@@ -12,11 +13,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	})
 end
 
--- Auto compile when there are changes in plugins.lua
+-- Auto compile when there are changes in lua
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    autocmd BufWritePost lua source <afile> | PackerCompile
   augroup end
 ]])
 
@@ -116,29 +117,29 @@ require("packer").startup(function(use)
 end)
 
 -- Config
-require("plugins.conoline")
-require("plugins.emmet-vim")
-require("plugins.gitsigns")
-require("plugins.indent-blankline")
-require("plugins.lualine")
-require("plugins.nvim-autopairs")
-require("plugins.nvim-bufferline")
-require("plugins.nvim-lspconfig")
-require("plugins.nvim-cmp")
-require("plugins.formatter-nvim")
-require("plugins.lspsaga")
-require("plugins.comment")
-require("plugins.rainbow")
-require("plugins.supertab")
-require("plugins.telescope")
-require("plugins.treesitter")
-require("plugins.ultisnips")
-require("plugins.vim-bbye")
-require("plugins.vim-fugitive")
-require("plugins.vim-gutentags")
-require("plugins.vim-qf")
-require("plugins.vim-rooter")
-require("plugins.todo-comments")
-require("plugins.trouble")
-require("plugins.which-key")
-require("plugins.octo")
+require("config/conoline")
+require("config/emmet-vim")
+require("config/gitsigns")
+require("config/indent-blankline")
+require("config/lualine")
+require("config/nvim-autopairs")
+require("config/nvim-bufferline")
+require("config/nvim-lspconfig")
+require("config/nvim-cmp")
+require("config/formatter-nvim")
+require("config/lspsaga")
+require("config/comment")
+require("config/rainbow")
+require("config/supertab")
+require("config/telescope")
+require("config/treesitter")
+require("config/ultisnips")
+require("config/vim-bbye")
+require("config/vim-fugitive")
+require("config/vim-gutentags")
+require("config/vim-qf")
+require("config/vim-rooter")
+require("config/todo-comments")
+require("config/trouble")
+require("config/which-key")
+require("config/octo")

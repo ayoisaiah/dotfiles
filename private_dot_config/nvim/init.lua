@@ -1,4 +1,8 @@
+-- All non-plugin Neovim options
 require("settings")
-require("maps")
+-- Mappings not related to any plugin
+require("mappings")
+-- Appearance
 require("theme")
+-- Plugin config and plugin-specific mappings
 require("plugins")
