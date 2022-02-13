@@ -1,5 +1,5 @@
-alias vim="/home/ayo/bin/nvim.appimage"
-alias nvim="/home/ayo/bin/nvim.appimage"
+alias vim="/usr/local/bin/nvim.appimage"
+alias nvim="/usr/local/bin/nvim.appimage"
 
 alias vi="/usr/bin/vim"
 
@@ -11,8 +11,8 @@ alias y="yarn --ignore-engines"
 
 alias go="/usr/local/go/bin/go"
 
-# Replace ls with lsd
-alias ls="lsd --icon always"
+# Replace ls with exa
+alias ls="exa --icons"
 
 alias brl="br -dp"
 alias brgs="br -gc :gs"

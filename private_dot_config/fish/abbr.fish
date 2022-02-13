@@ -45,8 +45,15 @@ abbr b3 'upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 abbr cdw 'cd /mnt/c/Users/blitzkrieg/'
 
-# Reload fish config file
+# Reflect changes to fish configuration
 abbr rf 'source ~/.config/fish/config.fish'
+
+# immediately incorporates history changes from other sessions
+abbr hm 'history --merge'
 
 # Sync local time
 abbr ntp 'sudo ntpdate pool.ntp.org'
+
+# Exa
+abbr ll 'exa --long --all --group --git'
+abbr lt 'exa --long --all --group --header --tree --level'

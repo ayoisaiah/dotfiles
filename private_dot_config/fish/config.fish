@@ -4,61 +4,16 @@ source $HOME/.config/fish/aliases.fish
 # Abbreviations
 source $HOME/.config/fish/abbr.fish
 
-# Force tmux to start in utf8 https://github.com/wernight/powerline-web-fonts/issues/8
-set -gx LANG "en_US.UTF-8"
-set -gx LC_CTYPE "en_US.UTF-8"
+# Variables
+source $HOME/.config/fish/variables.fish
 
-set -gx EDITOR "nvim"
-set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --follow --ignore-file '/home/ayo/.vimignore'"
+# Key bindings
+source $HOME/.config/fish/bindings.fish
 
-# PATH
-set PATH /usr/local/bin $PATH
+## Fzf.fish
+set fzf_preview_dir_cmd exa
 
-set -gx PATH $PATH "$HOME/bin"
-set -gx PATH $PATH "$HOME/.local/bin"
-set -gx PATH $PATH "/home/ayo/.yarn/bin"
-
-## Golang
-set -gx PATH $PATH "/usr/local/go/bin"
-set -gx PATH $PATH "$HOME/go/bin"
-set -gx GOBIN "$HOME/go/bin"
-set -gx GOPATH "$HOME/go"
-set -gx GOROOT "/usr/local/go"
-set -Ux GO111MODULE "on"
-
-## Ruby
-set -gx PATH $PATH "$HOME/.rbenv/bin"
-set -gx PATH $PATH "$HOME/.rbenv/plugins/ruby-build/bin"
-status --is-interactive; and rbenv init - fish | source
-
-## Rust
-set -gx PATH $PATH "/home/ayo/.cargo/bin"
-
-## Deno
-set -gx DENO_INSTALL "/home/ayo/.deno"
-set -gx PATH $PATH "$DENO_INSTALL/bin"
+set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
 
 # SHELL
 zoxide init fish | source # Better cd
-
-starship init fish | source # Universal shell prompt
-
-# Bat
-set -gx BAT_THEME "gruvbox-dark"
-
-# Volta
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH $PATH "$VOLTA_HOME/bin"
-
-# Set vi bndings as default
-function fish_user_key_bindings
-  fish_default_key_bindings -M insert
-  fish_vi_key_bindings --no-erase insert
-end
-
-fish_user_key_bindings
-
-## Fzf.fish
-set fzf_preview_dir_cmd lsd
-
-set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
