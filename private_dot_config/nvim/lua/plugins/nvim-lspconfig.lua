@@ -1,28 +1,66 @@
-require("lspconfig").gopls.setup({
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig/configs")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local sumneko_root_path = "/home/ayo/bin/lua-language-server"
+local sumneko_binary = "/home/ayo/bin/lua-language-server/bin/lua-language-server"
+
+require("lspconfig").sumneko_lua.setup({
+	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+	settings = {
+		Lua = {
+			runtime = {
+				path = vim.split(package.path, ";"),
+			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+				},
+			},
+		},
+	},
+})
+
+lspconfig.gopls.setup({
 	settings = {
 		gopls = {
 			gofumpt = true,
 		},
 	},
 })
-require("lspconfig").tsserver.setup({})
-require("lspconfig").bashls.setup({})
-require("lspconfig").cssls.setup({})
-require("lspconfig").html.setup({})
-require("lspconfig").eslint.setup({})
-require("lspconfig").svelte.setup({})
-require("lspconfig").golangci_lint_ls.setup({
+lspconfig.tsserver.setup({})
+lspconfig.bashls.setup({})
+lspconfig.cssls.setup({})
+lspconfig.html.setup({})
+lspconfig.eslint.setup({})
+lspconfig.svelte.setup({})
+lspconfig.golangci_lint_ls.setup({
 	init_options = {
 		command = { "golangci-lint", "run", "--out-format", "json" },
 	},
 })
 
-local exec = vim.api.nvim_exec
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+if not lspconfig.emmet_ls then
+	configs.emmet_ls = {
+		default_config = {
+			cmd = { "emmet-ls", "--stdio" },
+			filetypes = { "html", "css", "scss" },
+			root_dir = function(fname)
+				return vim.loop.cwd()
+			end,
+			settings = {},
+		},
+	}
+end
 
-map("n", "<space>d", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+lspconfig.emmet_ls.setup({ capabilities = capabilities })
 
 -- display diagnostics in the quickfix list
 -- https://github.com/neovim/nvim-lspconfig/issues/69#issuecomment-789541466
@@ -31,7 +69,7 @@ do
 	local default_handler = vim.lsp.handlers[method]
 	vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
 		default_handler(err, method, result, client_id, bufnr, config)
-		local diagnostics = vim.lsp.diagnostic.get_all()
+		local diagnostics = vim.diagnostic.get()
 		local qflist = {}
 		for bufnr, diagnostic in pairs(diagnostics) do
 			for _, d in ipairs(diagnostic) do
@@ -42,6 +80,6 @@ do
 				table.insert(qflist, d)
 			end
 		end
-		vim.lsp.util.set_qflist(qflist)
+		vim.fn.setqflist(qflist)
 	end
 end

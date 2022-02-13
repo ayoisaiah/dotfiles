@@ -38,18 +38,35 @@ require("packer").startup(function(use)
 	use({ "tpope/vim-fugitive", event = "VimEnter" }) -- Git wrapper for vim
 	use({ "lewis6991/gitsigns.nvim" }) -- Git signs
 	use({ "rhysd/git-messenger.vim", event = "VimEnter" }) -- Show Git info in a popup
+	use({
+		"pwntester/octo.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"kyazdani42/nvim-web-devicons",
+		},
+	})
 
 	-- Appearance and themes
 	use({ "hoob3rt/lualine.nvim" }) -- Statusline
 	use({ "kyazdani42/nvim-web-devicons" }) -- Dev icons
 	use({ "akinsho/nvim-bufferline.lua" }) -- Better nvim buffers
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indenting
-	use({ "norcalli/nvim-base16.lua" }) -- Theme colours
+	use({ "folke/tokyonight.nvim" }) -- Theme
 
 	-- Autocompletion, formatting, linting & intellisense
 	use({ "neovim/nvim-lspconfig" })
 	use({ "tami5/lspsaga.nvim" })
-	use({ "SirVer/ultisnips" }) -- Snippets engine
+	use({
+		"SirVer/ultisnips",
+		config = function()
+			vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+			vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+			vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
+			vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
+			vim.g.UltiSnipsRemoveSelectModeMappings = 0
+		end,
+	}) -- Snippets engine
 	use({ "mhartington/formatter.nvim" }) --Auto formatting
 	use({
 		"hrsh7th/nvim-cmp",
@@ -91,6 +108,7 @@ require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" }) -- Speed up startup time
 	use({ "folke/todo-comments.nvim" }) -- Highlight and search for TODO comments
 	use({ "folke/trouble.nvim" }) -- Diagnostics
+	use({ "folke/which-key.nvim" }) -- Key bindings
 
 	if packer_bootstrap then
 		require("packer").sync()
@@ -122,3 +140,5 @@ require("plugins.vim-qf")
 require("plugins.vim-rooter")
 require("plugins.todo-comments")
 require("plugins.trouble")
+require("plugins.which-key")
+require("plugins.octo")

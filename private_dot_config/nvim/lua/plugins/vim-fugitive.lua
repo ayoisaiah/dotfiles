@@ -1,5 +1,8 @@
-local map = vim.api.nvim_set_keymap
+local wk = require("which-key")
 
-map("n", "<leader>gw", ":Gwrite<CR>", { noremap = true, silent = true })
-map("n", "<leader>gc", ":Git commit --verbose<CR>", { noremap = true, silent = true })
-map("n", "<leader>ga", ":Git commit --amend<CR>", { noremap = true, silent = true })
+wk.register({
+	name = "git",
+	w = { "<cmd>Gwrite<CR>", "Git add" },
+	c = { "<cmd>Git commit --verbose<CR>", "Git commit" },
+	a = { "<cmd>Git commit --amend<CR>", "Amend commit" },
+}, { prefix = "<leader>g" })

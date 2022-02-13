@@ -1,1 +1,6 @@
-vim.api.nvim_set_keymap("n", "<leader>l", ":Bwipeout<CR>", { noremap = true, silent = true })
+local wk = require("which-key")
+
+wk.register({
+	name = "buffers",
+	l = { "<cmd>Bwipeout<CR>", "Clear current buffer" },
+}, { prefix = "<leader>b" })

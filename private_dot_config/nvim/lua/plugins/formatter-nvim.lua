@@ -29,6 +29,9 @@ require("formatter").setup({
 		scss = {
 			prettier,
 		},
+		ruby = {
+			prettier,
+		},
 		go = {
 			function()
 				return {
@@ -55,7 +58,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.html,*.js,*.ts,*.go,*.json,*.lua,*.css,*.scss FormatWrite
+  autocmd BufWritePost *.html,*.js,*.ts,*.go,*.json,*.lua,*.css,*.scss,*.rb FormatWrite
 augroup END
 ]],
 	true

@@ -12,7 +12,6 @@ vendor/
 *.webp
 *.gif
 *.woff
-testdata/
 *.cr2
 *.dng
 *.keep

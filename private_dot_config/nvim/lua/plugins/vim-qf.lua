@@ -1,10 +1,8 @@
-local map = vim.api.nvim_set_keymap
+local wk = require("which-key")
 
--- Jump to and from location/quickfix windows.
-map("n", "<leader>qf", "<Plug>(qf_qf_switch)", {})
-
--- Toggle the quickfix list window
-map("n", "<leader>qq", "<Plug>(qf_qf_toggle)", {})
-
--- Toggle the location list window
-map("n", "<leader>ql", "<Plug>(qf_loc_toggle)", {})
+wk.register({
+	name = "diagnostics",
+	f = { "<Plug>(qf_qf_switch)", "Jump to and from quickfix/location window" },
+	q = { "<Plug>(qf_qf_toggle)", "Toggle quickfix" },
+	l = { "<Plug>(qf_loc_toggle)", "Toggle loclist" },
+}, { prefix = "<leader>q" })
