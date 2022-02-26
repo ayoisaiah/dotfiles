@@ -17,12 +17,14 @@ require("telescope").setup({
 		},
 		mappings = {
 			i = {
-				["<esc>"] = actions.close,
+				["<ESC>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<c-t>"] = trouble.open_with_trouble,
+				["<C-t>"] = trouble.open_with_trouble,
 			},
-			n = { ["<c-t>"] = trouble.open_with_trouble },
+			n = {
+				["<C-t>"] = trouble.open_with_trouble,
+			},
 		},
 	},
 	pickers = {

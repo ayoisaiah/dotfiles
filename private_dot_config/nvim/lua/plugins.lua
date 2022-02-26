@@ -69,16 +69,9 @@ require("packer").startup(function(use)
 		end,
 	}) -- Snippets engine
 	use({ "mhartington/formatter.nvim" }) --Auto formatting
-	use({
-		"hrsh7th/nvim-cmp",
-		requires = {
-			{ "hrsh7th/cmp-cmdline" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "quangnguyen30192/cmp-nvim-ultisnips" },
-		},
-	})
+	use({ "ms-jpq/coq_nvim", branch = "coq" })
+	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
+	use({ "ray-x/lsp_signature.nvim" })
 
 	-- Treesitter
 	use({
@@ -94,7 +87,7 @@ require("packer").startup(function(use)
 	use({ "moll/vim-bbye" }) -- Delete buffers without closing windows
 	use({ "windwp/nvim-autopairs" }) -- Insert or delete brackets, parens, quotes in pair.
 	use({ "mattn/emmet-vim", event = "VimEnter", ft = { "html", "markdown", "css", "scss" } }) -- Shortcuts for writing HTML and CSS
-	use({ "norcalli/nvim-colorizer.lua", ft = { "html", "css", "scss", "javascript" } }) -- Colour highlighting
+	use({ "norcalli/nvim-colorizer.lua", ft = { "html", "css", "scss", "javascript", "lua" } }) -- Colour highlighting
 	use({ "tpope/vim-surround" }) -- Mappings for surroundings like brackets, quotes, e.t.c.
 	use({ "numtostr/comment.nvim" }) -- Comment stuff out easily
 	use({ "tpope/vim-repeat" }) -- Enhance the dot command
@@ -125,12 +118,10 @@ require("config/lualine")
 require("config/nvim-autopairs")
 require("config/nvim-bufferline")
 require("config/nvim-lspconfig")
-require("config/nvim-cmp")
 require("config/formatter-nvim")
 require("config/lspsaga")
 require("config/comment")
 require("config/rainbow")
-require("config/supertab")
 require("config/telescope")
 require("config/treesitter")
 require("config/ultisnips")
@@ -143,3 +134,6 @@ require("config/todo-comments")
 require("config/trouble")
 require("config/which-key")
 require("config/octo")
+require("config/coq")
+require("config/lsp_signature")
+require("config/nvim-colorizer")

@@ -1,7 +1,6 @@
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig/configs")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local sumneko_root_path = "/home/ayo/bin/lua-language-server"
 local sumneko_binary = "/home/ayo/bin/lua-language-server/bin/lua-language-server"
 
