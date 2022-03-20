@@ -1,6 +1,7 @@
 -- This file is for custom key bindings for native vim functions
 
 local map = vim.api.nvim_set_keymap
+local wk = require("which-key")
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
 
@@ -28,11 +29,19 @@ map("", "<leader>gf", ":e <cfile><CR>", {}) -- Create the file under cursor
 map("n", "n", "nzz", { noremap = true })
 map("n", "N", "Nzz", { noremap = true })
 
--- Copy and paste to the system clipboard
-map("", "<leader>y", '"*y', { noremap = true })
-map("", "<leader>d", '"*d', { noremap = true })
-map("", "<leader>p", '"*p', { noremap = true })
-map("", "<leader>P", '"*P', { noremap = true })
-
 map("n", "<C-h>", "<C-w>h", { noremap = true })
 map("n", "<C-l>", "<C-w>l", { noremap = true })
+
+wk.register({
+	name = "clipboard",
+	y = { '"*y', "Yank to system clipboard" },
+	d = { '"*d', "Delete to system clipboard" },
+	p = { '"*p', "Paste from system clipboard (after cursor" },
+	P = { '"*P', "Paste from system clipboard (before cursor" },
+}, { prefix = "<leader>" })
+
+wk.register({
+	name = "window",
+	h = { "<C-w>h", "Switch to left window" },
+	l = { "<C-w>l", "Switch to right window" },
+}, { prefix = "<leader>" })

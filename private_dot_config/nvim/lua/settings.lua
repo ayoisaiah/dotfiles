@@ -28,6 +28,7 @@ o.formatoptions = o.formatoptions + "t"
 o.colorcolumn = o.colorcolumn + "+1"
 o.showmatch = true
 o.lazyredraw = true
+o.ffs = "unix"
 
 -- #FINDING FILES
 -- Use the `:find` command to fuzzy search files in the working directory
@@ -63,8 +64,14 @@ o.updatetime = 100
 
 o.complete = o.complete + "kspell" -- Enable word completion
 
-o.shell = "/usr/bin/bash"
-g["$SHELL"] = "/usr/bin/bash"
+local shell = "/usr/bin/bash"
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+	shell = "C:\\Program Files (x86)\\PowerShell\\7\\pwsh.exe"
+end
+
+o.shell = shell
+g["$SHELL"] = shell
 
 g.loaded_matchit = 1 -- Disable matchit plugin
 

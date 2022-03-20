@@ -17,3 +17,5 @@ set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
 
 # SHELL
 zoxide init fish | source # Better cd
+
+starship init fish | source

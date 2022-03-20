@@ -36,7 +36,7 @@ require("packer").startup(function(use)
 	})
 
 	-- Git
-	use({ "tpope/vim-fugitive", event = "VimEnter" }) -- Git wrapper for vim
+	use({ "tpope/vim-fugitive" }) -- Git wrapper for vim
 	use({ "lewis6991/gitsigns.nvim" }) -- Git signs
 	use({ "rhysd/git-messenger.vim", event = "VimEnter" }) -- Show Git info in a popup
 	use({
@@ -53,7 +53,8 @@ require("packer").startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" }) -- Dev icons
 	use({ "akinsho/nvim-bufferline.lua" }) -- Better nvim buffers
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indenting
-	use({ "folke/tokyonight.nvim" }) -- Theme
+	-- use({ "folke/tokyonight.nvim" }) -- Theme
+	use({ "rebelot/kanagawa.nvim" })
 
 	-- Autocompletion, formatting, linting & intellisense
 	use({ "neovim/nvim-lspconfig" })
@@ -68,7 +69,7 @@ require("packer").startup(function(use)
 			vim.g.UltiSnipsRemoveSelectModeMappings = 0
 		end,
 	}) -- Snippets engine
-	use({ "mhartington/formatter.nvim" }) --Auto formatting
+	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "ms-jpq/coq_nvim", branch = "coq" })
 	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
 	use({ "ray-x/lsp_signature.nvim" })
@@ -94,7 +95,9 @@ require("packer").startup(function(use)
 	use({ "godlygeek/tabular" }) -- Enhance the dot command
 	use({ "tpope/vim-unimpaired" }) -- Custom mappings for some ex commands
 	use({ "luochen1990/rainbow" }) -- Use different colours for parenthesis levels
+
 	use({ "ludovicchabant/vim-gutentags" }) -- Manage tag files automatically
+
 	use({ "wakatime/vim-wakatime", event = "VimEnter" }) -- Auto generated metrics and time tracking
 	use({ "miyakogi/conoline.vim" }) -- Highlight the line of the cusor in the current window
 	use({ "airblade/vim-rooter" }) -- Change vim working directory to project directory
@@ -118,22 +121,22 @@ require("config/lualine")
 require("config/nvim-autopairs")
 require("config/nvim-bufferline")
 require("config/nvim-lspconfig")
-require("config/formatter-nvim")
 require("config/lspsaga")
+require("config/null-ls")
 require("config/comment")
 require("config/rainbow")
 require("config/telescope")
-require("config/treesitter")
 require("config/ultisnips")
 require("config/vim-bbye")
 require("config/vim-fugitive")
-require("config/vim-gutentags")
 require("config/vim-qf")
 require("config/vim-rooter")
 require("config/todo-comments")
 require("config/trouble")
 require("config/which-key")
 require("config/octo")
-require("config/coq")
 require("config/lsp_signature")
 require("config/nvim-colorizer")
+require("config/vim-gutentags")
+require("config/coq")
+require("config/treesitter")

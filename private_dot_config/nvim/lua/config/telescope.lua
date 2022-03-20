@@ -1,8 +1,10 @@
 local wk = require("which-key")
+local telescope = require("telescope")
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
+local vimignore = vim.fn.stdpath("config") .. "/.vimignore"
 
-require("telescope").setup({
+telescope.setup({
 	defaults = {
 		vimgrep_arguments = {
 			"rg",
@@ -13,7 +15,7 @@ require("telescope").setup({
 			"--column",
 			"--smart-case",
 			"--ignore-file",
-			"/home/ayo/.vimignore",
+			vimignore,
 		},
 		mappings = {
 			i = {
@@ -35,8 +37,8 @@ require("telescope").setup({
 	},
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("ultisnips")
+telescope.load_extension("fzf")
+telescope.load_extension("ultisnips")
 
 wk.register({
 	name = "telescope",
@@ -62,7 +64,9 @@ wk.register({
 wk.register({
 	name = "telescope",
 	["<C-p>"] = {
-		"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = { 'rg', '--files', '--hidden', '--follow', '--ignore-file', '/home/ayo/.vimignore' } })<CR>",
+		"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = { 'rg', '--files', '--hidden', '--follow', '--ignore-file','"
+			.. vimignore
+			.. "'} })<CR>",
 		"Find files",
 	},
 })

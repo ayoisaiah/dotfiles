@@ -10,9 +10,16 @@ saga.setup({
 		quit = "<Esc>",
 		exec = "<CR>",
 	},
+	code_action_prompt = {
+		enable = false,
+		sign = true,
+		sign_priority = 40,
+		virtual_text = true,
+	},
 	code_action_keys = {
 		quit = "<Esc>",
 		exec = "<CR>",
+		enable = false,
 	},
 	finder_definition_icon = "🔱 ",
 	finder_reference_icon = "🐤 ",
@@ -35,7 +42,7 @@ wk.register({
 	p = { "<cmd>Lspsaga preview_definition<CR>", "Preview symbol definition" },
 	h = { "<cmd>Lspsaga hover_doc<CR>", "Show hover doc" },
 	d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-}, { prefix = "<leader>l" })
+}, { prefix = "<leader>s" })
 
 wk.register({
 	["]c"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic" },
