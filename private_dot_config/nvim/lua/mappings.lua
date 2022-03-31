@@ -41,7 +41,15 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register({
+	name = "clipboard",
+	y = { '"*y', "Yank to system clipboard" },
+	d = { '"*d', "Delete to system clipboard" },
+	p = { '"*p', "Paste from system clipboard (after cursor" },
+	P = { '"*P', "Paste from system clipboard (before cursor" },
+}, { prefix = "<leader>", mode = "v" })
+
+wk.register({
 	name = "window",
-	h = { "<C-w>h", "Switch to left window" },
+	k = { "<C-w>h", "Switch to left window" },
 	l = { "<C-w>l", "Switch to right window" },
 }, { prefix = "<leader>" })

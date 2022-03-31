@@ -59,16 +59,7 @@ require("packer").startup(function(use)
 	-- Autocompletion, formatting, linting & intellisense
 	use({ "neovim/nvim-lspconfig" })
 	use({ "tami5/lspsaga.nvim" })
-	use({
-		"SirVer/ultisnips",
-		config = function()
-			vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-			vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
-			vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
-			vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
-			vim.g.UltiSnipsRemoveSelectModeMappings = 0
-		end,
-	}) -- Snippets engine
+	use({ "SirVer/ultisnips" }) -- Snippets engine
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "ms-jpq/coq_nvim", branch = "coq" })
 	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })

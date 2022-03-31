@@ -10,6 +10,9 @@ source $HOME/.config/fish/variables.fish
 # Key bindings
 source $HOME/.config/fish/bindings.fish
 
+# Kanagawa theme
+source $HOME/.config/fish/extras/kanagawa.fish
+
 ## Fzf.fish
 set fzf_preview_dir_cmd exa
 

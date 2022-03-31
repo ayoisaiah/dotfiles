@@ -16,5 +16,16 @@
 -- 	black = "#303030",
 -- }
 
+local my_colors = {
+	waveBlue1 = "#363646",
+	sumiInk1 = "#16161D",
+}
+
+require("kanagawa").setup({
+	dimInactive = true,
+	globalStatus = true,
+	colors = my_colors,
+})
+
 -- Load the colorscheme
 vim.cmd([[colorscheme kanagawa]])
