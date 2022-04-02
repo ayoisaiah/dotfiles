@@ -12,7 +12,6 @@ null_ls.setup({
 				PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/utils/linter-config/.prettierrc.json"),
 			},
 		}),
-		null_ls.builtins.formatting.markdownlint,
 		null_ls.builtins.completion.luasnip,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.completion.tags,
@@ -20,7 +19,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.gitlint,
 		null_ls.builtins.diagnostics.golangci_lint,
 		null_ls.builtins.diagnostics.jsonlint,
-		null_ls.builtins.diagnostics.proselint,
+		null_ls.builtins.diagnostics.proselint.with({
+			extra_args = { "--config", "~/.config/proselint/config.json" },
+		}),
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.misspell.with({
 			filetypes = { "markdown" },
