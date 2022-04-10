@@ -65,11 +65,6 @@ o.updatetime = 100
 o.complete = o.complete + "kspell" -- Enable word completion
 
 local shell = "/usr/bin/bash"
-
-if vim.loop.os_uname().sysname == "Windows_NT" then
-	shell = "C:\\Program Files (x86)\\PowerShell\\7\\pwsh.exe"
-end
-
 o.shell = shell
 g["$SHELL"] = shell
 
@@ -127,5 +122,16 @@ exec(
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 ]],
+	false
+)
+
+-- Customise vertical split highlighting
+exec(
+	[[
+:augroup MyColors
+:    autocmd!
+:    autocmd ColorScheme * highlight VertSplit cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#363646 guifg=#000000
+augroup END
+  ]],
 	false
 )

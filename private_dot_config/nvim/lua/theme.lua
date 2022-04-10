@@ -17,13 +17,12 @@
 -- }
 
 local my_colors = {
-	waveBlue1 = "#363646",
+	waveBlue1 = "#094771",
 	sumiInk1 = "#16161D",
 }
 
 require("kanagawa").setup({
 	dimInactive = true,
-	globalStatus = true,
 	colors = my_colors,
 })
 

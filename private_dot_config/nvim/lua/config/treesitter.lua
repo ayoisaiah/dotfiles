@@ -9,6 +9,8 @@ require("nvim-treesitter.configs").setup({
 		"bash",
 		"fish",
 		"gomod",
+		"markdown",
+		"pug",
 		"css",
 		"html",
 		"json",

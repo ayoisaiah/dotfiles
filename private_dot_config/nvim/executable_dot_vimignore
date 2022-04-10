@@ -12,6 +12,8 @@ vendor/
 *.webp
 *.gif
 *.woff
+*.woff2
+*.dng
 *.cr2
 *.dng
 *.keep

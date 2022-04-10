@@ -7,7 +7,8 @@ alias vi="/usr/bin/vim"
 alias gcd="cd (git rev-parse --show-toplevel)"
 
 alias n="npm"
-alias y="yarn --ignore-engines"
+alias y="yarn"
+alias p="pnpm"
 
 alias go="/usr/local/go/bin/go"
 

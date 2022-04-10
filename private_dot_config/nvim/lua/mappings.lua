@@ -32,6 +32,9 @@ map("n", "N", "Nzz", { noremap = true })
 map("n", "<C-h>", "<C-w>h", { noremap = true })
 map("n", "<C-l>", "<C-w>l", { noremap = true })
 
+-- Disable Ex mode mapping
+map("n", "Q", "<Nop>", { noremap = true })
+
 wk.register({
 	name = "clipboard",
 	y = { '"*y', "Yank to system clipboard" },

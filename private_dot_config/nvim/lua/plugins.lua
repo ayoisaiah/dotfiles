@@ -53,7 +53,6 @@ require("packer").startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" }) -- Dev icons
 	use({ "akinsho/nvim-bufferline.lua" }) -- Better nvim buffers
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indenting
-	-- use({ "folke/tokyonight.nvim" }) -- Theme
 	use({ "rebelot/kanagawa.nvim" })
 
 	-- Autocompletion, formatting, linting & intellisense
@@ -83,13 +82,12 @@ require("packer").startup(function(use)
 	use({ "tpope/vim-surround" }) -- Mappings for surroundings like brackets, quotes, e.t.c.
 	use({ "numtostr/comment.nvim" }) -- Comment stuff out easily
 	use({ "tpope/vim-repeat" }) -- Enhance the dot command
-	use({ "godlygeek/tabular" }) -- Enhance the dot command
+	use({ "godlygeek/tabular" }) -- Text alignment
 	use({ "tpope/vim-unimpaired" }) -- Custom mappings for some ex commands
-	use({ "luochen1990/rainbow" }) -- Use different colours for parenthesis levels
+	use({ "p00f/nvim-ts-rainbow" }) -- Use different colours for parenthesis levels
 
 	use({ "ludovicchabant/vim-gutentags" }) -- Manage tag files automatically
 
-	use({ "wakatime/vim-wakatime", event = "VimEnter" }) -- Auto generated metrics and time tracking
 	use({ "miyakogi/conoline.vim" }) -- Highlight the line of the cusor in the current window
 	use({ "airblade/vim-rooter" }) -- Change vim working directory to project directory
 	use({ "andymass/vim-matchup", event = "VimEnter" }) -- Highlight, navigate, and operate on sets of matching text
@@ -115,7 +113,7 @@ require("config/nvim-lspconfig")
 require("config/lspsaga")
 require("config/null-ls")
 require("config/comment")
-require("config/rainbow")
+require("config/nvim-ts-rainbow")
 require("config/telescope")
 require("config/ultisnips")
 require("config/vim-bbye")

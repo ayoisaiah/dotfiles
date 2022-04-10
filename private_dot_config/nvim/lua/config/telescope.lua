@@ -6,6 +6,7 @@ local vimignore = vim.fn.stdpath("config") .. "/.vimignore"
 
 telescope.setup({
 	defaults = {
+		preview = false,
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
