@@ -1,5 +1,4 @@
-alias vim="/usr/local/bin/nvim.appimage"
-alias nvim="/usr/local/bin/nvim.appimage"
+alias vim="nvim"
 
 alias vi="/usr/bin/vim"
 
@@ -9,8 +8,6 @@ alias gcd="cd (git rev-parse --show-toplevel)"
 alias n="npm"
 alias y="yarn"
 alias p="pnpm"
-
-alias go="/usr/local/go/bin/go"
 
 # Replace ls with exa
 alias ls="exa --icons"

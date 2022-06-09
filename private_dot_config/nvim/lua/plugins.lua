@@ -60,9 +60,17 @@ require("packer").startup(function(use)
 	use({ "tami5/lspsaga.nvim" })
 	use({ "SirVer/ultisnips" }) -- Snippets engine
 	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "ms-jpq/coq_nvim", branch = "coq" })
-	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
 	use({ "ray-x/lsp_signature.nvim" })
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+		},
+	})
 
 	-- Treesitter
 	use({
@@ -127,5 +135,5 @@ require("config/octo")
 require("config/lsp_signature")
 require("config/nvim-colorizer")
 require("config/vim-gutentags")
-require("config/coq")
+require("config/nvim-cmp")
 require("config/treesitter")

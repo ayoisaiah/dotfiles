@@ -1,5 +1,7 @@
 -- All non-plugin Neovim options
 require("settings")
+-- auto commands
+require("autocmds")
 -- Mappings not related to any plugin
 require("mappings")
 -- Plugin config and plugin-specific mappings

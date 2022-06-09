@@ -2,9 +2,9 @@ command_timeout = 2000
 add_newline = false
 
 [character]
-success_symbol = "😎"
-error_symbol = "❌"
-vicmd_symbol = "💚"
+success_symbol = "🟢"
+error_symbol = "🔴"
+vicmd_symbol = "🟩"
 
 [aws]
 disabled = true
@@ -22,10 +22,10 @@ truncation_length = 8
 disabled = true
 
 [nodejs]
-symbol = "🤪"
+symbol = "💚 "
 
 [golang]
-symbol = "💙"
+symbol = "🐁"
 
 [battery]
 disabled = true

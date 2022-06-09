@@ -22,3 +22,7 @@ set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
 zoxide init fish | source # Better cd
 
 starship init fish | source
+
+if status is-interactive
+  zellij setup --generate-auto-start fish | source
+end

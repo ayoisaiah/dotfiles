@@ -1,0 +1,25 @@
+{
+  "name": "Kanagawa",
+  "comment": "Kanagawa Dark Scheme",
+  "use-theme-colors": false,
+  "foreground-color": "#DCD7BA",
+  "background-color": "#1F1F28",
+  "palette": [
+    "#090618",
+    "#C34043",
+    "#76946A",
+    "#C0A36E",
+    "#7E9CD8",
+    "#957FB8",
+    "#6A9589",
+    "#F8F8F2",
+    "#727169",
+    "#E82424",
+    "#98BB6C",
+    "#E6C384",
+    "#7FB4CA",
+    "#938AA9",
+    "#7AA89F",
+    "#F9F8F5"
+  ]
+}

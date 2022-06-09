@@ -63,6 +63,7 @@ o.smartcase = true -- make searches case insensitive except if uppercase charate
 o.updatetime = 100
 
 o.complete = o.complete + "kspell" -- Enable word completion
+o.completeopt = "menu,menuone,noselect"
 
 local shell = "/usr/bin/bash"
 o.shell = shell
@@ -93,34 +94,6 @@ augroup templates
   autocmd BufNewFile .eslintrc.json 0r ~/.config/nvim/templates/skeleton.eslintrc
   autocmd BufNewFile .prettierrc.json 0r ~/.config/nvim/templates/skeleton.prettierrc
 augroup END
-]],
-	false
-)
-
--- Auto update dotfiles
-exec([[ autocmd BufWritePost ~/.local/share/chezmoi/* silent! !chezmoi apply ]], false)
-
--- Spell checking for markdown files
-exec([[ autocmd BufRead,BufNewFile *.md setlocal spell ]], false)
-
--- Strip trailing whitespace from all files
-exec(
-	[[
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\s\+$//e
-]],
-	false
-)
-
--- Toggle relative number mode
-exec(
-	[[
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
 ]],
 	false
 )

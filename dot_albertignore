@@ -1,0 +1,5 @@
+/go
+.icons/
+node_modules
+dev
+bin

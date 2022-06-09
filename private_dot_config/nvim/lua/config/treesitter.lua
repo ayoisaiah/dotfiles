@@ -23,6 +23,7 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"zig",
 		"ruby",
+		"svelte",
 	},
 	highlight = {
 		enable = true,

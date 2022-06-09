@@ -33,12 +33,17 @@ abbr gss 'git status'
 abbr gst 'git stash'
 
 # Ubuntu
-abbr apti 'sudo apt install'
-abbr aptu 'sudo apt update'
-abbr aptr 'sudo apt remove'
-abbr aptf 'sudo apt full-upgrade'
+abbr apti 'sudo apt install -y'
+abbr aptu 'sudo apt update -y'
+abbr aptr 'sudo apt remove -y'
+abbr aptf 'sudo apt full-upgrade -y'
 abbr aptl 'sudo apt list --upgradable'
 abbr di 'sudo dpkg -i'
+
+# Fedora
+abbr dnfi 'sudo dnf install -y'
+abbr dnfr 'sudo dnf remove -y'
+abbr dnfu 'sudo dnf update -y'
 
 # Show power consumption, battery health and related statistics
 abbr b3 'upower -i /org/freedesktop/UPower/devices/battery_BAT0'

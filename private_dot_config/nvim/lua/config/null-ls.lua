@@ -6,6 +6,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylelint,
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.zigfmt,
+		null_ls.builtins.formatting.golines.with({
+			extra_args = { "-m", "80" },
+		}),
 		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.prettierd.with({
 			env = {
@@ -20,7 +23,7 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.golangci_lint,
 		null_ls.builtins.diagnostics.jsonlint,
 		null_ls.builtins.diagnostics.proselint.with({
-			extra_args = { "--config", "~/.config/proselint/config.json" },
+			extra_args = { "--config", "/home/ayo/.config/proselint/config.json" },
 		}),
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.misspell.with({

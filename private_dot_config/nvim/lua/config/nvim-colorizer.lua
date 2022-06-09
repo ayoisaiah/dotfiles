@@ -5,4 +5,8 @@ require("colorizer").setup({
 	"html",
 	"scss",
 	"lua",
+	"json",
+	"markdown",
+	"go",
+	"typescript",
 })

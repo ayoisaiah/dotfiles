@@ -35,20 +35,37 @@ map("n", "<C-l>", "<C-w>l", { noremap = true })
 -- Disable Ex mode mapping
 map("n", "Q", "<Nop>", { noremap = true })
 
+local exec = vim.api.nvim_exec
+exec(
+	[[
+noremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+
+  ]],
+	false
+)
+
+map(
+	"n",
+	'"+p',
+	[[:let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p]],
+	{ noremap = true }
+)
+
 wk.register({
 	name = "clipboard",
 	y = { '"*y', "Yank to system clipboard" },
 	d = { '"*d', "Delete to system clipboard" },
-	p = { '"*p', "Paste from system clipboard (after cursor" },
-	P = { '"*P', "Paste from system clipboard (before cursor" },
+	p = { '"*p', "Paste from system clipboard (after cursor)" },
+	P = { '"*P', "Paste from system clipboard (before cursor)" },
 }, { prefix = "<leader>" })
 
 wk.register({
 	name = "clipboard",
 	y = { '"*y', "Yank to system clipboard" },
 	d = { '"*d', "Delete to system clipboard" },
-	p = { '"*p', "Paste from system clipboard (after cursor" },
-	P = { '"*P', "Paste from system clipboard (before cursor" },
+	p = { '"*p', "Paste from system clipboard (after cursor)" },
+	P = { '"*P', "Paste from system clipboard (before cursor)" },
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
