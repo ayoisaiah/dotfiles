@@ -51,6 +51,15 @@ autocmd("FileType", {
 	desc = "Start git messages in insert mode",
 })
 
+autocmd("TextYankPost", {
+	group = "buffer",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ timeout = 500 })
+	end,
+	desc = "Highlight text briefly after yanking",
+})
+
 autocmd("FileType", {
 	group = "buffer",
 	pattern = "*.md",
