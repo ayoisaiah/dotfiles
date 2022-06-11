@@ -57,7 +57,13 @@ require("packer").startup(function(use)
 
 	-- Autocompletion, formatting, linting & intellisense
 	use({ "neovim/nvim-lspconfig" })
-	use({ "tami5/lspsaga.nvim" })
+	use({
+		"ray-x/navigator.lua",
+		requires = {
+			{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+			{ "neovim/nvim-lspconfig" },
+		},
+	})
 	use({ "SirVer/ultisnips" }) -- Snippets engine
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "ray-x/lsp_signature.nvim" })
@@ -68,7 +74,10 @@ require("packer").startup(function(use)
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
+			{ "andersevenrud/cmp-tmux" },
 			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+			{ "onsails/lspkind.nvim" },
+			{ "f3fora/cmp-spell" },
 		},
 	})
 
@@ -103,6 +112,8 @@ require("packer").startup(function(use)
 	use({ "folke/todo-comments.nvim" }) -- Highlight and search for TODO comments
 	use({ "folke/trouble.nvim" }) -- Diagnostics
 	use({ "folke/which-key.nvim" }) -- Key bindings
+	use({ "matveyt/neoclip" }) -- Clipboard
+	use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
 
 	if packer_bootstrap then
 		require("packer").sync()
@@ -118,7 +129,6 @@ require("config/lualine")
 require("config/nvim-autopairs")
 require("config/nvim-bufferline")
 require("config/nvim-lspconfig")
-require("config/lspsaga")
 require("config/null-ls")
 require("config/comment")
 require("config/nvim-ts-rainbow")
@@ -131,9 +141,11 @@ require("config/vim-rooter")
 require("config/todo-comments")
 require("config/trouble")
 require("config/which-key")
+require("config/navigator")
 require("config/octo")
 require("config/lsp_signature")
 require("config/nvim-colorizer")
 require("config/vim-gutentags")
 require("config/nvim-cmp")
 require("config/treesitter")
+require("config/toggleterm")

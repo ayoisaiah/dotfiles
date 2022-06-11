@@ -2,7 +2,7 @@ local lspconfig = require("lspconfig")
 local configs = require("lspconfig/configs")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local sumneko_root_path = "/home/ayo/bin/lua-language-server"
-local sumneko_binary = "/home/ayo/bin/lua-language-server/lua-language-server"
+local sumneko_binary = "/home/ayo/bin/lua-language-server/bin/lua-language-server"
 
 require("lspconfig").sumneko_lua.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
@@ -35,6 +35,16 @@ lspconfig.svelte.setup({})
 lspconfig.golangci_lint_ls.setup({
 	init_options = {
 		command = { "golangci-lint", "run", "--out-format", "json" },
+	},
+})
+
+lspconfig.sumneko_lua.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim", "require" },
+			},
+		},
 	},
 })
 
@@ -76,3 +86,4 @@ do
 		vim.fn.setqflist(qflist)
 	end
 end
+

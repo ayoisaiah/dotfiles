@@ -1,72 +1,57 @@
 -- This file is for custom key bindings for native vim functions
 
-local map = vim.api.nvim_set_keymap
 local wk = require("which-key")
+local map = vim.api.nvim_set_keymap
+local exec = vim.api.nvim_exec
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
 
-map("i", "<F1>", "<ESC>", { noremap = true })
-map("n", "<F1>", "<ESC>", { noremap = true })
-map("v", "<F1>", "<ESC>", { noremap = true })
+local opts = { noremap = true }
 
-map("i", "jj", "<ESC>", { noremap = true })
+map("i", "<F1>", "<ESC>", opts)
+map("n", "<F1>", "<ESC>", opts)
+map("v", "<F1>", "<ESC>", opts)
+
+map("i", "jj", "<ESC>", opts)
 
 -- A saner way to save files
-map("n", "<F2>", ":w<CR>", { noremap = true })
+map("n", "<F2>", ":w<CR>", opts)
 
 -- MOVING LINES
-map("n", "<C-j>", ":m .+1<CR>==", { noremap = true })
-map("n", "<C-k>", ":m .-2<CR>==", { noremap = true })
-map("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true })
-map("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true })
+map("n", "<C-j>", ":m .+1<CR>==", opts)
+map("n", "<C-k>", ":m .-2<CR>==", opts)
+map("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- turn off search highlighting
-map("n", "<leader><space>", ":nohlsearch<CR>", { noremap = true })
+map("n", "<leader><space>", ":nohlsearch<CR>", opts)
 
 map("", "<leader>gf", ":e <cfile><CR>", {}) -- Create the file under cursor
 
 -- Keep search matches in the middle of the screen
-map("n", "n", "nzz", { noremap = true })
-map("n", "N", "Nzz", { noremap = true })
+map("n", "n", "nzz", opts)
+map("n", "N", "Nzz", opts)
 
-map("n", "<C-h>", "<C-w>h", { noremap = true })
-map("n", "<C-l>", "<C-w>l", { noremap = true })
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-l>", "<C-w>l", opts)
 
 -- Disable Ex mode mapping
-map("n", "Q", "<Nop>", { noremap = true })
+map("n", "Q", "<Nop>", opts)
 
-local exec = vim.api.nvim_exec
-exec(
-	[[
-noremap "+y y:call system("wl-copy", @")<cr>
-nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+-- Copy and paste to the system clipboard
+map("n", '"+p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("n", '"*p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("n", '"+P', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
+map("n", '"*P', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
+map("n", "<leader>p", [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("n", "<leader>P", [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
 
-  ]],
-	false
-)
-
-map(
-	"n",
-	'"+p',
-	[[:let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p]],
-	{ noremap = true }
-)
-
-wk.register({
-	name = "clipboard",
-	y = { '"*y', "Yank to system clipboard" },
-	d = { '"*d', "Delete to system clipboard" },
-	p = { '"*p', "Paste from system clipboard (after cursor)" },
-	P = { '"*P', "Paste from system clipboard (before cursor)" },
-}, { prefix = "<leader>" })
-
-wk.register({
-	name = "clipboard",
-	y = { '"*y', "Yank to system clipboard" },
-	d = { '"*d', "Delete to system clipboard" },
-	p = { '"*p', "Paste from system clipboard (after cursor)" },
-	P = { '"*P', "Paste from system clipboard (before cursor)" },
-}, { prefix = "<leader>", mode = "v" })
+map("v", '"+p', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("v", '"*p', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("v", '"+P', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
+map("v", '"*P', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
+map("v", "<leader>p", [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
+map("v", "<leader>P", [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
 
 wk.register({
 	name = "window",

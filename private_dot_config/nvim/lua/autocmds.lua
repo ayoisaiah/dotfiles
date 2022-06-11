@@ -1,6 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local map = vim.api.nvim_buf_set_keymap
 local fn = vim.fn
+local o = vim.opt
 
 -- Customize buffer behaviour in different scenarios
 augroup("buffer", {
@@ -42,20 +44,21 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 	desc = "Turn relative number off in insert mode or when window loses focus",
 })
 
-autocmd("TextYankPost", {
-	group = "buffer",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ timeout = 500 })
-	end,
-	desc = "Highlight text briefly after yanking",
-})
-
 autocmd("FileType", {
 	group = "buffer",
 	pattern = { "gitcommit", "gitrebase" },
 	command = "startinsert | 1",
 	desc = "Start git messages in insert mode",
+})
+
+autocmd("FileType", {
+	group = "buffer",
+	pattern = "*.md",
+	callback = function()
+		o.spell = true
+		o.spelllang = { "en_us" }
+	end,
+	desc = "Enable spell checking in markdown files",
 })
 
 autocmd("BufReadPost", {
@@ -88,4 +91,24 @@ autocmd("ColorScheme", {
 	pattern = "*",
 	command = "highlight VertSplit cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#363646 guifg=#000000",
 	desc = "highlight vertical split with a black on light grey background",
+})
+
+-- Terminal group
+augroup("terminal", {
+	clear = true,
+})
+
+autocmd("TermOpen", {
+	group = "terminal",
+	pattern = "term://*",
+	callback = function()
+		local opts = { noremap = true }
+		map(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+		map(0, "t", "jk", [[<C-\><C-n>]], opts)
+		map(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+		map(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+		map(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+		map(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+	end,
+	desc = "Make it easy to move in and out of terminal while keeping it open",
 })

@@ -1,4 +1,32 @@
 local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+local lsp_formatting = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			-- apply whatever logic you want (in this example, we'll only use null-ls)
+			return client.name == "null-ls"
+		end,
+		bufnr = bufnr,
+	})
+end
+
+local lsp_group = augroup("LspFormatting", {})
+
+-- add to your shared on_attach callback
+local on_attach = function(client, bufnr)
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = lsp_group, buffer = bufnr })
+		autocmd("BufWritePre", {
+			group = lsp_group,
+			buffer = bufnr,
+			callback = function()
+				lsp_formatting(bufnr)
+			end,
+		})
+	end
+end
 
 null_ls.setup({
 	sources = {
@@ -15,12 +43,9 @@ null_ls.setup({
 				PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/utils/linter-config/.prettierrc.json"),
 			},
 		}),
-		null_ls.builtins.completion.luasnip,
-		null_ls.builtins.completion.spell,
 		null_ls.builtins.completion.tags,
 		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.diagnostics.gitlint,
-		null_ls.builtins.diagnostics.golangci_lint,
 		null_ls.builtins.diagnostics.jsonlint,
 		null_ls.builtins.diagnostics.proselint.with({
 			extra_args = { "--config", "/home/ayo/.config/proselint/config.json" },
@@ -34,16 +59,6 @@ null_ls.setup({
 		null_ls.builtins.code_actions.proselint,
 		null_ls.builtins.code_actions.gitsigns,
 		null_ls.builtins.code_actions.eslint_d,
-		null_ls.builtins.completion.spell,
 	},
-	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
-			vim.cmd([[
-        augroup LspFormatting
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-        augroup END
-        ]])
-		end
-	end,
+	on_attach = on_attach,
 })

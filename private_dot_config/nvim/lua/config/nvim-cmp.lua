@@ -1,7 +1,28 @@
 local cmp = require("cmp")
 local lspconfig = require("lspconfig")
+local lspkind = require("lspkind")
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 cmp.setup({
+	experimental = {
+		ghost_text = true,
+	},
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol",
+			menu = {
+				buffer = "[BUF]",
+				nvim_lsp = "[LSP]",
+				path = "[PATH]",
+				ultisnips = "[SNIP]",
+				spell = "[SPELL]",
+				cmdline = "[CMD]",
+				tmux = "[TMUX]",
+			},
+			maxwidth = 50,
+		}),
+	},
 	snippet = {
 		expand = function(args)
 			vim.fn["UltiSnips#Anon"](args.body)
@@ -67,28 +88,34 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-y>"] = cmp.config.disable,
 		["<C-e>"] = cmp.config.disable,
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({
+		{ name = "buffer", option = {
+			keyword_length = 3,
+		} },
 		{ name = "nvim_lsp" },
-		{ name = "ultisnips" }, -- For ultisnips users.
+		{ name = "ultisnips" },
+		{ name = "tmux", {
+			option = {
+				all_panes = true,
+			},
+		} },
 	}, {
 		{ name = "buffer" },
 	}),
 })
 
--- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {
 	sources = cmp.config.sources({
-		{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+		{ name = "cmp_git" },
 	}, {
 		{ name = "buffer" },
 	}),
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
@@ -96,7 +123,6 @@ cmp.setup.cmdline("/", {
 	},
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
@@ -109,7 +135,7 @@ cmp.setup.cmdline(":", {
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "gopls", "tsserver", "null-ls", "golangci_lint_ls", "sumneko_lua" }
+local servers = { "gopls", "tsserver", "golangci_lint_ls", "sumneko_lua" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		capabilities = capabilities,
