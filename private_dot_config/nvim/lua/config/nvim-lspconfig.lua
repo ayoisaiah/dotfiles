@@ -26,17 +26,14 @@ require("lspconfig").sumneko_lua.setup({
 })
 
 lspconfig.gopls.setup({})
+lspconfig.phpactor.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.bashls.setup({})
+lspconfig.jsonls.setup({})
 lspconfig.cssls.setup({})
 lspconfig.html.setup({})
 lspconfig.eslint.setup({})
 lspconfig.svelte.setup({})
-lspconfig.golangci_lint_ls.setup({
-	init_options = {
-		command = { "golangci-lint", "run", "--out-format", "json" },
-	},
-})
 
 lspconfig.sumneko_lua.setup({
 	settings = {
@@ -86,4 +83,3 @@ do
 		vim.fn.setqflist(qflist)
 	end
 end
-

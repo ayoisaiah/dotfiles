@@ -29,6 +29,8 @@ local on_attach = function(client, bufnr)
 end
 
 null_ls.setup({
+	diagnostics_format = "[#{c}] #{m} (#{s})",
+	update_in_insert = true,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.stylelint,
@@ -38,9 +40,18 @@ null_ls.setup({
 			extra_args = { "-m", "80" },
 		}),
 		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.gofumpt,
+		null_ls.builtins.formatting.jq.with({
+			extra_filetypes = { "jsonc", "json5" },
+		}),
 		null_ls.builtins.formatting.prettierd.with({
 			env = {
-				PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/utils/linter-config/.prettierrc.json"),
+				PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/programming/.prettierrc.json"),
+				disabled_filetypes = { "json", "jsonc" },
+			},
+			extra_filetypes = {
+				"ruby",
+				"eruby",
 			},
 		}),
 		null_ls.builtins.completion.tags,
@@ -54,8 +65,21 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.misspell.with({
 			filetypes = { "markdown" },
 		}),
-		null_ls.builtins.diagnostics.rubocop,
+		-- null_ls.builtins.diagnostics.rubocop.with({
+		-- 	extra_args = { "-A" },
+		-- }),
 		null_ls.builtins.diagnostics.stylelint,
+		null_ls.builtins.diagnostics.golangci_lint.with({
+			args = {
+				"run",
+				"--fix=true",
+				"--fast",
+				"--out-format=json",
+				"$DIRNAME",
+				"--path-prefix",
+				"$ROOT",
+			},
+		}),
 		null_ls.builtins.code_actions.proselint,
 		null_ls.builtins.code_actions.gitsigns,
 		null_ls.builtins.code_actions.eslint_d,

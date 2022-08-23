@@ -36,18 +36,27 @@ telescope.setup({
 			sort_lastused = true,
 		},
 	},
+	extensions = {
+		frecency = {
+			show_scores = false,
+			show_unindexed = false,
+			default_workspace = "CWD",
+		},
+	},
 })
 
-telescope.load_extension("fzf")
-telescope.load_extension("ultisnips")
+-- telescope.load_extension("fzf")
+telescope.load_extension("frecency")
+telescope.load_extension("zf-native")
 
 wk.register({
-	name = "telescope",
+	name = "+telescope",
 	g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Live grep" },
+	G = { "<cmd>lua require('telescope.builtin').grep_string()<CR>", "Find string under cursor" },
 	b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Open buffers" },
 	h = { "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Help tags" },
-	t = { "<cmd>lua require('telescope.builtin').current_buffer_tags()<CR>", "Buffer tags" },
-	f = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Fuzzy find in buffer" },
+	f = { "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>", "Editing history" },
+	F = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Fuzzy find in buffer" },
 	T = { "<cmd>lua require('telescope.builtin').tags()<CR>", "Project tags" },
 	s = { "<cmd>lua require('telescope.builtin').spell_suggest()<CR>", "Suggest spelling" },
 	c = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Execute commands" },
@@ -57,13 +66,28 @@ wk.register({
 	q = { "<cmd>lua require('telescope.builtin').quickfix()<CR>", "Quickfix list" },
 	l = { "<cmd>lua require('telescope.builtin').loclist()<CR>", "Location list" },
 	r = { "<cmd>lua require('telescope.builtin').registers()<CR>", "Registers" },
-	i = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Treesitter" },
-	u = { "<cmd>Telescope ultisnips<CR>", "Ultisnips" },
+	R = { "<cmd>lua require('telescope.builtin').resume()<CR>", "Open results of last picker" },
+	t = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Treesitter" },
 	d = { "<cmd>TodoTelescope<CR>", "Todo items" },
 }, { prefix = "<leader>t" })
 
 wk.register({
-	name = "telescope",
+	name = "telescope lsp",
+	r = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "References for word under cursor" },
+	i = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<CR>", "Incoming calls" },
+	o = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<CR>", "Outgoing calls" },
+	s = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document symbols" },
+	w = { "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols" },
+	W = { "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Dynamic workspace symbols" },
+	d = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics in all open buffers" },
+	D = { "<cmd>lua require('telescope.builtin').diagnostics(bufnr=0)<CR>", "Diagnostics in current buffer" },
+	l = { "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Go to definition" },
+	t = { "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", "Go to type definition" },
+	m = { "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "Go to implementation" },
+}, { prefix = "<leader>." })
+
+wk.register({
+	name = "+telescope",
 	["<C-p>"] = {
 		"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = { 'rg', '--files', '--hidden', '--follow', '--ignore-file','"
 			.. vimignore

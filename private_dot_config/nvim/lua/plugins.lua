@@ -25,22 +25,27 @@ require("packer").startup(function(use)
 	-- Packer can manage itself
 	use({ "wbthomason/packer.nvim" })
 
-	-- Telescope
+	-- Telescope for fuzzy search
 	use({
 		"nvim-telescope/telescope.nvim",
+		tag = "0.1.0",
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "fhill2/telescope-ultisnips.nvim" },
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		requires = { "tami5/sqlite.lua" },
+	})
+	use({ "natecraddock/telescope-zf-native.nvim" })
 
 	-- Git
 	use({ "tpope/vim-fugitive" }) -- Git wrapper for vim
 	use({ "lewis6991/gitsigns.nvim" }) -- Git signs
 	use({ "rhysd/git-messenger.vim", event = "VimEnter" }) -- Show Git info in a popup
 	use({
-		"pwntester/octo.nvim",
+		"pwntester/octo.nvim", -- GitHub integration. Requires Github CLI and plugins below
 		requires = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
@@ -53,29 +58,30 @@ require("packer").startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" }) -- Dev icons
 	use({ "akinsho/nvim-bufferline.lua" }) -- Better nvim buffers
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indenting
-	use({ "rebelot/kanagawa.nvim" })
+	use({ "rebelot/kanagawa.nvim" }) -- Colour scheme
 
 	-- Autocompletion, formatting, linting & intellisense
 	use({ "neovim/nvim-lspconfig" })
+	use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" }) -- LSP Lines
 	use({
 		"ray-x/navigator.lua",
 		requires = {
 			{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+			{ "ray-x/lsp_signature.nvim" },
 			{ "neovim/nvim-lspconfig" },
 		},
 	})
-	use({ "SirVer/ultisnips" }) -- Snippets engine
-	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "ray-x/lsp_signature.nvim" })
+	use({ "L3MON4D3/LuaSnip" }) -- Snippets
+	use({ "jose-elias-alvarez/null-ls.nvim" }) -- Linting, formatting, and diagnostics
 	use({
-		"hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp", -- Auto completions from various sources
 		requires = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
+			{ "saadparwaiz1/cmp_luasnip" },
 			{ "andersevenrud/cmp-tmux" },
-			{ "quangnguyen30192/cmp-nvim-ultisnips" },
 			{ "onsails/lspkind.nvim" },
 			{ "f3fora/cmp-spell" },
 		},
@@ -96,7 +102,7 @@ require("packer").startup(function(use)
 	use({ "windwp/nvim-autopairs" }) -- Insert or delete brackets, parens, quotes in pair.
 	use({ "mattn/emmet-vim", event = "VimEnter", ft = { "html", "markdown", "css", "scss" } }) -- Shortcuts for writing HTML and CSS
 	use({ "norcalli/nvim-colorizer.lua", ft = { "html", "css", "scss", "javascript", "lua" } }) -- Colour highlighting
-	use({ "tpope/vim-surround" }) -- Mappings for surroundings like brackets, quotes, e.t.c.
+	use({ "kylechui/nvim-surround" }) -- Mappings for surroundings like brackets, quotes, e.t.c.
 	use({ "numtostr/comment.nvim" }) -- Comment stuff out easily
 	use({ "tpope/vim-repeat" }) -- Enhance the dot command
 	use({ "godlygeek/tabular" }) -- Text alignment
@@ -112,15 +118,14 @@ require("packer").startup(function(use)
 	use({ "folke/todo-comments.nvim" }) -- Highlight and search for TODO comments
 	use({ "folke/trouble.nvim" }) -- Diagnostics
 	use({ "folke/which-key.nvim" }) -- Key bindings
-	use({ "matveyt/neoclip" }) -- Clipboard
-	use({ "akinsho/toggleterm.nvim", tag = "v1.*" })
+	use({ "akinsho/toggleterm.nvim", tag = "v2.*" }) -- Makes using the built-in terminal much easier
 
 	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)
 
--- Config
+-- Plugin config
 require("config/conoline")
 require("config/emmet-vim")
 require("config/gitsigns")
@@ -133,7 +138,7 @@ require("config/null-ls")
 require("config/comment")
 require("config/nvim-ts-rainbow")
 require("config/telescope")
-require("config/ultisnips")
+require("config/nvim-surround")
 require("config/vim-bbye")
 require("config/vim-fugitive")
 require("config/vim-qf")
@@ -149,3 +154,5 @@ require("config/vim-gutentags")
 require("config/nvim-cmp")
 require("config/treesitter")
 require("config/toggleterm")
+require("config/luasnip")
+require("config/lsp_lines")

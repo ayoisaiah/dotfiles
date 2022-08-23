@@ -39,7 +39,8 @@ map("n", "<C-l>", "<C-w>l", opts)
 map("n", "Q", "<Nop>", opts)
 
 -- Copy and paste to the system clipboard
-map("n", "<leader>y", [[y:call system("wl-copy --trim-newline", @")<CR>]], opts)
+map("n", "<leader>y", '"+y', opts)
+map("v", "<leader>y", '"+y', opts)
 map("n", '"+p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
 map("n", '"*p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
 map("n", '"+P', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)

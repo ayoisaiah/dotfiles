@@ -7,7 +7,8 @@ local my_colors = {
 require("kanagawa").setup({
 	dimInactive = true,
 	colors = my_colors,
-	functionStyle = "bold",
+	functionStyle = { bold = true },
+	typeStyle = { bold = true },
 })
 
 -- Load the colorscheme

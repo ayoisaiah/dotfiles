@@ -15,7 +15,7 @@ set -gx PATH $PATH "/usr/local/go/bin"
 set -gx PATH $PATH "$HOME/go/bin"
 set -gx GOBIN "$HOME/go/bin"
 set -gx GOPATH "$HOME/go"
-set -gx GOROOT "/usr/lib/golang"
+set -gx GOROOT "/usr/local/go"
 set -Ux GO111MODULE "on"
 
 # Ruby

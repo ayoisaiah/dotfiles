@@ -7,6 +7,8 @@ local exec = vim.api.nvim_exec
 o.splitbelow = true
 o.splitright = true
 
+o.timeoutlen = 500
+
 o.showcmd = true -- Show leader key
 
 -- Tabs behaviour

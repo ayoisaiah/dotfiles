@@ -1,0 +1,12 @@
+linters:
+  disable-all: true
+  enable:
+    - wsl
+
+issues:
+  fix: true
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+run:
+  issues-exit-code: 1

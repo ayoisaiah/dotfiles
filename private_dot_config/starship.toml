@@ -4,7 +4,7 @@ add_newline = false
 [character]
 success_symbol = "🟢"
 error_symbol = "🔴"
-vicmd_symbol = "🟩"
+vicmd_symbol = "🟡"
 
 [aws]
 disabled = true
@@ -22,10 +22,10 @@ truncation_length = 8
 disabled = true
 
 [nodejs]
-symbol = "💚 "
+symbol = "🟩"
 
 [golang]
-symbol = "🐁"
+symbol = "🐀"
 
 [battery]
 disabled = true
@@ -33,7 +33,7 @@ disabled = true
 [git_status]
 conflicted = "🚩"
 ahead = "💨"
-behind = "😰"
+behind = "⏩"
 diverged = "😵"
 untracked = "🤷"
 stashed = "📦"
@@ -43,7 +43,7 @@ renamed = "👅"
 deleted = "💥"
 
 [shell]
-fish_indicator = "🦈"
+fish_indicator = "🐟"
 bash_indicator = "💲"
 powershell_indicator = "💪"
 unknown_indicator = "💻"
