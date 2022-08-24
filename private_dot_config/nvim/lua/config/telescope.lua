@@ -36,17 +36,9 @@ telescope.setup({
 			sort_lastused = true,
 		},
 	},
-	extensions = {
-		frecency = {
-			show_scores = false,
-			show_unindexed = false,
-			default_workspace = "CWD",
-		},
-	},
+	extensions = {},
 })
 
--- telescope.load_extension("fzf")
-telescope.load_extension("frecency")
 telescope.load_extension("zf-native")
 
 wk.register({

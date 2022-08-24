@@ -34,10 +34,6 @@ require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
-	use({
-		"nvim-telescope/telescope-frecency.nvim",
-		requires = { "tami5/sqlite.lua" },
-	})
 	use({ "natecraddock/telescope-zf-native.nvim" })
 
 	-- Git
