@@ -1,0 +1,23 @@
+set shell bash
+
+set ignorecase true
+set icons true
+
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/clear_img.sh
+
+cmd z %{{
+  result="$(zoxide query --exclude "${PWD}" -- "$@")"
+  lf -remote "send ${id} cd '${result}'"
+}}
+
+cmd zi ${{
+  result="$(zoxide query -i -- "$@")"
+  lf -remote "send ${id} cd '${result}'"
+}}
+
+map <esc> quit
+
+cmd delete IFS="`printf '\n\t'`"; rm $fx
+
+map D delete
