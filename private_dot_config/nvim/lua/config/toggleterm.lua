@@ -3,9 +3,10 @@ local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 
 require("toggleterm").setup({
-	shell = "/usr/bin/fish",
+	shell = "/usr/bin/fish --no-config",
 	open_mapping = "<leader>vv",
 	terminal_mappings = true,
+	insert_mappings = false,
 	size = 20,
 	hide_numbers = true,
 })

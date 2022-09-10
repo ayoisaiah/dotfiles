@@ -2,8 +2,6 @@ local cmp = require("cmp")
 local lspconfig = require("lspconfig")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -24,7 +22,7 @@ cmp.setup({
 				luasnip = "[SNIP]",
 				spell = "[SPELL]",
 				cmdline = "[CMD]",
-				tmux = "[TMUX]",
+				-- tmux = "[TMUX]",
 			},
 			maxwidth = 50,
 		}),
@@ -75,11 +73,11 @@ cmp.setup({
 		} },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "tmux", {
-			option = {
-				all_panes = true,
-			},
-		} },
+		-- { name = "tmux", {
+		-- 	option = {
+		-- 		all_panes = true,
+		-- 	},
+		-- } },
 	}, {
 		{ name = "buffer" },
 	}),

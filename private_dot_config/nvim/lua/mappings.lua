@@ -2,7 +2,6 @@
 
 local wk = require("which-key")
 local map = vim.api.nvim_set_keymap
-local exec = vim.api.nvim_exec
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
 
