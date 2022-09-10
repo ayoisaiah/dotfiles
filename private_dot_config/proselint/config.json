@@ -2,6 +2,7 @@
   "checks": {
     "typography.symbols.curly_quotes": false,
     "typography.diacritical_marks": false,
-    "spelling.misc": false
+    "spelling.misc": false,
+    "lexical_illusions.misc": false
   }
 }
