@@ -115,6 +115,7 @@ require("packer").startup(function(use)
 	use({ "folke/trouble.nvim" }) -- Diagnostics
 	use({ "folke/which-key.nvim" }) -- Key bindings
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" }) -- Makes using the built-in terminal much easier
+	use({ "wakatime/vim-wakatime" }) -- Coding statistics
 
 	if packer_bootstrap then
 		require("packer").sync()
