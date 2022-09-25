@@ -64,9 +64,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.misspell.with({
 			filetypes = { "markdown" },
 		}),
-		-- null_ls.builtins.diagnostics.rubocop.with({
-		-- 	extra_args = { "-A" },
-		-- }),
+		null_ls.builtins.diagnostics.rubocop.with({
+			extra_args = { "-A" },
+		}),
 		null_ls.builtins.diagnostics.stylelint,
 		null_ls.builtins.diagnostics.golangci_lint.with({
 			args = {
