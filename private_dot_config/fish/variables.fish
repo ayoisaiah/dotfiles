@@ -36,3 +36,6 @@ set -gx BAT_THEME "gruvbox-dark"
 # Volta
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH $PATH "$VOLTA_HOME/bin"
+
+set -gx PAGER "less"
+set -gx PSQL_PAGER "pspg -s 11"

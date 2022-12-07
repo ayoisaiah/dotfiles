@@ -5,7 +5,7 @@ local map = vim.api.nvim_set_keymap
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
 
-local opts = { noremap = true }
+local opts = { silent = true }
 
 map("i", "<F1>", "<ESC>", opts)
 map("n", "<F1>", "<ESC>", opts)
@@ -37,22 +37,17 @@ map("n", "<C-l>", "<C-w>l", opts)
 -- Disable Ex mode mapping
 map("n", "Q", "<Nop>", opts)
 
+-- ":Q" as ":q"
+vim.cmd([[command! Qa :qa]])
+vim.cmd([[command! Q :q]])
+
 -- Copy and paste to the system clipboard
 map("n", "<leader>y", '"+y', opts)
 map("v", "<leader>y", '"+y', opts)
-map("n", '"+p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("n", '"*p', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("n", '"+P', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
-map("n", '"*P', [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
-map("n", "<leader>p", [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("n", "<leader>P", [[:let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
-
-map("v", '"+p', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("v", '"*p', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("v", '"+P', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
-map("v", '"*P', [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
-map("v", "<leader>p", [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>p]], opts)
-map("v", "<leader>P", [[:<C-U>let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<CR>P]], opts)
+map("n", "<leader>p", '"+p', opts)
+map("v", "<leader>p", '"+p', opts)
+map("n", "<leader>P", '"+P', opts)
+map("v", "<leader>P", '"+P', opts)
 
 wk.register({
 	name = "window",

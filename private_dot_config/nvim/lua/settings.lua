@@ -9,6 +9,7 @@ o.splitright = true
 
 o.timeoutlen = 500
 
+o.cmdheight = 0
 o.showcmd = true -- Show leader key
 
 -- Tabs behaviour

@@ -22,7 +22,7 @@ cmp.setup({
 				luasnip = "[SNIP]",
 				spell = "[SPELL]",
 				cmdline = "[CMD]",
-				-- tmux = "[TMUX]",
+				tmux = "[TMUX]",
 			},
 			maxwidth = 50,
 		}),
@@ -73,11 +73,11 @@ cmp.setup({
 		} },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		-- { name = "tmux", {
-		-- 	option = {
-		-- 		all_panes = true,
-		-- 	},
-		-- } },
+		{ name = "tmux", {
+			option = {
+				all_panes = true,
+			},
+		} },
 	}, {
 		{ name = "buffer" },
 	}),

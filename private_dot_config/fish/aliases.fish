@@ -18,5 +18,5 @@ alias brgs="br -gc :gs"
 # Replace cat with bat
 alias cat="bat"
 
-# Safer rm
-alias rm="rm -I"
+#3 gotestfmt
+alias gotestfmt="gotestfmt -hide 'empty-packages'"

@@ -46,6 +46,7 @@ wk.register({
 	g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Live grep" },
 	G = { "<cmd>lua require('telescope.builtin').grep_string()<CR>", "Find string under cursor" },
 	b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Open buffers" },
+	x = { "<cmd>lua require('telescope.builtin').git_status()<CR>", "Git status" },
 	h = { "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Help tags" },
 	f = { "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>", "Editing history" },
 	F = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Fuzzy find in buffer" },
@@ -56,12 +57,25 @@ wk.register({
 	S = { "<cmd>lua require('telescope.builtin').search_history()<CR>", "Search history" },
 	o = { "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "Previously open files" },
 	q = { "<cmd>lua require('telescope.builtin').quickfix()<CR>", "Quickfix list" },
-	l = { "<cmd>lua require('telescope.builtin').loclist()<CR>", "Location list" },
+	L = { "<cmd>lua require('telescope.builtin').loclist()<CR>", "Location list" },
+	lm = {
+		"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'method', 'function'}})<CR>",
+		"Document methods and functions",
+	},
+	ls = {
+		"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'method', 'function'}})<CR>",
+		"Document methods and functions",
+	},
 	r = { "<cmd>lua require('telescope.builtin').registers()<CR>", "Registers" },
 	R = { "<cmd>lua require('telescope.builtin').resume()<CR>", "Open results of last picker" },
-	t = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Treesitter" },
+	t = {
+		"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, ignore_symbols = {'field'}})<CR>",
+		"Document symbols",
+	},
 	d = { "<cmd>TodoTelescope<CR>", "Todo items" },
 }, { prefix = "<leader>t" })
+
+wk.register({}, { prefix = "<leader>l" })
 
 wk.register({
 	name = "telescope lsp",

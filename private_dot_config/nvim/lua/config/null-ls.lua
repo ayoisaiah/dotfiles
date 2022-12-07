@@ -39,6 +39,10 @@ null_ls.setup({
 			extra_args = { "-m", "80" },
 		}),
 		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.rufo,
+		null_ls.builtins.formatting.rubocop.with({
+			args = { "--autocorrect-all", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
+		}),
 		null_ls.builtins.formatting.gofumpt,
 		null_ls.builtins.formatting.jq.with({
 			extra_filetypes = { "jsonc", "json5" },
@@ -57,16 +61,11 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.diagnostics.gitlint,
 		null_ls.builtins.diagnostics.jsonlint,
-		null_ls.builtins.diagnostics.proselint.with({
-			extra_args = { "--config", "/home/ayo/.config/proselint/config.json" },
-		}),
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.misspell.with({
 			filetypes = { "markdown" },
 		}),
-		null_ls.builtins.diagnostics.rubocop.with({
-			extra_args = { "-A" },
-		}),
+		null_ls.builtins.diagnostics.rubocop,
 		null_ls.builtins.diagnostics.stylelint,
 		null_ls.builtins.diagnostics.golangci_lint.with({
 			args = {
@@ -79,7 +78,6 @@ null_ls.setup({
 				"$ROOT",
 			},
 		}),
-		null_ls.builtins.code_actions.proselint,
 		null_ls.builtins.code_actions.gitsigns,
 		null_ls.builtins.code_actions.eslint_d,
 	},
