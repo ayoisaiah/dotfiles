@@ -3,7 +3,7 @@ set -gx LANG "en_US.UTF-8"
 set -gx LC_CTYPE "en_US.UTF-8"
 
 set -gx EDITOR "nvim"
-set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --follow --ignore-file '/home/ayo/.vimignore'"
+set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden --follow --ignore-file '/home/ayo/.vimignore'"
 
 # Path stuff
 set PATH /usr/local/bin $PATH
@@ -39,3 +39,8 @@ set -gx PATH $PATH "$VOLTA_HOME/bin"
 
 set -gx PAGER "less"
 set -gx PSQL_PAGER "pspg -s 11"
+
+set -gx PATH $PATH "$HOME/.pub-cache/bin"
+
+# Android
+set -gx ANDROID_HOME "$HOME/Android"

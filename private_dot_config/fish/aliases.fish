@@ -20,3 +20,7 @@ alias cat="bat"
 
 #3 gotestfmt
 alias gotestfmt="gotestfmt -hide 'empty-packages'"
+
+alias yt="youtube-dl"
+
+alias pn="pnpm"

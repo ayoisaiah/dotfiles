@@ -116,15 +116,6 @@ require("packer").startup(function(use)
 	use({ "folke/which-key.nvim" }) -- Key bindings
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" }) -- Makes using the built-in terminal much easier
 	use({ "wakatime/vim-wakatime" }) -- Coding statistics
-	use({ "MunifTanjim/nui.nvim" })
-	use({ "rcarriga/nvim-notify" })
-	use({
-		"folke/noice.nvim",
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-	})
 	use({
 		"rmagatti/auto-session",
 	})
@@ -133,6 +124,11 @@ require("packer").startup(function(use)
 		requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
 	})
 	use({ "tpope/vim-rails" })
+	use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({
+		"AckslD/nvim-FeMaco.lua",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
@@ -172,4 +168,5 @@ require("config/luasnip")
 require("config/lsp_lines")
 require("config/auto-session")
 require("config/session-lens")
--- require("config/noice")
+require("config/flutter-tools")
+require("config/femaco")

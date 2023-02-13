@@ -9,6 +9,9 @@ vicmd_symbol = "🟡"
 [aws]
 disabled = true
 
+[gcloud]
+disabled = true
+
 [time]
 disabled = true
 

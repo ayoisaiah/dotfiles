@@ -537,7 +537,7 @@ plugins:
 # that will be used by default if this option is not set.
 # Examples:
 #copy_command: "xclip -selection clipboard" # x11
-#copy_command: "wl-copy"                    # wayland
+copy_command: "wl-copy"                    # wayland
 #copy_command: "pbcopy"                     # osx
 
 # Choose the destination for copied text
@@ -552,4 +552,4 @@ plugins:
 #copy_on_select: true
 
 # Path to the default editor to use to edit pane scrollbuffer
-# scrollback_editor: /usr/bin/nano
+scrollback_editor: /usr/bin/vim

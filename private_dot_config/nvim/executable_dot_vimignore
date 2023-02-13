@@ -4,6 +4,7 @@ node_modules/
 vendor/
 *.jpeg
 *.jpg
+*.JPG
 *.png
 *.mp4
 *.flac

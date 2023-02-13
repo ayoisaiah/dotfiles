@@ -7,6 +7,7 @@ require("toggleterm").setup({
 	open_mapping = "<leader>vv",
 	terminal_mappings = true,
 	insert_mappings = false,
+	direction = "float",
 	size = 20,
 	hide_numbers = true,
 })
@@ -22,7 +23,7 @@ function _G.set_terminal_keymaps()
 	vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
 	vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
 	vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-	-- vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+	vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead

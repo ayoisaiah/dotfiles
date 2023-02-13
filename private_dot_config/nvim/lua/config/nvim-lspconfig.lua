@@ -27,7 +27,13 @@ require("lspconfig").sumneko_lua.setup({
 
 lspconfig.gopls.setup({})
 lspconfig.phpactor.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({
+	init_options = {
+		preferences = {
+			disableSuggestions = true,
+		},
+	},
+})
 lspconfig.bashls.setup({})
 lspconfig.jsonls.setup({})
 lspconfig.cssls.setup({})

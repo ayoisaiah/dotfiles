@@ -4,6 +4,8 @@ require("settings")
 require("autocmds")
 -- Mappings not related to any plugin
 require("mappings")
+-- Custom functions
+require("functions")
 -- Plugin config and plugin-specific mappings
 require("plugins")
 -- Appearance

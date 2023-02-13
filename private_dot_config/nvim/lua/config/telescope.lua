@@ -1,7 +1,7 @@
 local wk = require("which-key")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+--local trouble = require("trouble.providers.telescope")
 local vimignore = vim.fn.stdpath("config") .. "/.vimignore"
 
 telescope.setup({
@@ -23,10 +23,10 @@ telescope.setup({
 				["<ESC>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<C-t>"] = trouble.open_with_trouble,
+				--["<C-t>"] = trouble.open_with_trouble,
 			},
 			n = {
-				["<C-t>"] = trouble.open_with_trouble,
+				--["<C-t>"] = trouble.open_with_trouble,
 			},
 		},
 	},
@@ -39,7 +39,7 @@ telescope.setup({
 	extensions = {},
 })
 
-telescope.load_extension("zf-native")
+--telescope.load_extension("fzf")
 
 wk.register({
 	name = "+telescope",
@@ -95,7 +95,7 @@ wk.register({
 wk.register({
 	name = "+telescope",
 	["<C-p>"] = {
-		"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = { 'rg', '--files', '--hidden', '--follow', '--ignore-file','"
+		"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = { 'fd', '--type', 'file', '--hidden', '--follow', '--ignore-file','"
 			.. vimignore
 			.. "'} })<CR>",
 		"Find files",

@@ -3,6 +3,8 @@ require("nvim-treesitter.configs").setup({
 		"javascript",
 		"go",
 		"typescript",
+		"dart",
+		"help",
 		"lua",
 		"dockerfile",
 		"c",

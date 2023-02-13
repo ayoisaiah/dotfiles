@@ -1,6 +1,5 @@
 -- This file is for custom key bindings for native vim functions
 
-local wk = require("which-key")
 local map = vim.api.nvim_set_keymap
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
@@ -24,6 +23,9 @@ map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- turn off search highlighting
 map("n", "<leader><space>", ":nohlsearch<CR>", opts)
+
+-- execute current lua file
+map("n", "<leader><leader>x", ":source %<CR>", opts)
 
 map("", "<leader>gf", ":e <cfile><CR>", {}) -- Create the file under cursor
 
@@ -49,8 +51,4 @@ map("v", "<leader>p", '"+p', opts)
 map("n", "<leader>P", '"+P', opts)
 map("v", "<leader>P", '"+P', opts)
 
-wk.register({
-	name = "window",
-	k = { "<C-w>h", "Switch to left window" },
-	l = { "<C-w>l", "Switch to right window" },
-}, { prefix = "<leader>" })
+map("n", "<leader><leader>t", "<Plug>PlenaryTestFile", opts)

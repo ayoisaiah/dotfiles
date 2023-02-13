@@ -35,14 +35,16 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylelint,
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.zigfmt,
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.dart_format,
 		null_ls.builtins.formatting.golines.with({
 			extra_args = { "-m", "80" },
 		}),
 		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.rufo,
-		null_ls.builtins.formatting.rubocop.with({
-			args = { "--autocorrect-all", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
-		}),
+		-- null_ls.builtins.formatting.rubocop.with({
+		-- 	args = { "--autocorrect-all", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
+		-- }),
 		null_ls.builtins.formatting.gofumpt,
 		null_ls.builtins.formatting.jq.with({
 			extra_filetypes = { "jsonc", "json5" },
@@ -61,7 +63,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.diagnostics.gitlint,
 		null_ls.builtins.diagnostics.jsonlint,
-		null_ls.builtins.diagnostics.markdownlint,
+		null_ls.builtins.diagnostics.markdownlint.with({
+			-- args = { "--fix --ignore README.md --output $FILENAME $FILENAME" },
+		}),
 		null_ls.builtins.diagnostics.misspell.with({
 			filetypes = { "markdown" },
 		}),

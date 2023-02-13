@@ -22,3 +22,15 @@ set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
 zoxide init fish | source # Better cd
 
 starship init fish | source
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc' ]; . '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc'; end
+
+if set -q KITTY_INSTALLATION_DIR
+    set --global KITTY_SHELL_INTEGRATION enabled
+    source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+    set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+end
+
+set -gx PNPM_HOME "/home/ayo/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
