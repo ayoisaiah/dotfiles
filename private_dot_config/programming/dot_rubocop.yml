@@ -1,8 +1,0 @@
-inherit_gem:
-  prettier: rubocop.yml
-
-AllCops:
-  NewCops: enable
-
-Metrics/MethodLength:
-  Max: 25

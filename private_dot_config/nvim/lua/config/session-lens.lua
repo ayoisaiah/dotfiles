@@ -1,1 +1,0 @@
-require("session-lens").setup()

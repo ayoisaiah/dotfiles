@@ -24,3 +24,5 @@ alias gotestfmt="gotestfmt -hide 'empty-packages'"
 alias yt="youtube-dl"
 
 alias pn="pnpm"
+
+alias r="bundle exec rails"
