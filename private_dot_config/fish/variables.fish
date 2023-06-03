@@ -3,12 +3,15 @@ set -gx LANG "en_US.UTF-8"
 set -gx LC_CTYPE "en_US.UTF-8"
 
 set -gx EDITOR "nvim"
+set -gx SYSTEMD_EDITOR $EDITOR
+set -gx VISUAL $EDITOR
+
 set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden --follow --ignore-file '/home/ayo/.vimignore'"
 
 # Path stuff
 set PATH /usr/local/bin $PATH
 set -gx PATH $PATH "$HOME/bin" # temporary executables
-set -gx PATH $PATH "$HOME/.local/bin"
+set -gx PATH "$HOME/.local/bin" $PATH 
 
 # Go
 set -gx PATH $PATH "/usr/local/go/bin"
@@ -42,5 +45,11 @@ set -gx PSQL_PAGER "pspg -s 11"
 
 set -gx PATH $PATH "$HOME/.pub-cache/bin"
 
+# Flutter
+set -gx PATH "$HOME/.flutter/bin" $PATH
+
 # Android
 set -gx ANDROID_HOME "$HOME/Android"
+
+# Fix for abnormal cursor size
+set -gx XCURSOR_SIZE $(gsettings get org.gnome.desktop.interface cursor-size)

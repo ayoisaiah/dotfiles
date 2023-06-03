@@ -3,6 +3,7 @@ local config = function()
 	local lspconfig = require("lspconfig")
 	local lspkind = require("lspkind")
 	local luasnip = require("luasnip")
+	local compare = require("cmp.config.compare")
 
 	local has_words_before = function()
 		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -17,9 +18,9 @@ local config = function()
 			format = lspkind.cmp_format({
 				mode = "symbol",
 				menu = {
-					buffer = "[BUF]",
+					fuzzy_buffer = "[BUF]",
 					nvim_lsp = "[LSP]",
-					path = "[PATH]",
+					async_path = "[PATH]",
 					luasnip = "[SNIP]",
 					spell = "[SPELL]",
 					cmdline = "[CMD]",
@@ -27,6 +28,20 @@ local config = function()
 				},
 				maxwidth = 50,
 			}),
+		},
+		sorting = {
+			priority_weight = 2,
+			comparators = {
+				require("cmp_fuzzy_buffer.compare"),
+				compare.offset,
+				compare.exact,
+				compare.score,
+				compare.recently_used,
+				compare.kind,
+				compare.sort_text,
+				compare.length,
+				compare.order,
+			},
 		},
 		snippet = {
 			expand = function(args)
@@ -69,16 +84,26 @@ local config = function()
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 		},
 		sources = cmp.config.sources({
-			{ name = "buffer", option = {
-				keyword_length = 3,
-			} },
-			{ name = "nvim_lsp" },
 			{ name = "luasnip" },
-			{ name = "tmux", {
-				option = {
-					all_panes = true,
-				},
+			{ name = "nvim_lsp" },
+			{ name = "treesitter" },
+			{ name = "async_path", option = {
+				trailing_slash = true,
 			} },
+			-- { name = "fuzzy_buffer" },
+			-- { name = "tmux", {
+			-- 	option = {
+			-- 		all_panes = true,
+			-- 	},
+			-- } },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
+
+	cmp.setup.filetype("markdown", {
+		sources = cmp.config.sources({
+			{ name = "luasnip" },
 		}, {
 			{ name = "buffer" },
 		}),
@@ -102,7 +127,7 @@ local config = function()
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
-			{ name = "path" },
+			{ name = "async_path" },
 		}, {
 			{ name = "cmdline" },
 		}),
@@ -127,13 +152,15 @@ return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/cmp-path" },
+		{ "tzachar/cmp-fuzzy-buffer" },
+		{ "tzachar/fuzzy.nvim" },
+		{ "FelipeLema/cmp-async-path" },
 		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
-		{ "andersevenrud/cmp-tmux" },
+		{ "ray-x/cmp-treesitter" },
+		-- { "andersevenrud/cmp-tmux" },
 		{ "onsails/lspkind.nvim" },
-		{ "f3fora/cmp-spell" },
+		-- { "f3fora/cmp-spell" },
 	},
 	config = config,
 }

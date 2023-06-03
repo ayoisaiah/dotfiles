@@ -61,4 +61,3 @@ abbr ntp 'sudo ntpdate pool.ntp.org'
 
 # Exa
 abbr ll 'exa --long --all --group --git'
-abbr lt 'exa --long --all --group --header --tree --level'

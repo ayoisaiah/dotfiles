@@ -29,7 +29,7 @@ local config = function()
 	end
 
 	null_ls.setup({
-		debug = true,
+		debug = false,
 		diagnostics_format = " [#{s}] -> #{m}",
 		update_in_insert = true,
 		sources = {
@@ -39,11 +39,16 @@ local config = function()
 			null_ls.builtins.formatting.zigfmt,
 			null_ls.builtins.formatting.black,
 			null_ls.builtins.formatting.dart_format,
+			-- null_ls.builtins.formatting.sqlfluff.with({
+			-- 	extra_args = { "--dialect", "postgres" },
+			-- }),
 			null_ls.builtins.formatting.golines.with({
 				extra_args = { "-m", "80" },
 			}),
 			null_ls.builtins.formatting.goimports,
-			null_ls.builtins.formatting.rubocop,
+			null_ls.builtins.formatting.rubocop.with({
+				args = { "-A", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
+			}),
 			null_ls.builtins.formatting.gofumpt,
 			null_ls.builtins.formatting.jq.with({
 				extra_filetypes = { "jsonc", "json5" },
@@ -53,12 +58,20 @@ local config = function()
 			null_ls.builtins.formatting.prettierd.with({
 				extra_filetypes = { "pug" },
 			}),
+
 			null_ls.builtins.completion.tags,
+			null_ls.builtins.completion.luasnip,
+			null_ls.builtins.completion.spell,
+
+			null_ls.builtins.diagnostics.shellcheck,
 			null_ls.builtins.diagnostics.eslint_d,
 			null_ls.builtins.diagnostics.gitlint,
 			null_ls.builtins.diagnostics.jsonlint,
 			null_ls.builtins.diagnostics.yamllint,
 			null_ls.builtins.diagnostics.actionlint,
+			-- null_ls.builtins.diagnostics.sqlfluff.with({
+			-- 	extra_args = { "--dialect", "postgres" },
+			-- }),
 			null_ls.builtins.diagnostics.markdownlint.with({
 				-- args = { "--fix --ignore README.md --output $FILENAME $FILENAME" },
 			}),
@@ -77,8 +90,13 @@ local config = function()
 					"--out-format=json",
 				},
 			}),
+
 			null_ls.builtins.code_actions.gitsigns,
 			null_ls.builtins.code_actions.eslint_d,
+			null_ls.builtins.code_actions.gomodifytags,
+			null_ls.builtins.code_actions.impl,
+			null_ls.builtins.code_actions.refactoring,
+			null_ls.builtins.code_actions.shellcheck,
 		},
 		on_attach = on_attach,
 	})

@@ -1,12 +1,11 @@
 local config = function()
 	local wk = require("which-key")
 	local telescope = require("telescope")
-	local vimignore = vim.fn.stdpath("config") .. "/.vimignore"
+	local vimignore = "/home/ayo/.vimignore"
 	local actions = require("telescope.actions")
 
 	telescope.setup({
 		defaults = {
-			preview = false,
 			-- TODO: Update this
 			vimgrep_arguments = {
 				"rg",

@@ -11,6 +11,11 @@ local config = function()
 		direction = "float",
 		size = 20,
 		hide_numbers = true,
+		-- highlights = {
+		-- 	Normal = {
+		-- 		guibg = "#16161D",
+		-- 	},
+		-- },
 	})
 
 	function Lazygit_toggle()

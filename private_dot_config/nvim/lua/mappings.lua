@@ -52,3 +52,11 @@ map("n", "<leader>P", '"+P', opts)
 map("v", "<leader>P", '"+P', opts)
 
 map("n", "<leader><leader>t", "<Plug>PlenaryTestFile", opts)
+
+-- Tabs
+map("n", "<leader>1", "1gt", opts)
+map("n", "<leader>2", "2gt", opts)
+map("n", "<leader>3", "3gt", opts)
+map("n", "<leader>4", "4gt", opts)
+map("n", "<leader>5", "5gt", opts)
+map("n", "<leader>6", "6gt", opts)

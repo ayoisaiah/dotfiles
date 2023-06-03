@@ -4,7 +4,10 @@ add_newline = false
 [character]
 success_symbol = "🟢"
 error_symbol = "🔴"
-vicmd_symbol = "🟡"
+vimcmd_symbol = "🟡"
+vimcmd_replace_one_symbol = "🔵"
+vimcmd_replace_symbol = "🔵"
+vimcmd_visual_symbol = "🟣"
 
 [aws]
 disabled = true

@@ -3,6 +3,7 @@ local config = function()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	require("navigator").setup({
+		debug = false,
 		default_mapping = false,
 		lsp_signature_help = nil,
 		signature_help_cfg = nil,
@@ -13,12 +14,14 @@ local config = function()
 		lsp = {
 			enable = true,
 			format_on_save = false,
-			disply_diagnostic_qf = false,
+			disable_format_cap = { "lua_ls", "gopls", "tsserver" },
+			disable_lsp = { "flow" },
 			diagnostic = {
 				underline = true,
 				virtual_text = false, -- show virtual for diagnostic message
 				update_in_insert = false, -- update diagnostic message in insert mode
 			},
+			display_diagnostic_qf = false,
 			tsserver = {
 				filetypes = { "typescript", "javascript" },
 				init_options = {
@@ -38,8 +41,8 @@ local config = function()
 				},
 			},
 			lua_ls = {
-				sumneko_root_path = vim.fn.expand("$HOME") .. "/bin/lua-language-server",
-				sumneko_binary = vim.fn.expand("$HOME") .. "/bin/lua-language-server/bin/lua-language-server",
+				sumneko_root_path = vim.fn.expand("$HOME") .. "/.local/bin/lua-ls",
+				sumneko_binary = vim.fn.expand("$HOME") .. "/.local/bin/lua-ls/bin/lua-language-server",
 			},
 			servers = {
 				"marksman",
