@@ -59,16 +59,14 @@ local config = function()
 				extra_filetypes = { "pug" },
 			}),
 
-			null_ls.builtins.completion.tags,
-			null_ls.builtins.completion.luasnip,
-			null_ls.builtins.completion.spell,
-
 			null_ls.builtins.diagnostics.shellcheck,
 			null_ls.builtins.diagnostics.eslint_d,
 			null_ls.builtins.diagnostics.gitlint,
 			null_ls.builtins.diagnostics.jsonlint,
 			null_ls.builtins.diagnostics.yamllint,
 			null_ls.builtins.diagnostics.actionlint,
+			null_ls.builtins.diagnostics.hadolint,
+			null_ls.builtins.diagnostics.gospel,
 			-- null_ls.builtins.diagnostics.sqlfluff.with({
 			-- 	extra_args = { "--dialect", "postgres" },
 			-- }),
@@ -91,7 +89,6 @@ local config = function()
 				},
 			}),
 
-			null_ls.builtins.code_actions.gitsigns,
 			null_ls.builtins.code_actions.eslint_d,
 			null_ls.builtins.code_actions.gomodifytags,
 			null_ls.builtins.code_actions.impl,

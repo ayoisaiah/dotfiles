@@ -53,3 +53,5 @@ set -gx ANDROID_HOME "$HOME/Android"
 
 # Fix for abnormal cursor size
 set -gx XCURSOR_SIZE $(gsettings get org.gnome.desktop.interface cursor-size)
+
+set -gx MOZ_ENABLE_WAYLAND 1

@@ -19,10 +19,9 @@ local config = function()
 				mode = "symbol",
 				menu = {
 					fuzzy_buffer = "[BUF]",
+					fuzzy_path = "[PATH]",
 					nvim_lsp = "[LSP]",
-					async_path = "[PATH]",
 					luasnip = "[SNIP]",
-					spell = "[SPELL]",
 					cmdline = "[CMD]",
 					tmux = "[TMUX]",
 				},
@@ -87,15 +86,16 @@ local config = function()
 			{ name = "luasnip" },
 			{ name = "nvim_lsp" },
 			{ name = "treesitter" },
-			{ name = "async_path", option = {
-				trailing_slash = true,
-			} },
-			-- { name = "fuzzy_buffer" },
-			-- { name = "tmux", {
-			-- 	option = {
-			-- 		all_panes = true,
-			-- 	},
-			-- } },
+			{ name = "fuzzy_buffer" },
+			{ name = "fuzzy_path" },
+			{
+				name = "tmux",
+				{
+					option = {
+						all_panes = false,
+					},
+				},
+			},
 		}, {
 			{ name = "buffer" },
 		}),
@@ -104,6 +104,14 @@ local config = function()
 	cmp.setup.filetype("markdown", {
 		sources = cmp.config.sources({
 			{ name = "luasnip" },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
+
+	cmp.setup.filetype("fish", {
+		sources = cmp.config.sources({
+			{ name = "fish" },
 		}, {
 			{ name = "buffer" },
 		}),
@@ -127,7 +135,7 @@ local config = function()
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
-			{ name = "async_path" },
+			{ name = "fuzzy_path" },
 		}, {
 			{ name = "cmdline" },
 		}),
@@ -152,15 +160,15 @@ return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "tzachar/cmp-fuzzy-buffer" },
-		{ "tzachar/fuzzy.nvim" },
-		{ "FelipeLema/cmp-async-path" },
 		{ "hrsh7th/cmp-cmdline" },
+		{ "tzachar/fuzzy.nvim" },
+		{ "tzachar/cmp-fuzzy-buffer" },
+		{ "tzachar/cmp-fuzzy-path" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "ray-x/cmp-treesitter" },
-		-- { "andersevenrud/cmp-tmux" },
+		{ "andersevenrud/cmp-tmux" },
 		{ "onsails/lspkind.nvim" },
-		-- { "f3fora/cmp-spell" },
+		{ "mtoohey31/cmp-fish" },
 	},
 	config = config,
 }
