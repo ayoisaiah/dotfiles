@@ -2,12 +2,12 @@ command_timeout = 2000
 add_newline = false
 
 [character]
-success_symbol = "🟢"
-error_symbol = "🔴"
-vimcmd_symbol = "🟡"
-vimcmd_replace_one_symbol = "🔵"
-vimcmd_replace_symbol = "🔵"
-vimcmd_visual_symbol = "🟣"
+success_symbol = '🟢'
+error_symbol = '🔴'
+vimcmd_symbol = '🟡'
+vimcmd_replace_one_symbol = '🔵'
+vimcmd_replace_symbol = '🔵'
+vimcmd_visual_symbol = '🟣'
 
 [aws]
 disabled = true
@@ -28,29 +28,30 @@ truncation_length = 8
 disabled = true
 
 [nodejs]
-symbol = "🟩"
+symbol = '🟩'
 
 [golang]
-symbol = "🐀"
+symbol = '🐀'
+format = 'via [$symbol($version )($mod_version )]($style)'
 
 [battery]
 disabled = true
 
 [git_status]
-conflicted = "🚩"
-ahead = "💨"
-behind = "⏩"
-diverged = "😵"
-untracked = "🤷"
-stashed = "📦"
-modified = "📝"
+conflicted = '🚩'
+ahead = '💨'
+behind = '⏩'
+diverged = '😵'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
 staged = '[++\($count\)](green)'
-renamed = "👅"
-deleted = "💥"
+renamed = '👅'
+deleted = '💥'
 
 [shell]
-fish_indicator = "🐟"
-bash_indicator = "💲"
-powershell_indicator = "💪"
-unknown_indicator = "💻"
+fish_indicator = '🦈'
+bash_indicator = '💲'
+powershell_indicator = '💪'
+unknown_indicator = '💻'
 disabled = false

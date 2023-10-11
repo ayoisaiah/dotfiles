@@ -61,3 +61,6 @@ abbr ntp 'sudo ntpdate pool.ntp.org'
 
 # Exa
 abbr ll 'exa --long --all --group --git'
+
+# Kitty
+abbr kssh 'kitty +kitten ssh'

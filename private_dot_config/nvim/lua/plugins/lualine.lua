@@ -8,4 +8,5 @@ return {
 	opts = {
 		options = { theme = "onedark" },
 	},
+	lazy = false,
 }

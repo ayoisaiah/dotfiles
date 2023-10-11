@@ -45,8 +45,14 @@ set -gx PSQL_PAGER "pspg -s 11"
 
 set -gx PATH $PATH "$HOME/.pub-cache/bin"
 
+set -gx PATH $PATH "$HOME/.bun/bin"
+
 # Flutter
 set -gx PATH "$HOME/.flutter/bin" $PATH
+
+# NVIM
+set -gx PATH "$HOME/.local/share/bob/nvim-bin" $PATH
+set -gx SUDO_EDITOR "/home/user/.local/share/bob/nvim-bin/nvim"
 
 # Android
 set -gx ANDROID_HOME "$HOME/Android"
@@ -55,3 +61,6 @@ set -gx ANDROID_HOME "$HOME/Android"
 set -gx XCURSOR_SIZE $(gsettings get org.gnome.desktop.interface cursor-size)
 
 set -gx MOZ_ENABLE_WAYLAND 1
+
+# Dprint
+set -gx PATH $PATH "$HOME/.dprint/bin"

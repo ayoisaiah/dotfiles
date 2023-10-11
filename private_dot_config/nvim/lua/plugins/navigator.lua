@@ -7,15 +7,11 @@ local config = function()
 		default_mapping = false,
 		lsp_signature_help = nil,
 		signature_help_cfg = nil,
-		keymaps = {
-			{ key = "]r", func = require("navigator.treesitter").goto_next_usage, desc = "goto_next_usage" },
-			{ key = "[r", func = require("navigator.treesitter").goto_previous_usage, desc = "goto_previous_usage" },
-		},
 		lsp = {
 			enable = true,
 			format_on_save = false,
 			disable_format_cap = { "lua_ls", "gopls", "tsserver" },
-			disable_lsp = { "flow" },
+			disable_lsp = {},
 			diagnostic = {
 				underline = true,
 				virtual_text = false, -- show virtual for diagnostic message
@@ -40,27 +36,13 @@ local config = function()
 					},
 				},
 			},
-			lua_ls = {
-				sumneko_root_path = vim.fn.expand("$HOME") .. "/.local/bin/lua-ls",
-				sumneko_binary = vim.fn.expand("$HOME") .. "/.local/bin/lua-ls/bin/lua-language-server",
-			},
-			servers = {
-				"marksman",
-				"phpactor",
-				"jsonls",
-				"cssls",
-				"bashls",
-				"html",
-				"svelte",
-				"rls",
-				solargraph = {
-					init_options = {
-						formatting = false,
-					},
-					settings = {
-						solargraph = {
-							diagnostics = false,
-						},
+			solargraph = {
+				init_options = {
+					formatting = false,
+				},
+				settings = {
+					solargraph = {
+						diagnostics = false,
 					},
 				},
 			},
@@ -75,44 +57,67 @@ local config = function()
 					},
 				},
 			},
+			lua_ls = { diagnostics = { globals = { "vim" } } },
+			servers = {
+				"marksman",
+				"phpactor",
+				"jsonls",
+				"cssls",
+				"bashls",
+				"html",
+				"svelte",
+				"rls",
+				"lua_ls",
+				"emmet_ls",
+				"solargraph",
+			},
 		},
 	})
 
 	wk.register({
-		name = "+navigator",
-		a = { "<cmd>lua require('navigator.codeAction').code_action()<CR>", "code actions" },
-		c = { "<cmd>lua require('navigator.ctags').ctags()<CR>", "ctags" },
-		d = { "<cmd>lua require('navigator.definition').definition()<CR>", "go to definition" },
-		D = { vim.lsp.buf.declaration, "go to declaration" },
-		f = { vim.lsp.buf.format, "buffer formatting" },
-		k = { vim.lsp.buf.signature_help, "signature help" },
-		i = { vim.lsp.buf.incoming_calls, "incoming calls" },
-		o = { vim.lsp.buf.outgoing_calls, "outgoing calls" },
-		r = { "<cmd>lua require('navigator.rename').rename()<CR>", "rename symbol" },
-		h = { "<cmd>lua require('navigator.dochighlight').hi_symbol()<CR>", "toggle highlight symbol" },
-		H = { vim.diagnostic.disable, "disable diagnostics" },
-		p = { "<cmd>lua require('navigator.definition').definition_preview()<CR>", "preview symbol definition" },
-		m = { vim.lsp.buf.implementation, "go to implementation" },
-		n = { vim.lsp.buf.type_definition, "go to type definition" },
-		S = { vim.diagnostic.enable, "enable diagnostics" },
-		t = { "<cmd>lua require('navigator.treesitter').buf_ts()<CR>", "buffer tags" },
-		T = { "<cmd>lua require('navigator.treesitter').bufs_ts()<CR>", "buffer tags" },
-		w = { "<cmd>lua require('navigator.workspace').workspace_symbol_live()<CR>", "workspace symbols" },
-		y = { "<cmd>lua require('navigator.symbols').document_symbols()<CR>", "document symbols" },
-		z = { "<cmd>lua require('navigator.reference').async_ref()<CR>", "references" },
-	}, { prefix = "<leader>s" })
+		name = "LSP",
+		a = { "<cmd>lua require('navigator.codeAction').code_action()<CR>", "Code actions" },
+		d = { "<cmd>lua require('navigator.definition').definition()<CR>", "Go to definition" },
+		f = { vim.lsp.buf.format, "Format buffer" },
+		k = { vim.lsp.buf.signature_help, "Signature help" },
+		i = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<CR>", "Incoming calls" },
+		o = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<CR>", "Outgoing calls" },
+		r = { "<cmd>lua require('navigator.rename').rename()<CR>", "Rename symbol" },
+		p = { "<cmd>lua require('navigator.definition').definition_preview()<CR>", "Preview symbol definition" },
+		m = {
+			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'method', 'function'}})<CR>",
+			"Document methods and functions",
+		},
+		-- TODO: Refine output
+		t = {
+			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, ignore_symbols = {'field'}})<CR>",
+			"Document symbols",
+		},
+		v = {
+			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'variable'}})<CR>",
+			"Variables",
+		},
+		w = { "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols" },
+		W = {
+			"<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+			"Dynamic workspace symbols",
+		},
+		x = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics in all open buffers" },
+		y = { "<cmd>lua require('telescope.builtin').diagnostics(bufnr=0)<CR>", "Diagnostics in current buffer" },
+		z = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "Symbol references" },
+	}, { prefix = "<leader>l" })
 
 	wk.register({
-		name = "+navigator",
+		name = "LSP",
 		a = {
 			"<cmd>lua require('navigator.codeAction').range_code_action()<CR>",
 			"code action for the visual mode range",
 		},
 		f = { vim.lsp.buf.range_formatting, "range formatting" },
-	}, { prefix = "<leader>s", mode = "v" })
+	}, { prefix = "<leader>l", mode = "v" })
 
 	wk.register({
-		name = "+navigator",
+		name = "LSP",
 		["]"] = {
 			name = "next",
 			c = { vim.diagnostic.goto_next, "Next diagnostic" },
@@ -132,7 +137,8 @@ return {
 		{ "neovim/nvim-lspconfig" },
 		{ "ray-x/guihua.lua", build = "cd lua/fzy && make" },
 		{ "ray-x/lsp_signature.nvim" },
+		{ "nvim-telescope/telescope.nvim" },
 	},
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPost" },
 	config = config,
 }

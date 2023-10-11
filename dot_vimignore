@@ -19,6 +19,9 @@ vendor/
 *.cr2
 *.dng
 *.keep
+*.gz
+*.tar
+*.zip
 yarn.lock
 package-lock.json
 tags

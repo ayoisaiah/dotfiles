@@ -6,10 +6,6 @@ require("autocmds")
 require("mappings")
 -- Custom functions
 require("functions")
--- Plugin config and plugin-specific mappings
--- require("plugins")
--- Appearance
--- require("theme")
 
 local fn = vim.fn
 local opt = vim.opt
@@ -28,6 +24,9 @@ end
 opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
+	defaults = {
+		lazy = true,
+	},
 	change_detection = {
 		notify = false,
 	},

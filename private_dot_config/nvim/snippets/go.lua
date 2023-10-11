@@ -15,6 +15,21 @@ if err != nil {{
 	)
 )
 
+local errCheck2 = s(
+	"ffe",
+	fmt(
+		[[
+if err != nil {{
+  return nil, {}
+}}{}
+]],
+		{
+			i(1, "err"),
+			i(2),
+		}
+	)
+)
+
 local print = s("fl", fmt("fmt.Println({}){}", { i(1, "args"), i(2) }))
 local deepPrint = s("fst", fmt('fmt.Printf("%+v\\n", {}){}', { i(1, "args"), i(2) }))
 local quotePrint = s("fq", fmt('fmt.Printf("%+q\\n", {}){}', { i(1, "args"), i(2) }))
@@ -26,6 +41,7 @@ local snippets = {
 }
 local autosnippets = {
 	errCheck,
+	errCheck2,
 }
 
 return snippets, autosnippets

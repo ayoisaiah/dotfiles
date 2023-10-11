@@ -1,16 +1,84 @@
 local config = function()
-	require("gitsigns").setup({
-		keymaps = {
-			-- Default keymap options
-			noremap = true,
+	local wk = require("which-key")
 
-			["n ]h"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>zz'" },
-			["n [h"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>zz'" },
-		},
+	require("gitsigns").setup({
+		on_attach = function(bufnr)
+			local gs = package.loaded.gitsigns
+
+			wk.register({
+				name = "Git",
+				["]"] = {
+					name = "next",
+					h = {
+						function()
+							if vim.wo.diff then
+								return "]h"
+							end
+							vim.schedule(function()
+								gs.next_hunk()
+							end)
+							return "<Ignore>"
+						end,
+						"Next hunk",
+					},
+				},
+				["["] = {
+					name = "previous",
+					h = {
+						function()
+							if vim.wo.diff then
+								return "[h"
+							end
+							vim.schedule(function()
+								gs.prev_hunk()
+							end)
+							return "<Ignore>"
+						end,
+						"Previous hunk",
+					},
+				},
+			}, {
+				expr = true,
+			})
+
+			wk.register({
+				name = "Git",
+				b = {
+					function()
+						gs.blame_line({ full = true })
+					end,
+					"Blame line",
+				},
+				d = { gs.diffthis, "Diff current file" },
+				s = { gs.stage_hunk, "Stage hunk" },
+				S = { gs.undo_stage_hunk, "Undo stage hunk" },
+				p = { gs.preview_hunk, "Preview hunk" },
+				r = { gs.reset_hunk, "Reset hunk" },
+				w = { gs.stage_buffer, "Stage buffer" },
+				W = { gs.reset_buffer, "Reset stage buffer" },
+			}, { prefix = "<leader>g" })
+
+			wk.register({
+				name = "Git",
+				s = {
+					function()
+						gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Stage hunk",
+				},
+				r = {
+					function()
+						gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Reset hunk",
+				},
+			}, { prefix = "<leader>g", mode = "v" })
+		end,
 	})
 end
 
 return {
 	"lewis6991/gitsigns.nvim",
 	config = config,
+	event = { "BufReadPost" },
 }

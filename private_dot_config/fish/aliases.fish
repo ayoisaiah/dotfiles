@@ -21,8 +21,16 @@ alias cat="bat"
 #3 gotestfmt
 alias gotestfmt="gotestfmt -hide 'empty-packages'"
 
-alias yt="youtube-dl"
+alias yt="yt-dlp"
 
 alias pn="pnpm"
 
 alias r="bundle exec rails"
+
+alias py="python3"
+
+alias grep="grep -H -P --color=auto"
+
+alias astro="NVIM_APPNAME=AstroNvim nvim"
+
+alias nv="NVIM_APPNAME=NvChad nvim"

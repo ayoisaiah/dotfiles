@@ -4,7 +4,7 @@ end
 
 return {
 	"folke/which-key.nvim",
-	tag = "v1.2.0",
-	lazy = true,
+	tag = "v1.5.1",
+	event = "VeryLazy",
 	config = config,
 }

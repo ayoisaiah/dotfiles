@@ -5,17 +5,17 @@ local config = function()
 
 	require("toggleterm").setup({
 		shell = "/usr/bin/fish",
-		open_mapping = "<leader>vv",
+		open_mapping = "<leader>tt",
 		terminal_mappings = true,
 		insert_mappings = false,
 		direction = "float",
 		size = 20,
 		hide_numbers = true,
-		-- highlights = {
-		-- 	Normal = {
-		-- 		guibg = "#16161D",
-		-- 	},
-		-- },
+		highlights = {
+			Normal = {
+				guibg = "#16161D",
+			},
+		},
 	})
 
 	function Lazygit_toggle()
@@ -36,16 +36,24 @@ local config = function()
 	vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 	wk.register({
-		name = "toggleterm",
+		name = "Terminal",
 		l = { "<cmd>lua Lazygit_toggle()<CR>", "Toggle lazygit terminal" },
 		f = { "<cmd>ToggleTerm direction=float<CR>", "floating terminal" },
 		h = { "<cmd>ToggleTerm direction=horizontal<CR>", "horizontal terminal" },
 	}, {
-		prefix = "<leader>v",
+		prefix = "<leader>t",
+	})
+
+	wk.register({
+		name = "Git",
+		l = { "<cmd>lua Lazygit_toggle()<CR>", "Toggle lazygit terminal" },
+	}, {
+		prefix = "<leader>g",
 	})
 end
 
 return {
 	"akinsho/toggleterm.nvim",
 	config = config,
+	event = "VeryLazy",
 }

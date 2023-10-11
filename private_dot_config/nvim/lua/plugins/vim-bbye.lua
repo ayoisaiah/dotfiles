@@ -4,8 +4,10 @@ return {
 		local wk = require("which-key")
 
 		wk.register({
-			name = "buffers",
+			name = "Buffer",
 			l = { "<cmd>Bwipeout<CR>", "Clear current buffer" },
-		}, { prefix = "<space>" })
+			x = { "<cmd>bufdo :Bdelete<CR>", "Clear all buffers" },
+		}, { prefix = "<leader>b" })
 	end,
+	event = "VeryLazy",
 }

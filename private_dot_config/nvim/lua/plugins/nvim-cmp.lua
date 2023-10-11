@@ -16,14 +16,14 @@ local config = function()
 		},
 		formatting = {
 			format = lspkind.cmp_format({
-				mode = "symbol",
+				mode = "text",
 				menu = {
-					fuzzy_buffer = "[BUF]",
-					fuzzy_path = "[PATH]",
+					-- fuzzy_buffer = "[BUF]",
+					-- fuzzy_path = "[PATH]",
 					nvim_lsp = "[LSP]",
 					luasnip = "[SNIP]",
-					cmdline = "[CMD]",
-					tmux = "[TMUX]",
+					-- cmdline = "[CMD]",
+					-- tmux = "[TMUX]",
 				},
 				maxwidth = 50,
 			}),
@@ -86,16 +86,24 @@ local config = function()
 			{ name = "luasnip" },
 			{ name = "nvim_lsp" },
 			{ name = "treesitter" },
-			{ name = "fuzzy_buffer" },
-			{ name = "fuzzy_path" },
-			{
-				name = "tmux",
-				{
-					option = {
-						all_panes = false,
-					},
-				},
-			},
+			-- { name = "fuzzy_buffer" },
+			-- { name = "fuzzy_path" },
+			-- {
+			-- 	name = "tmux",
+			-- 	{
+			-- 		option = {
+			-- 			all_panes = false,
+			-- 		},
+			-- 	},
+			-- },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
+
+	cmp.setup.filetype("lua", {
+		sources = cmp.config.sources({
+			{ name = "nvim_lua" },
 		}, {
 			{ name = "buffer" },
 		}),
@@ -132,14 +140,19 @@ local config = function()
 		},
 	})
 
-	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{ name = "fuzzy_path" },
-		}, {
-			{ name = "cmdline" },
-		}),
-	})
+	-- cmp.setup.cmdline(":", {
+	-- 	mapping = cmp.mapping.preset.cmdline(),
+	-- 	sources = cmp.config.sources({
+	-- 		{
+	-- 			name = "fuzzy_path",
+	-- 			option = {
+	-- 				fd_cmd = { "fd", "-d", "5", "-p", "-E", "node_modules", "-E", "vendor", "--max-results", "10" },
+	-- 			},
+	-- 		},
+	-- 	}, {
+	-- 		{ name = "cmdline" },
+	-- 	}),
+	-- })
 
 	-- Setup lspconfig.
 	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -161,6 +174,7 @@ return {
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-cmdline" },
+		{ "hrsh7th/cmp-nvim-lua" },
 		{ "tzachar/fuzzy.nvim" },
 		{ "tzachar/cmp-fuzzy-buffer" },
 		{ "tzachar/cmp-fuzzy-path" },
@@ -170,5 +184,6 @@ return {
 		{ "onsails/lspkind.nvim" },
 		{ "mtoohey31/cmp-fish" },
 	},
+	event = { "InsertEnter" },
 	config = config,
 }

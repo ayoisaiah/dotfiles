@@ -3,4 +3,5 @@ return {
 	config = function()
 		require("Comment").setup()
 	end,
+	event = "VeryLazy",
 }

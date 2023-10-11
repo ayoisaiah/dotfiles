@@ -5,4 +5,5 @@ end
 return {
 	"kylechui/nvim-surround",
 	config = config,
+	event = "BufEnter",
 }

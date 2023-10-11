@@ -34,3 +34,6 @@ end
 
 set -gx PNPM_HOME "/home/ayo/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
+
+# Setup python argcomplete for Ansible
+for cmd in ansible ansible-config ansible-console ansible-doc ansible-galaxy ansible-inventory ansible-playbook ansible-pull ansible-vault; register-python-argcomplete --shell fish $cmd | source; end

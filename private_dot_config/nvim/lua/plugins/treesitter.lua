@@ -1,4 +1,5 @@
 local config = function(_, opts)
+	require("nvim-dap-repl-highlights").setup()
 	require("nvim-treesitter.configs").setup(opts)
 end
 
@@ -9,6 +10,7 @@ return {
 	version = false,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		"LiadOz/nvim-dap-repl-highlights",
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
@@ -41,6 +43,9 @@ return {
 			"ruby",
 			"svelte",
 			"php",
+			"python",
+			"rust",
+			"dap_repl",
 		},
 		highlight = {
 			enable = true,
