@@ -20,5 +20,5 @@ end
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPost" },
-	config,
+	config = config,
 }
