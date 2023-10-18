@@ -60,6 +60,7 @@ map("n", "<leader>3", "3gt", opts)
 map("n", "<leader>4", "4gt", opts)
 map("n", "<leader>5", "5gt", opts)
 map("n", "<leader>6", "6gt", opts)
+map("n", "<C-t>", ":tabnew<CR>", opts)
 
 -- TODO: Organize these sort of functions/mappings
 local function confirm_and_delete_buffer()
@@ -70,4 +71,4 @@ local function confirm_and_delete_buffer()
 		vim.api.nvim_buf_delete(0, { force = true })
 	end
 end
-vim.keymap.set('n', '<leader>bd', confirm_and_delete_buffer)
+vim.keymap.set("n", "<leader>bd", confirm_and_delete_buffer)
