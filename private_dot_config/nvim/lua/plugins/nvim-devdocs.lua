@@ -13,8 +13,8 @@ local config = function()
 			"typescript",
 			"ansible-2.11",
 			"fish-3.6",
+      "http",
 			"lua-5.4",
-			"http",
 			"docker",
 			"bash",
 			"eslint",
@@ -22,18 +22,22 @@ local config = function()
 			"git",
 			"markdown",
 			"docker",
+			"web_extensions",
+			"dom",
 		},
 	})
 
 	wk.register({
 		name = "Docs",
 		c = { "<cmd>DevdocsOpen css<CR>", "CSS" },
+		d = { "<cmd>DevdocsOpen dom<CR>", "DOM" },
 		g = { "<cmd>DevdocsOpen go<CR>", "Go" },
 		h = { "<cmd>DevdocsOpen html<CR>", "HTML" },
 		j = { "<cmd>DevdocsOpen javascript<CR>", "JavaScript" },
 		n = { "<cmd>DevdocsOpen node<CR>", "Node.js" },
-		t = { "<cmd>DevdocsOpen node<CR>", "TypeScript" },
+		t = { "<cmd>DevdocsOpen typescript<CR>", "TypeScript" },
 		p = { "<cmd>DevdocsOpen postgresql-15<CR>", "PostgreSQL" },
+		w = { "<cmd>DevdocsOpen web_extensions<CR>", "Web extensions" },
 		z = { "<cmd>DevdocsOpenCurrent<CR>", "Current language" },
 	}, { prefix = "<leader>z" })
 end
