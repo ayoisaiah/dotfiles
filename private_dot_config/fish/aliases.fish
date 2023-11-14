@@ -9,8 +9,8 @@ alias n="npm"
 alias y="yarn"
 alias p="pnpm"
 
-# Replace ls with exa
-alias ls="exa --icons"
+# Replace ls with eza
+alias ls="eza --icons"
 
 alias brl="br -dp"
 alias brgs="br -gc :gs"

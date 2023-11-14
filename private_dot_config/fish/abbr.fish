@@ -1,5 +1,5 @@
-# GIT
-abbr g 'git'
+# Git
+abbr g git
 abbr ga 'git add'
 abbr gaa 'git add -A'
 abbr gb 'git branch'
@@ -32,7 +32,7 @@ abbr gs 'git status --short'
 abbr gss 'git status'
 abbr gst 'git stash'
 
-# Ubuntu
+# Ubuntu (apt)
 abbr apti 'sudo apt install -y'
 abbr aptu 'sudo apt update -y'
 abbr aptr 'sudo apt remove -y'
@@ -40,7 +40,7 @@ abbr aptf 'sudo apt full-upgrade -y'
 abbr aptl 'sudo apt list --upgradable'
 abbr di 'sudo dpkg -i'
 
-# Fedora
+# Fedora (dnf)
 abbr dnfi 'sudo dnf install -y'
 abbr dnfr 'sudo dnf remove -y'
 abbr dnfu 'sudo dnf update -y'
@@ -48,19 +48,23 @@ abbr dnfu 'sudo dnf update -y'
 # Show power consumption, battery health and related statistics
 abbr b3 'upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
-abbr cdw 'cd /mnt/c/Users/blitzkrieg/'
-
-# Reflect changes to fish configuration
+# Reload fish configuration
 abbr rf 'source ~/.config/fish/config.fish'
 
-# immediately incorporates history changes from other sessions
+# Sync current history with history file
 abbr hm 'history --merge'
 
 # Sync local time
 abbr ntp 'sudo ntpdate pool.ntp.org'
 
 # Exa
-abbr ll 'exa --long --all --group --git'
+abbr ll 'eza --long --all --group --git'
 
 # Kitty
 abbr kssh 'kitty +kitten ssh'
+
+# Fast fetch
+abbr ff fastfetch
+
+# Zellij
+abbr zz zellij
