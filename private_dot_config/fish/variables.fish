@@ -2,7 +2,7 @@
 set -gx LANG "en_US.UTF-8"
 set -gx LC_CTYPE "en_US.UTF-8"
 
-set -gx EDITOR "nvim"
+set -gx EDITOR nvim
 set -gx SYSTEMD_EDITOR $EDITOR
 set -gx VISUAL $EDITOR
 
@@ -11,15 +11,15 @@ set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden --follow --ignore-file '/ho
 # Path stuff
 set PATH /usr/local/bin $PATH
 set -gx PATH $PATH "$HOME/bin" # temporary executables
-set -gx PATH "$HOME/.local/bin" $PATH 
+set -gx PATH "$HOME/.local/bin" $PATH
 
 # Go
-set -gx PATH $PATH "/usr/local/go/bin"
+set -gx PATH $PATH /usr/local/go/bin
 set -gx PATH $PATH "$HOME/go/bin"
 set -gx GOBIN "$HOME/go/bin"
 set -gx GOPATH "$HOME/go"
-set -gx GOROOT "/usr/local/go"
-set -Ux GO111MODULE "on"
+set -gx GOROOT /usr/local/go
+set -Ux GO111MODULE on
 
 # Ruby
 set -gx PATH $PATH "$HOME/.rbenv/bin"
@@ -34,13 +34,13 @@ set -gx DENO_INSTALL "/home/ayo/.deno"
 set -gx PATH $PATH "$DENO_INSTALL/bin"
 
 # Bat
-set -gx BAT_THEME "gruvbox-dark"
+set -gx BAT_THEME gruvbox-dark
 
 # Volta
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH $PATH "$VOLTA_HOME/bin"
 
-set -gx PAGER "less"
+set -gx PAGER less
 set -gx PSQL_PAGER "pspg -s 11"
 
 set -gx PATH $PATH "$HOME/.pub-cache/bin"
