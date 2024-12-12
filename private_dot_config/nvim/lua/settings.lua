@@ -10,7 +10,8 @@ o.splitright = true
 o.timeoutlen = 500
 o.cursorline = true
 
-o.cmdheight = 1
+o.cmdheight = 0
+o.shortmess = "nocI"
 o.showcmd = true -- Show leader key
 
 -- Tabs behaviour
@@ -51,8 +52,31 @@ o.wildignore = o.wildignore
 	+ "**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*webm,*.ogg,*.dng,*.jpeg,*.map,*.woff*"
 
 -- Show Invisibles
+-- o.list = true
+-- o.listchars = "tab:→→,eol:¬,space:."
 o.list = true
-o.listchars = "tab:→→,eol:¬,space:."
+o.listchars = {
+	tab = "⟩ ",
+	trail = "+",
+	precedes = "<",
+	extends = ">",
+	space = "·",
+	nbsp = "␣",
+	leadmultispace = "│ ",
+	multispace = "│ ",
+}
+local function update_lead()
+	local lcs = vim.opt_local.listchars:get()
+	local tab = vim.fn.str2list(lcs.tab)
+	local space = vim.fn.str2list(lcs.multispace or lcs.space)
+	local lead = { tab[1] }
+	for i = 1, vim.bo.tabstop - 1 do
+		lead[#lead + 1] = space[i % #space + 1]
+	end
+	vim.opt_local.listchars:append({ leadmultispace = vim.fn.list2str(lead) })
+end
+vim.api.nvim_create_autocmd("OptionSet", { pattern = { "listchars", "tabstop", "filetype" }, callback = update_lead })
+vim.api.nvim_create_autocmd("VimEnter", { callback = update_lead, once = true })
 
 -- Automatically hide buffer with unsaved changes without showing warning
 o.hidden = true

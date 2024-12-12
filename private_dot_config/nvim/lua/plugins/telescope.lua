@@ -3,7 +3,7 @@ local config = function()
 	local telescope = require("telescope")
 	local actions = require("telescope.actions")
 	local vimignoreFile = "/home/ayo/.vimignore"
-	local trouble = require("trouble.providers.telescope")
+	local trouble = require("trouble.sources.telescope")
 
 	telescope.setup({
 		defaults = {
@@ -25,11 +25,11 @@ local config = function()
 					["<C-k>"] = actions.move_selection_previous,
 					["<C-x>"] = actions.delete_buffer,
 					["<C-s>"] = actions.select_horizontal,
-					["<C-t>"] = trouble.open_with_trouble,
+					["<C-t>"] = trouble.open,
 				},
 				n = {
 					["<C-c>"] = actions.close,
-					["<C-t>"] = trouble.open_with_trouble,
+					["<C-t>"] = trouble.open,
 				},
 			},
 		},
@@ -58,6 +58,7 @@ local config = function()
 		o = { "<cmd>lua require('telescope.builtin').oldfiles()<CR>", "Previously open files" },
 		q = { "<cmd>lua require('telescope.builtin').quickfix()<CR>", "Quickfix list" },
 		r = { "<cmd>lua require('telescope.builtin').registers()<CR>", "Registers" },
+		s = { "<cmd>lua require('telescope.builtin').git_status()<CR>", "Git status" },
 		t = { "<cmd>lua require('telescope.builtin').tags()<CR>", "Project tags" },
 		u = { "<cmd>lua require('telescope.builtin').resume()<CR>", "Open results of last picker" },
 		[":"] = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Search & execute commands" },
@@ -86,7 +87,6 @@ end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.3",
 	lazy = false,
 	config = config,
 	dependencies = {

@@ -1,9 +1,31 @@
 local config = function()
 	local cmp = require("cmp")
-	local lspconfig = require("lspconfig")
 	local lspkind = require("lspkind")
 	local luasnip = require("luasnip")
 	local compare = require("cmp.config.compare")
+
+	local defaultSources = {
+		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
+		{ name = "treesitter" },
+		-- { name = "fuzzy_buffer" },
+		-- { name = "fuzzy_path" },
+	}
+
+	local customSources = function(sources)
+		local newTable = {}
+
+		-- Copy original table
+		for i, v in ipairs(defaultSources) do
+			newTable[i] = v
+		end
+
+		for _, v in ipairs(sources) do
+			newTable[#newTable + 1] = v
+		end
+
+		return newTable
+	end
 
 	local has_words_before = function()
 		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -18,12 +40,13 @@ local config = function()
 			format = lspkind.cmp_format({
 				mode = "text",
 				menu = {
-					-- fuzzy_buffer = "[BUF]",
-					-- fuzzy_path = "[PATH]",
+					fuzzy_buffer = "[BUF]",
+					fuzzy_path = "[PATH]",
 					nvim_lsp = "[LSP]",
 					luasnip = "[SNIP]",
-					-- cmdline = "[CMD]",
-					-- tmux = "[TMUX]",
+					fish = "[FISH]",
+					cmdline = "[CMD]",
+					-- dictionary = "[DICT]",
 				},
 				maxwidth = 50,
 			}),
@@ -82,47 +105,34 @@ local config = function()
 			["<C-e>"] = cmp.config.disable,
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 		},
-		sources = cmp.config.sources({
-			{ name = "luasnip" },
-			{ name = "nvim_lsp" },
-			{ name = "treesitter" },
-			-- { name = "fuzzy_buffer" },
-			-- { name = "fuzzy_path" },
-			-- {
-			-- 	name = "tmux",
-			-- 	{
-			-- 		option = {
-			-- 			all_panes = false,
-			-- 		},
-			-- 	},
-			-- },
-		}, {
-			{ name = "buffer" },
-		}),
-	})
-
-	cmp.setup.filetype("lua", {
-		sources = cmp.config.sources({
-			{ name = "nvim_lua" },
-		}, {
+		sources = cmp.config.sources(defaultSources, {
 			{ name = "buffer" },
 		}),
 	})
 
 	cmp.setup.filetype("markdown", {
-		sources = cmp.config.sources({
-			{ name = "luasnip" },
-		}, {
-			{ name = "buffer" },
-		}),
+		sources = cmp.config.sources(
+			customSources({
+				{
+					name = "dictionary",
+					keyword_length = 2,
+				},
+			}),
+			{
+				{ name = "buffer" },
+			}
+		),
 	})
 
 	cmp.setup.filetype("fish", {
-		sources = cmp.config.sources({
-			{ name = "fish" },
-		}, {
-			{ name = "buffer" },
-		}),
+		sources = cmp.config.sources(
+			customSources({
+				{ name = "fish" },
+			}),
+			{
+				{ name = "buffer" },
+			}
+		),
 	})
 
 	cmp.setup.filetype("gitcommit", {
@@ -133,40 +143,26 @@ local config = function()
 		}),
 	})
 
-	cmp.setup.cmdline("/", {
+	cmp.setup.cmdline({ "/", "?" }, {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = {
 			{ name = "buffer" },
 		},
 	})
 
-	-- cmp.setup.cmdline(":", {
-	-- 	mapping = cmp.mapping.preset.cmdline(),
-	-- 	sources = cmp.config.sources({
-	-- 		{
-	-- 			name = "fuzzy_path",
-	-- 			option = {
-	-- 				fd_cmd = { "fd", "-d", "5", "-p", "-E", "node_modules", "-E", "vendor", "--max-results", "10" },
-	-- 			},
-	-- 		},
-	-- 	}, {
-	-- 		{ name = "cmdline" },
-	-- 	}),
-	-- })
-
-	-- Setup lspconfig.
-	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-	local servers = { "gopls", "tsserver", "golangci_lint_ls", "lua_ls" }
-	for _, lsp in ipairs(servers) do
-		lspconfig[lsp].setup({
-			capabilities = capabilities,
-		})
-	end
-
-	if vim.o.ft == "clap_input" and vim.o.ft == "guihua" and vim.o.ft == "guihua_rust" then
-		cmp.setup.buffer({ completion = { enable = false } })
-	end
+	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{
+				name = "fuzzy_path",
+				option = {
+					fd_cmd = { "fd", "-d", "5", "-p", "-E", "node_modules", "-E", "vendor", "--max-results", "10" },
+				},
+			},
+		}, {
+			{ name = "cmdline" },
+		}),
+	})
 end
 
 return {
@@ -180,7 +176,6 @@ return {
 		{ "tzachar/cmp-fuzzy-path" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "ray-x/cmp-treesitter" },
-		{ "andersevenrud/cmp-tmux" },
 		{ "onsails/lspkind.nvim" },
 		{ "mtoohey31/cmp-fish" },
 	},

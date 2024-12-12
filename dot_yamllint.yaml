@@ -1,0 +1,6 @@
+rules:
+  document-start: disable
+  quoted-strings:
+    quote-type: double
+    required: only-when-needed
+    allow-quoted-quotes: true

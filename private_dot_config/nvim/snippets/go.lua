@@ -5,27 +5,60 @@ local errCheck = s(
 	fmt(
 		[[
 if err != nil {{
-  return {}
+  {}
 }}{}
 ]],
 		{
-			i(1, "err"),
-			i(2),
+			c(1, { t("return err"), t("return nil, err"), t("t.Fatal(err)"), t("log.Fatal(err)") }),
+			i(0),
 		}
 	)
 )
 
-local errCheck2 = s(
-	"ffe",
+local handlerFunc = s(
+	"hf",
 	fmt(
 		[[
-if err != nil {{
-  return nil, {}
+func {} (w http.ResponseWriter, r *http.Request) {{
+  {}
 }}{}
-]],
+    ]],
 		{
-			i(1, "err"),
+			i(1),
 			i(2),
+			i(0),
+		}
+	)
+)
+
+local testFunc = s(
+	"tf",
+	fmt(
+		[[
+func Test{} (t *testing.T) {{
+  {}
+}}{}
+    ]],
+		{
+			i(1),
+			i(2),
+			i(0),
+		}
+	)
+)
+
+local testHelper = s(
+	"th",
+	fmt(
+		[[
+func {}(t *testing.T) {{
+  t.Helper(){}
+}}{}
+    ]],
+		{
+			i(1),
+			i(2),
+			i(0),
 		}
 	)
 )
@@ -38,10 +71,13 @@ local snippets = {
 	print,
 	deepPrint,
 	quotePrint,
+	testFunc,
+	testHelper,
+	handlerFunc,
 }
+
 local autosnippets = {
 	errCheck,
-	errCheck2,
 }
 
 return snippets, autosnippets

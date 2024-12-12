@@ -43,7 +43,10 @@ local codeBlockOutput = s(
 )
 
 local anchorTag = s("lnk", fmt("[{}]({})", { i(1, "text"), i(2, "http://localhost:3000") }))
-local image = s("img", fmt("![{}]({})", { i(1, "alt"), i(2, "path") }))
+local image = s("img", fmt("![{}]({})", { i(1, "alt"), i(2, "todo.png") }))
+local bold = s("**", fmt("**{}**", { i(1, "text") }))
+local italic = s("__", fmt("_{}_", { i(1, "text") }))
+local strikethrough = s("~~", fmt("~{}~", { i(1, "text") }))
 
 local snippets = {
 	codeBlock,
@@ -54,6 +57,9 @@ local snippets = {
 local autosnippets = {
 	anchorTag,
 	image,
+	bold,
+	italic,
+	strikethrough,
 }
 
 return snippets, autosnippets

@@ -1,0 +1,17 @@
+layout {
+  pane stacked=true {
+    pane {
+      cwd "$HOME/dev/repos/f2"
+      command "nvim"
+      name "cli"
+    }
+    pane {
+      cwd "$HOME/dev/repos/f2-docs"
+      command "nvim"
+      name "docs"
+    }
+  }
+  pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+  }
+}

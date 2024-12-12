@@ -1,9 +1,9 @@
 local config = function()
 	local wk = require("which-key")
+  local gs = require('gitsigns')
 
-	require("gitsigns").setup({
-		on_attach = function(bufnr)
-			local gs = package.loaded.gitsigns
+	gs.setup({
+		on_attach = function()
 
 			wk.register({
 				name = "Git",

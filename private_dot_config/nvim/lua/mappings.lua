@@ -60,7 +60,8 @@ map("n", "<leader>3", "3gt", opts)
 map("n", "<leader>4", "4gt", opts)
 map("n", "<leader>5", "5gt", opts)
 map("n", "<leader>6", "6gt", opts)
-map("n", "<C-t>", ":tabnew<CR>", opts)
+map("n", "<C-t>", "<cmd>tabnew<CR>", opts)
+map("n", "<leader>w", "<cmd>tabclose<CR>", opts)
 
 -- TODO: Organize these sort of functions/mappings
 local function confirm_and_delete_buffer()

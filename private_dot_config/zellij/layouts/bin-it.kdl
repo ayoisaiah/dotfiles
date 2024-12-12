@@ -1,0 +1,17 @@
+layout {
+  pane stacked=true {
+    pane {
+      cwd "$HOME/dev/repos/bin-it"
+      command "nvim"
+      name "Code"
+    }
+    pane {
+      cwd "$HOME/dev/repos/bin-it"
+      command "just test"
+      name "Tests"
+    }
+  }
+  pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+  }
+}

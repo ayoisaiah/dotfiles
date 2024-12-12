@@ -4,14 +4,13 @@ local config = function()
 
 	dapgo.setup()
 
-	-- TODO: Set keybindings
-	-- wk.register({
-	-- 	name = "Debugger",
-	-- 	t = { "<cmd>lua require('dap-go').debug_test()<CR>", "Debug closest test" },
-	-- 	T = { "<cmd>lua require('dap-go').debug_last_test()<CR>", "Debug last run test" },
-	-- }, {
-	-- 	prefix = "<leader>d",
-	-- })
+	wk.register({
+		name = "Debugger",
+		t = { "<cmd>lua require('dap-go').debug_test()<CR>", "Debug closest test" },
+		T = { "<cmd>lua require('dap-go').debug_last_test()<CR>", "Debug last run test" },
+	}, {
+		prefix = "<leader>d",
+	})
 end
 
 return {

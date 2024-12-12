@@ -1,0 +1,11 @@
+default: true
+"MD003": {style: "atx"} # Heading style, use pound marks in front of text
+"MD004": {style: "dash"} # UL style, dashed
+"MD010": false # Allow hard tabs
+"MD013": {code_blocks: false} # Enable line length checks except in code blocks
+"MD033": false # Allow inline HTML
+"MD041": false # First line in the file may not be a heading
+"MD046": {style: "fenced"} # Only allow fenced code blocks
+"MD047": false # Disable "file must end with a single newline" check
+"MD048": {style: "backtick"} # Only allow backticks for code blocks
+"MD052": false

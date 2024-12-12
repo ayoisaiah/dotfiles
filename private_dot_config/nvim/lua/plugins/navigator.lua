@@ -1,6 +1,6 @@
 local config = function()
 	local wk = require("which-key")
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 	require("navigator").setup({
 		debug = false,
@@ -9,6 +9,7 @@ local config = function()
 		signature_help_cfg = nil,
 		lsp = {
 			enable = true,
+			code_action = { enable = true, sign = false, sign_priority = 40, virtual_text = true }, -- Disable sign to prevent code action icon from following cursor around
 			format_on_save = false,
 			disable_format_cap = { "lua_ls", "gopls", "tsserver" },
 			disable_lsp = {},
@@ -24,6 +25,16 @@ local config = function()
 					preferences = {
 						disableSuggestions = true,
 					},
+				},
+			},
+			cssls = {
+				settings = {
+					css = { validate = true, lint = {
+						unknownAtRules = "ignore",
+					} },
+					scss = { validate = true, lint = {
+						unknownAtRules = "ignore",
+					} },
 				},
 			},
 			gopls = {
@@ -46,19 +57,27 @@ local config = function()
 					},
 				},
 			},
-			emmet_ls = {
-				capabilities = capabilities,
-				init_options = {
-					html = {
-						options = {
-							-- TODO: investigate https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-							["bem.enabled"] = true,
-						},
-					},
+			emmet_language_server = {
+				filetypes = {
+					"css",
+					"html",
+					"markdown",
+					"javascript",
+					"javascriptreact",
+					"scss",
+					"pug",
+					"typescriptreact",
+					"typescript",
 				},
 			},
-			lua_ls = { diagnostics = { globals = { "vim" } } },
+			lua_ls = {
+				settings = {
+					Lua = { diagnostics = { globals = { "vim" } } },
+				},
+			},
 			servers = {
+				"biome",
+				"tailwindcss",
 				"marksman",
 				"phpactor",
 				"jsonls",
@@ -68,7 +87,8 @@ local config = function()
 				"svelte",
 				"rls",
 				"lua_ls",
-				"emmet_ls",
+				"tsserver",
+				"emmet_language_server",
 				"solargraph",
 			},
 		},
@@ -138,6 +158,8 @@ return {
 		{ "ray-x/guihua.lua", build = "cd lua/fzy && make" },
 		{ "ray-x/lsp_signature.nvim" },
 		{ "nvim-telescope/telescope.nvim" },
+		{ "hrsh7th/nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 	event = { "BufReadPost" },
 	config = config,

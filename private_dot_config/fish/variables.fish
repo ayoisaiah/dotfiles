@@ -64,3 +64,20 @@ set -gx MOZ_ENABLE_WAYLAND 1
 
 # Dprint
 set -gx PATH $PATH "$HOME/.dprint/bin"
+
+## Fzf.fish
+set fzf_preview_dir_cmd eza --all --color=always
+
+set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc' ]
+    . '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc'
+end
+
+set -gx PNPM_HOME "/home/ayo/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+
+set -gx PATH $PATH "$HOME/.local/bin/depot-tools"
+
+set -gx PATH /home/ayo/.local/share/mise/shims $PATH

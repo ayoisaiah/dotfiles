@@ -3,12 +3,12 @@ local config = function()
 
 	local wk = require("which-key")
 
-	-- TODO: Register keybindings
-	-- wk.register({
-	-- 	name = "go",
-	-- 	t = { "<cmd>GoAddTag<CR>", "Add struct tags" },
-	-- 	T = { "<cmd>GoRmTag<CR>", "Remove struct tags" },
-	-- }, { prefix = "<leader>g" })
+	wk.register({
+		name = "go",
+    r = { "<cmd>GoTestFunc<CR>", "Run test under cursor" },
+		t = { "<cmd>GoAddTag<CR>", "Add struct tags" },
+		T = { "<cmd>GoRmTag<CR>", "Remove struct tags" },
+	}, { prefix = "<leader><leader>g" })
 end
 
 return {

@@ -1,10 +1,19 @@
 local config = function()
 	local lint = require("lint")
+	local golangcilint = require("lint").linters.golangcilint
+	golangcilint.args = {
+		"run",
+		"--fix=true",
+		"--fast",
+		"--out-format=json",
+	}
+
 	lint.linters_by_ft = {
 		markdown = { "markdownlint" },
 		sh = { "shellcheck" },
 		dockerfile = { "hadolint" },
-		javascript = { "eslint" },
+		javascript = { "biomejs" },
+		typescript = { "biomejs" },
 		json = { "jsonlint" },
 		go = { "golangcilint" },
 		ruby = { "rubocop" },
@@ -12,9 +21,15 @@ local config = function()
 		css = { "stylelint" },
 		scss = { "stylelint" },
 		sql = { "sqlfluff" },
-		yaml = { "actionlint", "yamllint" },
+		yaml = { "yamllint" },
 		["yaml.ansible"] = { "ansiblelint" },
 	}
+
+	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+		callback = function()
+			lint.try_lint()
+		end,
+	})
 end
 
 return {

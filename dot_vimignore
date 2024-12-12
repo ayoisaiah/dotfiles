@@ -2,6 +2,9 @@
 _site/
 node_modules/
 vendor/
+venv/
+__pycache__/
+.pytest_cache/
 *.jpeg
 *.jpg
 *.JPG

@@ -10,7 +10,7 @@ alias y="yarn"
 alias p="pnpm"
 
 # Replace ls with eza
-alias ls="eza --icons"
+alias ls="eza --icons --hyperlink"
 
 alias brl="br -dp"
 alias brgs="br -gc :gs"
@@ -18,7 +18,7 @@ alias brgs="br -gc :gs"
 # Replace cat with bat
 alias cat="bat"
 
-#3 gotestfmt
+# gotestfmt
 alias gotestfmt="gotestfmt -hide 'empty-packages'"
 
 alias yt="yt-dlp"
@@ -34,3 +34,14 @@ alias grep="grep -H -P --color=auto"
 alias astro="NVIM_APPNAME=AstroNvim nvim"
 
 alias nv="NVIM_APPNAME=NvChad nvim"
+
+alias lazy="NVIM_APPNAME=LazyVim nvim"
+
+alias aa="NVIM_APPNAME=ArchVim nvim"
+
+# Kitty uses TERM=kitty which causes issues with remote sessions
+alias ssh="TERM=xterm-256color command ssh"
+
+alias lss="/usr/bin/ls"
+
+alias fresh="NVIM_APPNAME=FreshVim nvim"

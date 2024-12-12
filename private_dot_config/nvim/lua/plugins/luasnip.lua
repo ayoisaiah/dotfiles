@@ -10,7 +10,7 @@ local config = function()
 				active = {
 					virt_text = {
 						{
-							"🟠",
+							"🔀",
 						},
 					},
 				},
@@ -38,8 +38,14 @@ local config = function()
 		end
 	end, { silent = true })
 
+	vim.keymap.set("i", "<C-L>", function()
+		if ls.choice_active() then
+			ls.change_choice(-1)
+		end
+	end, { silent = true })
+
 	-- reload luasnips file which reloads snippets
-	vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/config/luasnip.lua<CR>")
+	vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<CR>")
 end
 
 return {

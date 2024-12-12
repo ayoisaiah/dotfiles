@@ -1,5 +1,9 @@
 local config = function()
-	require("octo").setup({})
+	require("octo").setup({
+		suppress_missing_scope = {
+			projects_v2 = true,
+		},
+	})
 
 	local wk = require("which-key")
 
@@ -7,7 +11,7 @@ local config = function()
 		name = "GitHub",
 		l = { "<cmd>Octo issue list<CR>", "List current repo issues" },
 		c = { "<cmd>Octo issue create<CR>", "Create a new issue" },
-		e = { ":Octo issue edit ", "Edit an issue" },
+		e = { "<cmd>Octo issue edit<CR>", "Edit an issue" },
 		b = { "<cmd>Octo issue browser<CR>", "Open the current issue in the browser" },
 		u = { "<cmd>Octo issue url<CR>", "Copy issue URL to clipboard" },
 		x = { "<cmd>Octo issue close<CR>", "Close the current issue" },
@@ -28,7 +32,7 @@ local config = function()
 	wk.register({
 		name = "GitHub",
 		l = { "<cmd>Octo pr list<CR>", "Select an issue label to add" },
-		e = { ":Octo label edit ", "Edit a PR" },
+		e = { "<cmd>Octo label edit<CR>", "Edit a PR" },
 		r = { "<cmd>Octo pr reopen<CR>", "Reopen the current PR" },
 		c = { "<cmd>Octo pr changes<CR>", "Show all PR changes (diffs)" },
 		h = { "<cmd>Octo pr checks<CR>", "Show all PR checks" },
@@ -38,9 +42,9 @@ local config = function()
 	wk.register({
 		name = "GitHub",
 		a = { "<cmd>Octo label add<CR>", "Select an issue label to add" },
-		A = { ":Octo label add ", "Add an issue label" },
+		A = { "<cmd>Octo label add<CR>", "Add an issue label" },
 		r = { "<cmd>Octo label remove<CR>", "Select an issue label to remove" },
-		R = { ":Octo label remove ", "Remove an issue label" },
+		R = { "<cmd>Octo label remove<CR>", "Remove an issue label" },
 	}, { prefix = "<leader>hl" })
 
 	wk.register({

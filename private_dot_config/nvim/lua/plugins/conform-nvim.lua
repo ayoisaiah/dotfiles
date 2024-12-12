@@ -5,6 +5,13 @@ local config = function()
 
 	conform.setup({
 		formatters = {
+			golines = {
+				command = "golines",
+				args = {
+					"-m",
+					"80",
+				},
+			},
 			sqlfluff = {
 				command = "sqlfluff",
 				args = {
@@ -22,14 +29,16 @@ local config = function()
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "isort", "black" },
-			javascript = { { "prettier" }, { "eslint" } },
+			javascript = { "biome-check" },
+			typescript = { "biome-check" },
 			markdown = { "prettier" },
+			php = { "php_cs_fixer" },
 			pug = { "prettier" },
 			css = { "stylelint", { "prettier" } },
 			-- TODO: Format only template files
 			-- djlint = {},
 			zig = { "zigfmt" },
-			go = { { "gofumpt" }, "golines" },
+			go = { "gofumpt", "golines" },
 			eruby = { "erb_format", "erb_lint" },
 			json = { "prettier" },
 			sql = { "sqlfluff" },
@@ -39,7 +48,7 @@ local config = function()
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {
-			timeout_ms = 1000,
+			timeout_ms = 3000,
 			lsp_fallback = true,
 		},
 	})
