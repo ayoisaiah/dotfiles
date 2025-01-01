@@ -96,6 +96,7 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
         bind "t" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+        bind "Space" { NextSwapLayout; }
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -138,6 +139,8 @@ keybinds clear-defaults=true {
 
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
     }
 
     shared_except "normal" "locked" {
@@ -182,4 +185,3 @@ themes {
 theme "kanagawa"
 
 default_layout "compact"
-auto_layout false
