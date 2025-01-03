@@ -90,7 +90,7 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "m" { SwitchToMode "Move"; }
         bind "Ctrl r" { SwitchToMode "Resize"; }
-        bind "c" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "c" { NewTab; }
         bind "o" { FocusNextPane; }
         bind "d" { Detach; }
         bind "Ctrl q" { Quit; }
