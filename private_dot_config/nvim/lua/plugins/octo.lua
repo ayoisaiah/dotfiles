@@ -7,52 +7,52 @@ local config = function()
 
 	local wk = require("which-key")
 
-	wk.register({
-		name = "GitHub",
-		l = { "<cmd>Octo issue list<CR>", "List current repo issues" },
-		c = { "<cmd>Octo issue create<CR>", "Create a new issue" },
-		e = { "<cmd>Octo issue edit<CR>", "Edit an issue" },
-		b = { "<cmd>Octo issue browser<CR>", "Open the current issue in the browser" },
-		u = { "<cmd>Octo issue url<CR>", "Copy issue URL to clipboard" },
-		x = { "<cmd>Octo issue close<CR>", "Close the current issue" },
-		o = { "<cmd>Octo issue reopen<CR>", "Reopen the current issue" },
-	}, { prefix = "<leader>hi" })
+	wk.add({
+		{ "<leader>hi", group = "GitHub" },
+		{ "<leader>hib", "<cmd>Octo issue browser<CR>", desc = "Open the current issue in the browser" },
+		{ "<leader>hic", "<cmd>Octo issue create<CR>", desc = "Create a new issue" },
+		{ "<leader>hie", "<cmd>Octo issue edit<CR>", desc = "Edit an issue" },
+		{ "<leader>hil", "<cmd>Octo issue list<CR>", desc = "List current repo issues" },
+		{ "<leader>hio", "<cmd>Octo issue reopen<CR>", desc = "Reopen the current issue" },
+		{ "<leader>hiu", "<cmd>Octo issue url<CR>", desc = "Copy issue URL to clipboard" },
+		{ "<leader>hix", "<cmd>Octo issue close<CR>", desc = "Close the current issue" },
+	})
 
-	wk.register({
-		name = "GitHub",
-		["+"] = { "<cmd>Octo reaction +1<CR>", "Thumbs up" },
-		["-"] = { "<cmd>Octo reaction -1<CR>", "Thumbs down" },
-		e = { "<cmd>Octo reaction eyes<CR>", "Eyes" },
-		l = { "<cmd>Octo reaction laugh<CR>", "Laugh" },
-		c = { "<cmd>Octo reaction confused<CR>", "Confused" },
-		h = { "<cmd>Octo reaction heart<CR>", "Heart" },
-		p = { "<cmd>Octo reaction party<CR>", "Party" },
-	}, { prefix = "<leader>hs" })
+	wk.add({
+		{ "<leader>hs", group = "GitHub" },
+		{ "<leader>hs+", "<cmd>Octo reaction +1<CR>", desc = "Thumbs up" },
+		{ "<leader>hs-", "<cmd>Octo reaction -1<CR>", desc = "Thumbs down" },
+		{ "<leader>hsc", "<cmd>Octo reaction confused<CR>", desc = "Confused" },
+		{ "<leader>hse", "<cmd>Octo reaction eyes<CR>", desc = "Eyes" },
+		{ "<leader>hsh", "<cmd>Octo reaction heart<CR>", desc = "Heart" },
+		{ "<leader>hsl", "<cmd>Octo reaction laugh<CR>", desc = "Laugh" },
+		{ "<leader>hsp", "<cmd>Octo reaction party<CR>", desc = "Party" },
+	})
 
-	wk.register({
-		name = "GitHub",
-		l = { "<cmd>Octo pr list<CR>", "Select an issue label to add" },
-		e = { "<cmd>Octo label edit<CR>", "Edit a PR" },
-		r = { "<cmd>Octo pr reopen<CR>", "Reopen the current PR" },
-		c = { "<cmd>Octo pr changes<CR>", "Show all PR changes (diffs)" },
-		h = { "<cmd>Octo pr checks<CR>", "Show all PR checks" },
-		u = { "<cmd>Octo pr url<CR>", "Copy PR url to clipboard" },
-	}, { prefix = "<leader>hp" })
+	wk.add({
+		{ "<leader>hp", group = "GitHub" },
+		{ "<leader>hpc", "<cmd>Octo pr changes<CR>", desc = "Show all PR changes (diffs)" },
+		{ "<leader>hpe", "<cmd>Octo label edit<CR>", desc = "Edit a PR" },
+		{ "<leader>hph", "<cmd>Octo pr checks<CR>", desc = "Show all PR checks" },
+		{ "<leader>hpl", "<cmd>Octo pr list<CR>", desc = "Select an issue label to add" },
+		{ "<leader>hpr", "<cmd>Octo pr reopen<CR>", desc = "Reopen the current PR" },
+		{ "<leader>hpu", "<cmd>Octo pr url<CR>", desc = "Copy PR url to clipboard" },
+	})
 
-	wk.register({
-		name = "GitHub",
-		a = { "<cmd>Octo label add<CR>", "Select an issue label to add" },
-		A = { "<cmd>Octo label add<CR>", "Add an issue label" },
-		r = { "<cmd>Octo label remove<CR>", "Select an issue label to remove" },
-		R = { "<cmd>Octo label remove<CR>", "Remove an issue label" },
-	}, { prefix = "<leader>hl" })
+	wk.add({
+		{ "<leader>hl", group = "GitHub" },
+		{ "<leader>hlA", "<cmd>Octo label add<CR>", desc = "Add an issue label" },
+		{ "<leader>hlR", "<cmd>Octo label remove<CR>", desc = "Remove an issue label" },
+		{ "<leader>hla", "<cmd>Octo label add<CR>", desc = "Select an issue label to add" },
+		{ "<leader>hlr", "<cmd>Octo label remove<CR>", desc = "Select an issue label to remove" },
+	})
 
-	wk.register({
-		name = "GitHub",
-		r = { "<cmd>Octo review resume<CR>", "Resume last review" },
-		s = { "<cmd>Octo review start<CR>", "Start a review" },
-		c = { "<cmd>Octo review close<CR>", "Close review and return to PR" },
-	}, { prefix = "<leader>hr" })
+	wk.add({
+		{ "<leader>hr", group = "GitHub" },
+		{ "<leader>hrc", "<cmd>Octo review close<CR>", desc = "Close review and return to PR" },
+		{ "<leader>hrr", "<cmd>Octo review resume<CR>", desc = "Resume last review" },
+		{ "<leader>hrs", "<cmd>Octo review start<CR>", desc = "Start a review" },
+	})
 end
 
 return {

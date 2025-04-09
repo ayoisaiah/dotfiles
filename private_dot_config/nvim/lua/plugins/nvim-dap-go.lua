@@ -4,12 +4,10 @@ local config = function()
 
 	dapgo.setup()
 
-	wk.register({
-		name = "Debugger",
-		t = { "<cmd>lua require('dap-go').debug_test()<CR>", "Debug closest test" },
-		T = { "<cmd>lua require('dap-go').debug_last_test()<CR>", "Debug last run test" },
-	}, {
-		prefix = "<leader>d",
+	wk.add({
+		{ "<leader>d", group = "Debugger" },
+		{ "<leader>dT", "<cmd>lua require('dap-go').debug_last_test()<CR>", desc = "Debug last run test" },
+		{ "<leader>dt", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug closest test" },
 	})
 end
 

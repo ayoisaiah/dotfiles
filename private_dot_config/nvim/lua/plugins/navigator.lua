@@ -1,6 +1,12 @@
 local config = function()
 	local wk = require("which-key")
 	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local builtin = require("telescope.builtin")
+	local navigator = require("navigator")
+	local codeAction = require("navigator.codeAction")
+	local definition = require("navigator.definition")
+	local ts = require("navigator.treesitter")
+	local rename = require("navigator.rename")
 
 	require("navigator").setup({
 		debug = false,
@@ -94,60 +100,72 @@ local config = function()
 		},
 	})
 
-	wk.register({
-		name = "LSP",
-		a = { "<cmd>lua require('navigator.codeAction').code_action()<CR>", "Code actions" },
-		d = { "<cmd>lua require('navigator.definition').definition()<CR>", "Go to definition" },
-		f = { vim.lsp.buf.format, "Format buffer" },
-		k = { vim.lsp.buf.signature_help, "Signature help" },
-		i = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<CR>", "Incoming calls" },
-		o = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<CR>", "Outgoing calls" },
-		r = { "<cmd>lua require('navigator.rename').rename()<CR>", "Rename symbol" },
-		p = { "<cmd>lua require('navigator.definition').definition_preview()<CR>", "Preview symbol definition" },
-		m = {
-			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'method', 'function'}})<CR>",
-			"Document methods and functions",
+	wk.add({
+		{ "<leader>l", group = "LSP" },
+		{ "<leader>lW", builtin.lsp_dynamic_workspace_symbols, desc = "Dynamic workspace symbols" },
+		{ "<leader>la", codeAction.code_action, desc = "Code actions" },
+		{ "<leader>ld", definition.definition, desc = "Go to definition" },
+		{ "<leader>lf", vim.lsp.buf.format, desc = "Format buffer" },
+		{ "<leader>li", builtin.lsp_incoming_calls, desc = "Incoming calls" },
+		{ "<leader>lk", vim.lsp.buf.signature_help, desc = "Signature help" },
+		{
+			"<leader>lm",
+			function()
+				builtin.lsp_document_symbols({
+					show_line = true,
+					symbols = { "method", "function" },
+				})
+			end,
+			desc = "Document methods and functions",
 		},
-		-- TODO: Refine output
-		t = {
-			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, ignore_symbols = {'field'}})<CR>",
-			"Document symbols",
+		{ "<leader>lo", builtin.lsp_outgoing_calls, desc = "Outgoing calls" },
+		{ "<leader>lp", definition.definition_preview, desc = "Preview symbol definition" },
+		{ "<leader>lr", rename.rename, desc = "Rename symbol" },
+		{
+			"<leader>lt",
+			function()
+				builtin.lsp_document_symbols({
+					show_line = true,
+					ignore_symbols = { "field" },
+				})
+			end,
+			desc = "Document symbols",
 		},
-		v = {
-			"<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true, symbols = {'variable'}})<CR>",
-			"Variables",
+		{
+			"<leader>lv",
+			function()
+				builtin.lsp_document_symbols({
+					show_line = true,
+					symbols = { "variable" },
+				})
+			end,
+			desc = "Variables",
 		},
-		w = { "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols" },
-		W = {
-			"<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
-			"Dynamic workspace symbols",
+		{ "<leader>lw", builtin.lsp_workspace_symbols, desc = "Workspace symbols" },
+		{ "<leader>lx", builtin.diagnostics, desc = "Diagnostics in all open buffers" },
+		{
+			"<leader>ly",
+			function()
+				builtin.diagnostics({ bufnr = 0 })
+			end,
+			desc = "Diagnostics in current buffer",
 		},
-		x = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics in all open buffers" },
-		y = { "<cmd>lua require('telescope.builtin').diagnostics(bufnr=0)<CR>", "Diagnostics in current buffer" },
-		z = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "Symbol references" },
-	}, { prefix = "<leader>l" })
+		{ "<leader>lz", builtin.lsp_references, desc = "Symbol references" },
+		{
+			"<leader>la",
+			codeAction.range_code_action,
+			desc = "code action for the visual mode range",
+			mode = "v",
+		},
+	})
 
-	wk.register({
-		name = "LSP",
-		a = {
-			"<cmd>lua require('navigator.codeAction').range_code_action()<CR>",
-			"code action for the visual mode range",
-		},
-		f = { vim.lsp.buf.range_formatting, "range formatting" },
-	}, { prefix = "<leader>l", mode = "v" })
-
-	wk.register({
-		name = "LSP",
-		["]"] = {
-			name = "next",
-			c = { vim.diagnostic.goto_next, "Next diagnostic" },
-			r = { "<cmd>lua require('navigator.treesitter').goto_next_usage()<CR>", "Go to next usage" },
-		},
-		["["] = {
-			name = "previous",
-			c = { vim.diagnostic.goto_prev, "previous diagnostic" },
-			r = { "<cmd>lua require('navigator.treesitter').goto_prev_usage()<CR>", "Go to previous usage" },
-		},
+	wk.add({
+		{ "[", group = "previous" },
+		{ "[c", vim.diagnostic.goto_prev, desc = "previous diagnostic" },
+		{ "[r", ts.goto_prev_usage, desc = "Go to previous usage" },
+		{ "]", group = "next" },
+		{ "]c", vim.diagnostic.goto_next, desc = "Next diagnostic" },
+		{ "]r", ts.goto_next_usage, desc = "Go to next usage" },
 	})
 end
 

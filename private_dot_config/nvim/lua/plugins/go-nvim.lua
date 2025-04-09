@@ -3,12 +3,12 @@ local config = function()
 
 	local wk = require("which-key")
 
-	wk.register({
-		name = "go",
-    r = { "<cmd>GoTestFunc<CR>", "Run test under cursor" },
-		t = { "<cmd>GoAddTag<CR>", "Add struct tags" },
-		T = { "<cmd>GoRmTag<CR>", "Remove struct tags" },
-	}, { prefix = "<leader><leader>g" })
+	wk.add({
+		{ "<leader><leader>g", group = "go" },
+		{ "<leader><leader>gT", "<cmd>GoRmTag<CR>", desc = "Remove struct tags" },
+		{ "<leader><leader>gr", "<cmd>GoTestFunc<CR>", desc = "Run test under cursor" },
+		{ "<leader><leader>gt", "<cmd>GoAddTag<CR>", desc = "Add struct tags" },
+	})
 end
 
 return {

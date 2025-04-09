@@ -26,27 +26,37 @@ local config = function()
 	vim.fn.sign_define("DapBreakpointCondition", { text = "🟥", texthl = "", linehl = "", numhl = "" })
 	vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
 
-	wk.register({
-		name = "Debugger",
-		["<F5>"] = { "<cmd>lua require('dap').continue()<CR>", "Continue" },
-		["<F10>"] = { "<cmd>lua require('dap').step_over()<CR>", "Step over" },
-		["<F11>"] = { "<cmd>lua require('dap').step_into()<CR>", "Step into" },
-		["<F12>"] = { "<cmd>lua require('dap').step_out()<CR>", "Step out" },
+	wk.add({
+		{ "<F10>", "<cmd>lua require('dap').step_over()<CR>", desc = "Step over" },
+		{ "<F11>", "<cmd>lua require('dap').step_into()<CR>", desc = "Step into" },
+		{ "<F12>", "<cmd>lua require('dap').step_out()<CR>", desc = "Step out" },
+		{ "<F5>", "<cmd>lua require('dap').continue()<CR>", desc = "Continue" },
 	})
 
-	wk.register({
-		name = "Debugger",
-		b = { "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<CR>", "Toggle breakpoint" },
-		c = { "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>", "Set breakpoint" },
-		d = { "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<CR>", "Clear all breakpoints" },
-		l = {
-			"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-			"Set logpoint",
+	wk.add({
+		{ "<leader>d", group = "Debugger" },
+		{
+			"<leader>db",
+			"<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<CR>",
+			desc = "Toggle breakpoint",
 		},
-		r = { "<cmd>lua require('dap').restart()<CR>", "Restart the debugging session" },
-		x = { "<cmd>lua require('dap').terminate()<CR>", "Terminate the debugging session" },
-	}, {
-		prefix = "<leader>d",
+		{
+			"<leader>dc",
+			"<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>",
+			desc = "Set breakpoint",
+		},
+		{
+			"<leader>dd",
+			"<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<CR>",
+			desc = "Clear all breakpoints",
+		},
+		{
+			"<leader>dl",
+			"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+			desc = "Set logpoint",
+		},
+		{ "<leader>dr", "<cmd>lua require('dap').restart()<CR>", desc = "Restart the debugging session" },
+		{ "<leader>dx", "<cmd>lua require('dap').terminate()<CR>", desc = "Terminate the debugging session" },
 	})
 end
 

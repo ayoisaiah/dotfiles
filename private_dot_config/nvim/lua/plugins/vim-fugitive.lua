@@ -1,11 +1,11 @@
 local config = function()
 	local wk = require("which-key")
 
-	wk.register({
-		name = "Git",
-		a = { "<cmd>Git commit --amend<CR>", "Amend commit" },
-		c = { "<cmd>Git commit --verbose<CR>", "Git commit" },
-	}, { prefix = "<leader>g" })
+	wk.add({
+		{ "<leader>g", group = "Git" },
+		{ "<leader>ga", "<cmd>Git commit --amend<CR>", desc = "Amend commit" },
+		{ "<leader>gc", "<cmd>Git commit --verbose<CR>", desc = "Git commit" },
+	})
 end
 
 return {
