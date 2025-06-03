@@ -3,6 +3,8 @@ local config = function()
 	local dapui = require("dapui")
 	local wk = require("which-key")
 
+	dap.configurations.go = {}
+
 	dapui.setup()
 
 	dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -24,7 +26,7 @@ local config = function()
 	vim.fn.sign_define("DapLogPoint", { text = "🔶", texthl = "", linehl = "", numhl = "" })
 	vim.fn.sign_define("DapRejected", { text = "🚫", texthl = "", linehl = "", numhl = "" })
 	vim.fn.sign_define("DapBreakpointCondition", { text = "🟥", texthl = "", linehl = "", numhl = "" })
-	vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapStopped", { text = "🛑", texthl = "", linehl = "", numhl = "" })
 
 	wk.add({
 		{ "<F10>", "<cmd>lua require('dap').step_over()<CR>", desc = "Step over" },
@@ -43,7 +45,7 @@ local config = function()
 		{
 			"<leader>dc",
 			"<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>",
-			desc = "Set breakpoint",
+			desc = "Set conditional breakpoint",
 		},
 		{
 			"<leader>dd",
@@ -67,7 +69,6 @@ return {
 		"LiadOz/nvim-dap-repl-highlights",
 		"rcarriga/nvim-dap-ui",
 		"leoluz/nvim-dap-go",
-		"theHamsta/nvim-dap-virtual-text",
 		"Weissle/persistent-breakpoints.nvim",
 	},
 }

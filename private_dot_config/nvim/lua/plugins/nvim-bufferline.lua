@@ -9,7 +9,7 @@ end
 
 return {
 	"akinsho/nvim-bufferline.lua",
-	tag = "v4.6.1",
+	tag = "v4.9.1",
 	event = "BufEnter",
 	config = config,
 }

@@ -7,7 +7,19 @@ local codeBlock = s(
 {}
 ```{}
 ]],
-		{ i(1, "command"), i(2), i(3) }
+		{ i(1, "text"), i(2), i(3) }
+	)
+)
+
+local codeBlockJS = s(
+	"cj",
+	fmt(
+		[[
+```{}
+{}
+```{}
+]],
+		{ i(1, "javascript"), i(2), i(3) }
 	)
 )
 
@@ -52,6 +64,7 @@ local snippets = {
 	codeBlock,
 	codeBlockWithLabel,
 	codeBlockOutput,
+	codeBlockJS,
 }
 
 local autosnippets = {

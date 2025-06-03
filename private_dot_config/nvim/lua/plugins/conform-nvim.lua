@@ -1,8 +1,6 @@
 local config = function()
 	local conform = require("conform")
 
-	--TODO: Consider Dprint: https://github.com/dprint/dprint
-
 	conform.setup({
 		formatters = {
 			golines = {
@@ -38,6 +36,7 @@ local config = function()
 			-- TODO: Format only template files
 			-- djlint = {},
 			zig = { "zigfmt" },
+			rust = { "rustfmt" },
 			go = { "gofumpt", "golines" },
 			eruby = { "erb_format", "erb_lint" },
 			json = { "prettier" },
@@ -48,7 +47,7 @@ local config = function()
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {
-			timeout_ms = 3000,
+			timeout_ms = 2000,
 			lsp_fallback = true,
 		},
 	})

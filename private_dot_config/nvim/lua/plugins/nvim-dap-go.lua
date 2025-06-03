@@ -2,7 +2,9 @@ local config = function()
 	local dapgo = require("dap-go")
 	local wk = require("which-key")
 
-	dapgo.setup()
+	dapgo.setup({
+		dap_configurations = {},
+	})
 
 	wk.add({
 		{ "<leader>d", group = "Debugger" },

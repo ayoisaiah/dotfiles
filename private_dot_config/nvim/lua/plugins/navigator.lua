@@ -25,7 +25,7 @@ local config = function()
 				update_in_insert = false, -- update diagnostic message in insert mode
 			},
 			display_diagnostic_qf = false,
-			tsserver = {
+			ts_ls = {
 				filetypes = { "typescript", "javascript" },
 				init_options = {
 					preferences = {
@@ -93,7 +93,7 @@ local config = function()
 				"svelte",
 				"rls",
 				"lua_ls",
-				"tsserver",
+				"ts_ls",
 				"emmet_language_server",
 				"solargraph",
 			},
