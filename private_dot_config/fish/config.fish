@@ -1,3 +1,5 @@
+set LANG en_US.UTF-8
+
 # Aliases
 source $HOME/.config/fish/aliases.fish
 
@@ -19,6 +21,8 @@ zoxide init fish | source # Better cd
 starship init fish | source
 
 mise activate fish | source
+
+source $HOME/.atuin/bin/env.fish
 
 if set -q KITTY_INSTALLATION_DIR
     set --global KITTY_SHELL_INTEGRATION enabled

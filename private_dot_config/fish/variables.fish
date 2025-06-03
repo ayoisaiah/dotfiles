@@ -81,3 +81,5 @@ set -gx PATH "$PNPM_HOME" $PATH
 set -gx PATH $PATH "$HOME/.local/bin/depot-tools"
 
 set -gx PATH /home/ayo/.local/share/mise/shims $PATH
+
+set -x GPG_TTY (tty)
