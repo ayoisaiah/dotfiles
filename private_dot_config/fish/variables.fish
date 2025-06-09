@@ -50,20 +50,15 @@ set -gx PATH $PATH "$HOME/.bun/bin"
 # Flutter
 set -gx PATH "$HOME/.flutter/bin" $PATH
 
+# Mise
+set -gx MISE_NPM_BUN true
+
 # NVIM
 set -gx PATH "$HOME/.local/share/bob/nvim-bin" $PATH
 set -gx SUDO_EDITOR "/home/user/.local/share/bob/nvim-bin/nvim"
 
 # Android
 set -gx ANDROID_HOME "$HOME/Android"
-
-# Fix for abnormal cursor size
-set -gx XCURSOR_SIZE $(gsettings get org.gnome.desktop.interface cursor-size)
-
-set -gx MOZ_ENABLE_WAYLAND 1
-
-# Dprint
-set -gx PATH $PATH "$HOME/.dprint/bin"
 
 ## Fzf.fish
 set fzf_preview_dir_cmd eza --all --color=always
