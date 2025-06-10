@@ -21,11 +21,6 @@ set -gx GOPATH "$HOME/go"
 set -gx GOROOT /usr/local/go
 set -Ux GO111MODULE on
 
-# Ruby
-set -gx PATH $PATH "$HOME/.rbenv/bin"
-set -gx PATH $PATH "$HOME/.rbenv/plugins/ruby-build/bin"
-status --is-interactive; and rbenv init - fish | source
-
 # Rust
 set -gx PATH $PATH "/home/ayo/.cargo/bin"
 
