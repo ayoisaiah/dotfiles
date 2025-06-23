@@ -2,6 +2,7 @@
 local g = vim.g
 local o = vim.opt
 local exec = vim.api.nvim_exec
+local jit = require("jit")
 
 -- More natural split opening.
 o.splitbelow = true
@@ -93,7 +94,7 @@ o.updatetime = 100
 o.complete = o.complete + "kspell" -- Enable word completion
 o.completeopt = "menu,menuone,noselect"
 
-local shell = "/usr/bin/bash"
+local shell = "/bin/bash"
 o.shell = shell
 g["$SHELL"] = shell
 

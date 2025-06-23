@@ -1,5 +1,9 @@
 set LANG en_US.UTF-8
 
+if test (uname -s) = "Darwin"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+end
+
 # Aliases
 source $HOME/.config/fish/aliases.fish
 

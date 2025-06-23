@@ -104,9 +104,9 @@ return {
 		"nvim-telescope/telescope-dap.nvim",
 		"neovim/nvim-lspconfig",
 		"DaikyXendo/nvim-web-devicons",
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-		},
+		-- {
+		-- 	"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	build = "make",
+		-- },
 	},
 }
