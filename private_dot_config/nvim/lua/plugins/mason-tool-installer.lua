@@ -1,0 +1,58 @@
+local config = function()
+	require("mason-tool-installer").setup({
+		ensure_installed = {
+			"lua_ls",
+			"jsonls",
+			"rust_analyzer",
+			"gopls",
+			"golangci_lint_ls",
+			"html",
+			"ts_ls",
+			"jqls",
+			"bashls",
+			"marksman",
+			"cssls",
+			"sqlls",
+			"biome",
+			"yamlls",
+			"delve",
+			"js-debug-adapter",
+			"go-debug-adapter",
+			"firefox-debug-adapter",
+			"chrome-debug-adapter",
+			"golines",
+			"gofumpt",
+			"golangci-lint",
+			"djlint",
+			"goimports",
+			"jq",
+			"isort",
+			"nginx-config-formatter",
+			"stylua",
+			"markdownlint-cli2",
+			"prettier",
+			"ruff",
+			"pgformatter",
+			"yamlfmt",
+			"jsonlint",
+			"markdownlint",
+			"yamllint",
+			"ansible-lint",
+			"gitlint",
+		},
+		integrations = {
+			["mason-lspconfig"] = true,
+			["mason-nvim-dap"] = true,
+			["mason-null-ls"] = false,
+		},
+	})
+end
+
+return {
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	dependencies = {
+		"mason-org/mason-lspconfig.nvim",
+		"jay-babu/mason-nvim-dap.nvim",
+	},
+	config = config,
+}

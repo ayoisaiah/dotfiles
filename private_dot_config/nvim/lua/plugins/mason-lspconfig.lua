@@ -3,6 +3,7 @@ local config = function()
 
 	masonLspConfig.setup({
 		ensure_installed = {
+			"biome",
 			"lua_ls",
 			"jsonls",
 			"rust_analyzer",
@@ -22,8 +23,8 @@ local config = function()
 end
 
 return {
-	"williamboman/mason-lspconfig.nvim",
+	"mason-org/mason-lspconfig.nvim",
 	dependencies = {
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 	},
 }

@@ -1,13 +1,11 @@
 local config = function()
 	local masonDap = require("mason-nvim-dap")
-	masonDap.setup({
-		ensure_installed = { "delve", "js" },
-	})
+	masonDap.setup({})
 end
 
 return {
 	"jay-babu/mason-nvim-dap.nvim",
 	dependencies = {
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 	},
 }

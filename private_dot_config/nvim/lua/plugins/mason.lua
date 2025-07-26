@@ -13,6 +13,6 @@ local config = function()
 end
 
 return {
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	config = config,
 }
