@@ -1,44 +1,68 @@
 local config = function()
 	require("mason-tool-installer").setup({
 		ensure_installed = {
+			-- lua
 			"lua_ls",
+			"stylua",
+
+			-- json
 			"jsonls",
+			"jsonlint",
+			"jq-lsp",
+			"jq",
+
+			-- rust
 			"rust_analyzer",
+
+			-- go
 			"gopls",
 			"golangci_lint_ls",
-			"html",
-			"ts_ls",
-			"jqls",
-			"bashls",
-			"marksman",
-			"cssls",
-			"sqlls",
-			"biome",
-			"yamlls",
 			"delve",
-			"js-debug-adapter",
 			"go-debug-adapter",
-			"firefox-debug-adapter",
-			"chrome-debug-adapter",
 			"golines",
 			"gofumpt",
 			"golangci-lint",
-			"djlint",
 			"goimports",
-			"jq",
-			"isort",
-			"nginx-config-formatter",
-			"stylua",
-			"markdownlint-cli2",
+
+			-- web
+			"ts_ls",
+			"js-debug-adapter",
+			"html",
+			"cssls",
+			"firefox-debug-adapter",
+			"chrome-debug-adapter",
 			"prettier",
-			"ruff",
-			"pgformatter",
-			"yamlfmt",
-			"jsonlint",
+			"biome",
+			"djlint",
+
+			-- shell
+			"bashls",
+
+			-- markdown
+			"marksman",
+			"markdownlint-cli2",
 			"markdownlint",
+
+			-- sql
+			"sqlls",
+			"pgformatter",
+
+			-- yaml
+			"yamlls",
+			"yamlfmt",
 			"yamllint",
+
+			-- ansible
 			"ansible-lint",
+
+			-- git
 			"gitlint",
+
+			-- python
+			"ruff",
+
+			-- nginx
+			"nginx-config-formatter",
 		},
 		integrations = {
 			["mason-lspconfig"] = true,
