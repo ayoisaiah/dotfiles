@@ -61,6 +61,9 @@ local config = function()
 			-- nginx
 			"nginx-config-formatter",
 
+			-- docker
+			"hadolint",
+
 			-- other
 			"tree-sitter-cli",
 		},
