@@ -11,9 +11,6 @@ local config = function()
 			"jq-lsp",
 			"jq",
 
-			-- rust
-			"rust_analyzer",
-
 			-- go
 			"gopls",
 			"golangci_lint_ls",
@@ -63,6 +60,9 @@ local config = function()
 
 			-- nginx
 			"nginx-config-formatter",
+
+			-- other
+			"tree-sitter-cli",
 		},
 		integrations = {
 			["mason-lspconfig"] = true,
