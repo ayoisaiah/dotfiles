@@ -2,7 +2,7 @@ local config = function()
 	local wk = require("which-key")
 	local telescope = require("telescope")
 	local actions = require("telescope.actions")
-	local vimignoreFile = "/home/ayo/.vimignore"
+	local vimignoreFile = os.getenv("HOME") .. "/.vimignore"
 	local trouble = require("trouble.sources.telescope")
 	local builtin = require("telescope.builtin")
 
@@ -76,7 +76,7 @@ local config = function()
 						"--hidden",
 						"--follow",
 						"--ignore-file",
-						"/home/ayo/.vimignore",
+						vimignoreFile,
 					},
 				})
 			end,
