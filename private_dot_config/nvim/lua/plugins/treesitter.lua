@@ -21,6 +21,7 @@ return {
 			"csv",
 			"diff",
 			"dockerfile",
+			"dap_repl",
 			"fish",
 			"git_config",
 			"git_rebase",
