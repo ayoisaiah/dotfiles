@@ -7,6 +7,7 @@ local config = function()
 		{ "<leader><leader>g", group = "go" },
 		{ "<leader><leader>gT", "<cmd>GoRmTag<CR>", desc = "Remove struct tags" },
 		{ "<leader><leader>gr", "<cmd>GoTestFunc<CR>", desc = "Run test under cursor" },
+		{ "<leader><leader>gi", "<cmd>GoImports<CR>", desc = "Run goimports on current file" },
 		{ "<leader><leader>gt", "<cmd>GoAddTag<CR>", desc = "Add struct tags" },
 		{ "<leader><leader>gfs", "<cmd>GoFillStruct<CR>", desc = "Auto fill struct" },
 		{ "<leader><leader>gfw", "<cmd>GoFillSwitch<CR>", desc = "Auto fill switch" },

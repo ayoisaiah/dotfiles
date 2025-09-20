@@ -27,7 +27,6 @@ local config = function()
 			"html",
 			"cssls",
 			"firefox-debug-adapter",
-			"chrome-debug-adapter",
 			"prettier",
 			"biome",
 			"djlint",
