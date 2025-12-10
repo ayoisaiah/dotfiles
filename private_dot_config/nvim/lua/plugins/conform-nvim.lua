@@ -26,7 +26,7 @@ local config = function()
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "ruff" },
+			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			javascript = { "biome-check" },
 			typescript = { "biome-check" },
 			markdown = { "prettier" },

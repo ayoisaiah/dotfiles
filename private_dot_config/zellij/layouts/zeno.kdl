@@ -1,0 +1,17 @@
+layout {
+  pane stacked=true {
+    pane {
+      cwd "$HOME/dev/repos/zeno"
+      command "nvim"
+      name "Editor"
+    }
+    pane {
+      cwd "$HOME/dev/repos/zeno"
+      command ""
+      name "Server"
+    }
+  }
+  pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+  }
+}

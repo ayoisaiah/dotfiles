@@ -1,6 +1,6 @@
 [tools]
 bun = "latest"
-go = "1.25"
+go = "latest"
 "go:github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen" = "latest"
 node = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
@@ -11,8 +11,9 @@ node = "latest"
 "npm:nodemon" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:prettier" = "latest"
-python = "3.13"
+python = "latest"
 rust = "latest"
+ruby = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

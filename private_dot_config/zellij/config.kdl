@@ -115,6 +115,7 @@ keybinds clear-defaults=true {
     shared_except "locked" {
         // Panes
         bind "Alt n" { NewPane; }
+        // bind "Alt N" { NewPane "Stacked"; }
         bind "Alt w" { ToggleFloatingPanes; }
         bind "Alt h" "Alt Left" { MoveFocus "Left"; }
         bind "Alt l" "Alt Right" { MoveFocus "Right"; }

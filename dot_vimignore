@@ -3,6 +3,7 @@ _site/
 node_modules/
 vendor/
 venv/
+.venv/
 __pycache__/
 .pytest_cache/
 *.jpeg
