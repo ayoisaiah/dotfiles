@@ -1,75 +1,68 @@
 -- This file is for custom key bindings for native vim functions
 
-local map = vim.api.nvim_set_keymap
+local set = vim.keymap.set
 
 vim.g.mapleader = "," -- Change leader key from \ to ,
 
-local opts = { silent = true }
-
-map("i", "<F1>", "<ESC>", opts)
-map("n", "<F1>", "<ESC>", opts)
-map("v", "<F1>", "<ESC>", opts)
-
-map("i", "jj", "<ESC>", opts)
+-- Escape with F1
+set({ "i", "n", "v" }, "<F1>", "<ESC>", { desc = "Escape" })
 
 -- A saner way to save files
-map("n", "<F2>", ":w<CR>", opts)
+set("n", "<F2>", "<cmd>w<CR>", { desc = "Save file" })
 
 -- MOVING LINES
-map("n", "<C-j>", ":m .+1<CR>==", opts)
-map("n", "<C-k>", ":m .-2<CR>==", opts)
-map("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
-map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
+set("n", "<C-j>", "<cmd>m .+1<CR>==", { desc = "Move line down" })
+set("n", "<C-k>", "<cmd>m .-2<CR>==", { desc = "Move line up" })
+set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- turn off search highlighting
-map("n", "<leader><space>", ":nohlsearch<CR>", opts)
+set("n", "<leader><space>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- execute current lua file
-map("n", "<leader><leader>x", ":source %<CR>", opts)
+set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
 
-map("", "<leader>gf", ":e <cfile><CR>", {}) -- Create the file under cursor
+set("", "<leader>gf", "<cmd>e <cfile><CR>", { desc = "Edit file under cursor" })
 
 -- Keep search matches in the middle of the screen
-map("n", "n", "nzz", opts)
-map("n", "N", "Nzz", opts)
+set("n", "n", "nzz", { desc = "Next search match (centered)" })
+set("n", "N", "Nzz", { desc = "Previous search match (centered)" })
 
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-l>", "<C-w>l", opts)
+set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Disable Ex mode mapping
-map("n", "Q", "<Nop>", opts)
+set("n", "Q", "<Nop>")
 
 -- ":Q" as ":q"
-vim.cmd([[command! Qa :qa]])
-vim.cmd([[command! Q :q]])
+vim.api.nvim_create_user_command("Qa", "qa", {})
+vim.api.nvim_create_user_command("Q", "q", {})
 
 -- Copy and paste to the system clipboard
-map("n", "<leader>y", '"+y', opts)
-map("v", "<leader>y", '"+y', opts)
-map("n", "<leader>p", '"+p', opts)
-map("v", "<leader>p", '"+p', opts)
-map("n", "<leader>P", '"+P', opts)
-map("v", "<leader>P", '"+P', opts)
+set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste before from system clipboard" })
 
-map("n", "<leader><leader>t", "<Plug>PlenaryTestFile", opts)
+set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "Run plenary test file" })
 
 -- Tabs
-map("n", "<leader>1", "1gt", opts)
-map("n", "<leader>2", "2gt", opts)
-map("n", "<leader>3", "3gt", opts)
-map("n", "<leader>4", "4gt", opts)
-map("n", "<leader>5", "5gt", opts)
-map("n", "<leader>6", "6gt", opts)
-map("n", "<C-t>", "<cmd>tabnew<CR>", opts)
-map("n", "<leader>w", "<cmd>tabclose<CR>", opts)
+for i = 1, 9 do
+	set("n", "<leader>" .. i, i .. "gt", { desc = "Go to tab " .. i })
+end
+set("n", "<C-t>", "<cmd>tabnew<CR>", { desc = "New tab" })
+set("n", "<leader>w", "<cmd>tabclose<CR>", { desc = "Close tab" })
 
--- TODO: Organize these sort of functions/mappings
+-- Buffer management
 local function confirm_and_delete_buffer()
 	local confirm = vim.fn.confirm("Delete buffer and file?", "&Yes\n&No", 2)
 
 	if confirm == 1 then
-		os.remove(vim.fn.expand("%"))
+		local file = vim.fn.expand("%")
+		if file ~= "" and vim.fn.filereadable(file) == 1 then
+			os.remove(file)
+		end
 		vim.api.nvim_buf_delete(0, { force = true })
 	end
 end
-vim.keymap.set("n", "<leader>bd", confirm_and_delete_buffer)
+set("n", "<leader>bd", confirm_and_delete_buffer, { desc = "Delete buffer and file" })
+
