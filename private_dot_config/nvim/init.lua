@@ -7,8 +7,6 @@ require("mappings")
 -- Custom functions
 require("functions")
 
-vim.lsp.enable({ "cssls", "gopls", "ts_ls", "lua_ls", "emmet", "solargraph" })
-
 local fn = vim.fn
 local opt = vim.opt
 

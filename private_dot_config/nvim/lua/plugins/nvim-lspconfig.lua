@@ -1,11 +1,15 @@
 local config = function()
+	local lspconfig = require("lspconfig")
+	local mason_lspconfig = require("mason-lspconfig")
+	local blink = require("blink.cmp")
+	local lsp_configs = require("lsp_configs")
 	local wk = require("which-key")
 	local builtin = require("telescope.builtin")
 
+	-- LSP mappings
 	wk.add({
 		{ "<leader>l", group = "LSP" },
 		{ "<leader>lW", builtin.lsp_dynamic_workspace_symbols, desc = "Dynamic workspace symbols" },
-		-- { "<leader>la", codeAction.code_action, desc = "Code actions" },
 		{ "<leader>ld", vim.lsp.buf.definition, desc = "Go to definition" },
 		{ "<leader>lf", vim.lsp.buf.format, desc = "Format buffer" },
 		{ "<leader>li", builtin.lsp_incoming_calls, desc = "Incoming calls" },
@@ -21,7 +25,6 @@ local config = function()
 			desc = "Document methods and functions",
 		},
 		{ "<leader>lo", builtin.lsp_outgoing_calls, desc = "Outgoing calls" },
-		-- { "<leader>lp", definition.definition_preview, desc = "Preview symbol definition" },
 		{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
 		{
 			"<leader>lt",
@@ -53,21 +56,40 @@ local config = function()
 			desc = "Diagnostics in current buffer",
 		},
 		{ "<leader>lz", builtin.lsp_references, desc = "Symbol references" },
-		-- {
-		-- 	"<leader>la",
-		-- 	codeAction.range_code_action,
-		-- 	desc = "code action for the visual mode range",
-		-- 	mode = "v",
-		-- },
 	})
 
 	wk.add({
 		{ "[", group = "previous" },
 		{ "[c", vim.diagnostic.goto_prev, desc = "previous diagnostic" },
-		-- { "[r", ts.goto_prev_usage, desc = "Go to previous usage" },
 		{ "]", group = "next" },
 		{ "]c", vim.diagnostic.goto_next, desc = "Next diagnostic" },
-		-- { "]r", ts.goto_next_usage, desc = "Go to next usage" },
+	})
+
+	-- Setup mason-lspconfig handlers
+	mason_lspconfig.setup({
+		ensure_installed = {
+			"lua_ls",
+			"jsonls",
+			"rust_analyzer",
+			"gopls",
+			"golangci_lint_ls",
+			"html",
+			"ts_ls",
+			"jqls",
+			"bashls",
+			"marksman",
+			"cssls",
+			"sqlls",
+			"biome",
+			"yamlls",
+		},
+		handlers = {
+			function(server_name)
+				local server_opts = lsp_configs.servers[server_name] or {}
+				server_opts.capabilities = blink.get_lsp_capabilities(server_opts.capabilities)
+				lspconfig[server_name].setup(server_opts)
+			end,
+		},
 	})
 end
 
