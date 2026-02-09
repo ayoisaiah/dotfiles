@@ -1,0 +1,13 @@
+{
+	"security": {
+		"auth": {
+			"selectedType": "oauth-personal"
+		}
+	},
+	"general": {
+		"previewFeatures": true
+	},
+	"context": {
+		"fileName": ["GEMINI.md", "AGENTS.md"]
+	}
+}
