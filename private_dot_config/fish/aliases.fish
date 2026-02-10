@@ -4,6 +4,7 @@ alias vi="/usr/bin/vim"
 
 # Return to the project root (where .git folder is)
 alias gcd="cd (git rev-parse --show-toplevel)"
+alias groot="cd (git rev-parse --show-toplevel)"
 
 alias n="npm"
 alias y="yarn"
@@ -11,6 +12,10 @@ alias p="pnpm"
 
 # Replace ls with eza
 alias ls="eza --icons --hyperlink"
+alias l="eza --icons --hyperlink --group-directories-first"
+alias ll="eza --icons --hyperlink --group-directories-first --long --git"
+alias la="eza --icons --hyperlink --group-directories-first --long --all --git"
+alias lt="eza --icons --hyperlink --group-directories-first --tree"
 
 alias brl="br -dp"
 alias brgs="br -gc :gs"
@@ -45,3 +50,9 @@ alias ssh="TERM=xterm-256color command ssh"
 alias lss="/usr/bin/ls"
 
 alias fresh="NVIM_APPNAME=FreshVim nvim"
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."

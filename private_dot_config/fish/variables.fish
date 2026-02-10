@@ -1,75 +1,63 @@
-# Force tmux to start in utf8 https://github.com/wernight/powerline-web-fonts/issues/8
+# --- Shell & Environment ---
+set -g fish_greeting
+set -x GPG_TTY (tty)
 set -gx LANG "en_US.UTF-8"
 set -gx LC_CTYPE "en_US.UTF-8"
 
+# OS specific setup
+if test (uname -s) = Darwin
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+end
+
+# --- Default Apps ---
 set -gx EDITOR nvim
 set -gx SYSTEMD_EDITOR $EDITOR
 set -gx VISUAL $EDITOR
+set -gx PAGER less
+set -gx PSQL_PAGER "pspg -s 11"
+set -gx SUDO_EDITOR "$HOME/.local/share/bob/nvim-bin/nvim"
 
-set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden --follow --ignore-file '/home/ayo/.vimignore'"
+# --- General Paths ---
+fish_add_path /usr/local/bin
+fish_add_path "$HOME/bin"
+fish_add_path "$HOME/.local/bin"
 
-# Path stuff
-set PATH /usr/local/bin $PATH
-set -gx PATH $PATH "$HOME/bin" # temporary executables
-set -gx PATH "$HOME/.local/bin" $PATH
-
+# --- Language SDKs ---
 # Go
-set -gx PATH $PATH /usr/local/go/bin
-set -gx PATH $PATH "$HOME/go/bin"
-set -gx GOBIN "$HOME/go/bin"
 set -gx GOPATH "$HOME/go"
 set -gx GOROOT /usr/local/go
+set -gx GOBIN "$GOPATH/bin"
 set -Ux GO111MODULE on
+fish_add_path /usr/local/go/bin
+fish_add_path "$GOBIN"
 
 # Rust
-set -gx PATH $PATH "/home/ayo/.cargo/bin"
+fish_add_path "$HOME/.cargo/bin"
 
 # Deno
-set -gx DENO_INSTALL "/home/ayo/.deno"
-set -gx PATH $PATH "$DENO_INSTALL/bin"
+set -gx DENO_INSTALL "$HOME/.deno"
+fish_add_path "$DENO_INSTALL/bin"
+
+# JavaScript / Node
+fish_add_path "$HOME/.bun/bin"
+
+# .NET
+set -gx DOTNET_ROOT "$HOME/.dotnet"
+fish_add_path "$DOTNET_ROOT"
+
+# --- Tool Configuration ---
+# FZF
+set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden --follow --ignore-file '$HOME/.vimignore'"
+set fzf_preview_dir_cmd eza --all --color=always
+set fzf_fd_opts --hidden --follow --ignore-file "$HOME/.vimignore"
 
 # Bat
 set -gx BAT_THEME gruvbox-dark
 
-# Volta
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH $PATH "$VOLTA_HOME/bin"
-
-set -gx PAGER less
-set -gx PSQL_PAGER "pspg -s 11"
-
-set -gx PATH $PATH "$HOME/.pub-cache/bin"
-
-set -gx PATH $PATH "$HOME/.bun/bin"
-
-# Flutter
-set -gx PATH "$HOME/.flutter/bin" $PATH
-
 # Mise
 set -gx MISE_NPM_BUN true
+fish_add_path "$HOME/.local/share/mise/shims"
 
-# NVIM
-set -gx PATH "$HOME/.local/share/bob/nvim-bin" $PATH
-set -gx SUDO_EDITOR "/home/user/.local/share/bob/nvim-bin/nvim"
+# NVIM (Bob)
+fish_add_path "$HOME/.local/share/bob/nvim-bin"
 
-# Android
-set -gx ANDROID_HOME "$HOME/Android"
-
-## Fzf.fish
-set fzf_preview_dir_cmd eza --all --color=always
-
-set fzf_fd_opts --hidden --follow --ignore-file '/home/ayo/.vimignore'
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc' ]
-    . '/home/ayo/.local/bin/google-cloud-sdk/path.fish.inc'
-end
-
-set -gx PNPM_HOME "/home/ayo/.local/share/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
-
-set -gx PATH $PATH "$HOME/.local/bin/depot-tools"
-
-set -gx PATH /home/ayo/.local/share/mise/shims $PATH
-
-set -x GPG_TTY (tty)

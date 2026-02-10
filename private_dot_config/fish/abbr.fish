@@ -68,3 +68,14 @@ abbr ff fastfetch
 
 # Zellij
 abbr zz zellij
+
+# Navigation & Files
+abbr md 'mkdir -p'
+abbr rd 'rm -rv'
+abbr tree 'eza --tree'
+
+# Mise
+abbr mi 'mise install'
+abbr mu 'mise upgrade'
+abbr mr 'mise run'
+abbr mx 'mise exec'
