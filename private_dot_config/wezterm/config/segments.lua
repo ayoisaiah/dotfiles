@@ -3,11 +3,10 @@ local wezterm = require("wezterm")
 local M = {}
 --
 function M.get_right_status_segments(window, pane)
-	local domain = pane:get_domain_name()
+	local workspace = window:active_workspace()
 
 	local items = {
-		wezterm.strftime("  %a, %b %-d"),
-		domain,
+		"🧠 " .. workspace,
 	}
 
 	local result = {}
