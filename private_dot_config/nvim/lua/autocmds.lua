@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local map = vim.api.nvim_buf_set_keymap
 local fn = vim.fn
 local o = vim.opt
 
@@ -14,11 +13,6 @@ local envGroup = augroup("__env", {
 })
 
 local appearanceGroup = augroup("appearance", {
-	clear = true,
-})
-
--- Terminal group
-local terminalGroup = augroup("terminal", {
 	clear = true,
 })
 
@@ -39,7 +33,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 autocmd("BufWritePre", {
 	group = bufferGroup,
 	pattern = "*",
-	command = "%s/s+$//e",
+	command = [[%s/\s\+$//e]],
 	desc = "Strip trailing whitespace from all files",
 })
 
@@ -110,26 +104,11 @@ autocmd("ColorScheme", {
 	desc = "highlight vertical split with a black on light grey background",
 })
 
-autocmd("TermOpen", {
-	group = terminalGroup,
-	pattern = "term://*",
-	callback = function()
-		local opts = { noremap = true }
-		map(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-		map(0, "t", "jk", [[<C-\><C-n>]], opts)
-		map(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-		map(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-		map(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-		map(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
-	end,
-	desc = "Make it easy to move in and out of terminal while keeping it open",
-})
-
 autocmd({ "BufEnter", "BufNewFile" }, {
 	group = envGroup,
 	pattern = "*.env",
 	callback = function()
-		vim.diagnostic.disable(0)
+		vim.diagnostic.enable(false, { bufnr = 0 })
 		vim.diagnostic.hide(nil, 0)
 		vim.diagnostic.reset(nil, 0)
 		-- lsp.buf_detach_client(bufnr, client.id)
