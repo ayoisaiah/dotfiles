@@ -9,5 +9,11 @@
 	},
 	"context": {
 		"fileName": ["GEMINI.md", "AGENTS.md"]
+	},
+	"telemetry": {
+		"enabled": true,
+		"target": "local",
+		"otlpEndpoint": "http://localhost:4317",
+		"useCollector": true
 	}
 }
