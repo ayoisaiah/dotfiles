@@ -1,5 +1,4 @@
 [tools]
-bun = "latest"
 go = "latest"
 "go:github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen" = "latest"
 node = "latest"
@@ -14,7 +13,11 @@ node = "latest"
 python = "latest"
 rust = "latest"
 ruby = "latest"
+"npm:@openai/codex" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
+
+[settings.npm]
+package_manager = "npm"
