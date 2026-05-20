@@ -138,4 +138,14 @@ augroup END
 	false
 )
 
-vim.diagnostic.config({ float = { source = "always", border = border } })
+vim.diagnostic.config({
+	float = { source = "always", border = border },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "❌",
+			[vim.diagnostic.severity.WARN] = "⚠️",
+			[vim.diagnostic.severity.HINT] = "🟢",
+			[vim.diagnostic.severity.INFO] = "ℹ️",
+		},
+	},
+})
