@@ -1,0 +1,87 @@
+[user]
+    name = Ayooluwa Isaiah
+    email = ayisaiah@gmail.com
+    signingkey = 2238CDCFE760EE7C
+
+[core]
+    editor = nvim
+    excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
+    pager = delta
+
+[init]
+    defaultBranch = master
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = gpg
+
+[alias]
+    a = add
+    aa = add -A
+    s = status --short
+    st = status
+    co = checkout
+    br = branch
+    ch = checkout
+    ci = commit
+    cm = commit -m
+    ca = commit -a -m
+    lg = log --oneline --graph --decorate --all
+    po = push origin
+    last = log -1 HEAD
+    undo = reset --soft HEAD~1
+    save = stash save
+    pop = stash pop
+    amend = commit --amend --no-edit
+    unstage = reset HEAD --
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
+[fetch]
+    prune = true
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+    side-by-side = false
+
+[merge]
+    conflictstyle = zdiff3
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
