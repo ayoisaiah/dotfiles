@@ -45,9 +45,9 @@ config.keys = {
 		-- saving workspace and window state separately
 		key = "S",
 		mods = "LEADER|SHIFT",
-		action = wezterm.action_callback(function(win, pane) -- luacheck: ignore 212
+		action = wezterm.action_callback(function(win, pane)
 			local state = resurrect.workspace_state.get_workspace_state()
-			resurrect.state_manager.save_state(state, "test_resurrect")
+			resurrect.state_manager.save_state(state, win:active_workspace())
 			resurrect.window_state.save_window_action()
 		end),
 	},

@@ -7,12 +7,13 @@ local wezterm = require("wezterm")
 -- local notify = require("../notify")
 local suppress_notification = false
 
-wezterm.on("resurrect.error", function(error)
-	-- notify.send("Wezterm - ERROR", error, "critical")
+wezterm.on("resurrect.error", function(err)
+	wezterm.log_error("Resurrect Error: " .. err)
 end)
 
 wezterm.on("resurrect.periodic_save", function()
 	suppress_notification = true
+	wezterm.log_info("Resurrect: Periodic save started")
 end)
 
 wezterm.on("resurrect.save_state.finished", function(session_path)
@@ -29,10 +30,9 @@ wezterm.on("resurrect.save_state.finished", function(session_path)
 
 	local path = session_path:match(".+/([^+]+)$")
 	local name = path:match("^(.+)%.json$")
-	-- notify.send("Wezterm - Save workspace", "Saved workspace " .. name .. "\n\n" .. session_path)
+	wezterm.log_info("Resurrect: Saved workspace " .. name)
 end)
 
 wezterm.on("resurrect.load_state.finished", function(name, type)
-	local msg = "Completed loading " .. type .. " state: " .. name
-	-- notify.send("Wezterm - Restore session", msg)
+	wezterm.log_info("Resurrect: Completed loading " .. type .. " state: " .. name)
 end)

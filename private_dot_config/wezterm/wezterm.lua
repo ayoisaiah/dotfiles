@@ -7,7 +7,7 @@ require("config.keys")(config)
 require("config.launch_menu")(config)
 require("config.status")
 require("config.startup")
---
+
 -- require("config.plugins.resurrect.config")
 
 return config

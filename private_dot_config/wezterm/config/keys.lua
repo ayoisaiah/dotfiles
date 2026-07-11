@@ -52,7 +52,7 @@ return function(config)
 	table.insert(keys, move_focus("l", "Right"))
 
 	-- Tabs ----------------------------------------------------------------------
-	table.insert(keys, leader("c", act.SpawnTab("CurrentPaneDomain")))
+	table.insert(keys, leader("C", act.SpawnTab("CurrentPaneDomain")))
 	table.insert(keys, leader("w", act.ShowTabNavigator))
 	table.insert(keys, { key = "&", mods = "LEADER|SHIFT", action = act.CloseCurrentTab({ confirm = true }) })
 
@@ -71,7 +71,7 @@ return function(config)
 
 	-- Create and rename tab immediately
 	table.insert(keys, {
-		key = "C",
+		key = "c",
 		mods = "LEADER|SHIFT",
 		action = wezterm.action_callback(function(window, pane)
 			window:perform_action(act.SpawnTab("CurrentPaneDomain"), pane)
