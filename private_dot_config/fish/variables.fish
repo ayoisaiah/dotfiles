@@ -18,9 +18,9 @@ set -gx PSQL_PAGER "pspg -s 11"
 set -gx SUDO_EDITOR "$HOME/.local/share/bob/nvim-bin/nvim"
 
 # --- General Paths ---
-fish_add_path /usr/local/bin
-fish_add_path "$HOME/bin"
-fish_add_path "$HOME/.local/bin"
+fish_add_path --global /usr/local/bin
+fish_add_path --global "$HOME/bin"
+fish_add_path --global "$HOME/.local/bin"
 
 # --- Language SDKs ---
 # Go
@@ -28,22 +28,22 @@ set -gx GOPATH "$HOME/go"
 set -gx GOROOT /usr/local/go
 set -gx GOBIN "$GOPATH/bin"
 set -Ux GO111MODULE on
-fish_add_path /usr/local/go/bin
-fish_add_path "$GOBIN"
+fish_add_path --global /usr/local/go/bin
+fish_add_path --global "$GOBIN"
 
 # Rust
-fish_add_path "$HOME/.cargo/bin"
+fish_add_path --global "$HOME/.cargo/bin"
 
 # Deno
 set -gx DENO_INSTALL "$HOME/.deno"
-fish_add_path "$DENO_INSTALL/bin"
+fish_add_path --global "$DENO_INSTALL/bin"
 
 # JavaScript / Node
-fish_add_path "$HOME/.bun/bin"
+fish_add_path --global "$HOME/.bun/bin"
 
 # .NET
 set -gx DOTNET_ROOT "$HOME/.dotnet"
-fish_add_path "$DOTNET_ROOT"
+fish_add_path --global "$DOTNET_ROOT"
 
 # --- Tool Configuration ---
 # FZF
@@ -56,8 +56,10 @@ set -gx BAT_THEME gruvbox-dark
 
 # Mise
 set -gx MISE_NPM_BUN true
-fish_add_path "$HOME/.local/share/mise/shims"
+fish_add_path --global "$HOME/.local/share/mise/shims"
+
+# Mason-managed Neovim tooling
+fish_add_path --global "$HOME/.local/share/nvim/mason/bin"
 
 # NVIM (Bob)
-fish_add_path "$HOME/.local/share/bob/nvim-bin"
-
+fish_add_path --global "$HOME/.local/share/bob/nvim-bin"
