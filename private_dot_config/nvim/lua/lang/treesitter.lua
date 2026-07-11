@@ -28,6 +28,7 @@ M.ensure_installed = {
 	"kdl",
 	"lua",
 	"markdown",
+	"markdown_inline",
 	"nginx",
 	"python",
 	"pug",

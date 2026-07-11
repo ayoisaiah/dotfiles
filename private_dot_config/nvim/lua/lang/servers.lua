@@ -10,10 +10,21 @@ M.ensure_installed = {
 	"jqls",
 	"bashls",
 	"marksman",
+	"ltex_plus",
+	"vale_ls",
 	"cssls",
 	"sqlls",
 	"yamlls",
 }
+
+local function prose_root(...)
+	local markers = { ... }
+
+	return function(fname)
+		local util = require("lspconfig.util")
+		return util.root_pattern(unpack(markers))(fname)
+	end
+end
 
 M.servers = {
 	lua_ls = {
@@ -135,6 +146,22 @@ M.servers = {
 	solargraph = {
 		init_options = { formatting = false },
 		settings = { solargraph = { diagnostics = false } },
+	},
+	ltex_plus = {
+		filetypes = { "markdown", "text", "gitcommit" },
+		root_dir = prose_root(".ltex", ".ltex-ls-plus"),
+		single_file_support = false,
+		settings = {
+			ltex = {
+				enabled = { "markdown", "text", "gitcommit" },
+				language = "en-US",
+			},
+		},
+	},
+	vale_ls = {
+		filetypes = { "markdown", "text" },
+		root_dir = prose_root(".vale.ini", "vale.ini"),
+		single_file_support = false,
 	},
 	emmet_language_server = {
 		filetypes = {

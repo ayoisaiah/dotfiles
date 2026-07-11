@@ -37,6 +37,9 @@ M.ensure_installed = {
 
 	-- markdown
 	"marksman",
+	"ltex-ls-plus",
+	"vale",
+	"vale-ls",
 	"markdownlint-cli2",
 	"markdownlint",
 

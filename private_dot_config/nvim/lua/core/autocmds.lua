@@ -74,12 +74,11 @@ autocmd("TextYankPost", {
 
 autocmd("FileType", {
 	group = bufferGroup,
-	pattern = { "markdown", "text" },
+	pattern = { "markdown", "text", "gitcommit" },
 	callback = function()
-		vim.opt_local.spell = true
-		vim.opt_local.spelllang = { "en_us" }
+		require("lang.markdown").setup_buffer()
 	end,
-	desc = "Enable spell checking in markdown files",
+	desc = "Configure writing buffers",
 })
 
 autocmd("BufReadPost", {
