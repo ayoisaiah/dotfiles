@@ -1,8 +1,5 @@
--- # ALIASES
 local g = vim.g
 local o = vim.opt
-local exec = vim.api.nvim_exec
-local jit = require("jit")
 
 -- More natural split opening.
 o.splitbelow = true
@@ -123,47 +120,3 @@ g.loaded_netrwPlugin = 1
 -- Disable python2 provider
 g.loaded_python_provider = 0
 g.python_host_prog = ""
-
--- Templates
--- Prefill new files created by vim with contents from the following templates
-exec(
-	[[
-augroup templates
-  autocmd BufNewFile *.html 0r ~/.config/nvim/templates/skeleton.html
-  autocmd BufNewFile *.scss 0r ~/.config/nvim/templates/skeleton.scss
-  autocmd BufNewFile *.css 0r ~/.config/nvim/templates/skeleton.scss
-  autocmd BufNewFile LICENCE 0r ~/.config/nvim/templates/skeleton.LICENCE
-  autocmd BufNewFile LICENSE 0r ~/.config/nvim/templates/skeleton.LICENCE
-  autocmd BufNewFile .gitignore 0r ~/.config/nvim/templates/skeleton.gitignore
-  autocmd BufNewFile .stylelintrc.json 0r ~/.config/nvim/templates/skeleton.stylelintrc
-  autocmd BufNewFile .eslintrc.json 0r ~/.config/nvim/templates/skeleton.eslintrc
-  autocmd BufNewFile .prettierrc.json 0r ~/.config/nvim/templates/skeleton.prettierrc
-augroup END
-]],
-	false
-)
-
--- Customise vertical split highlighting
-exec(
-	[[
-:augroup MyColors
-:    autocmd!
-:    autocmd ColorScheme * highlight VertSplit cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#363646 guifg=#000000
-augroup END
-  ]],
-	false
-)
-
-vim.diagnostic.config({
-	severity_sort = true,
-	update_in_insert = false,
-	float = { source = "always", border = "rounded" },
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "❌",
-			[vim.diagnostic.severity.WARN] = "⚠️",
-			[vim.diagnostic.severity.HINT] = "🟢",
-			[vim.diagnostic.severity.INFO] = "ℹ️",
-		},
-	},
-})

@@ -1,7 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local fn = vim.fn
-local o = vim.opt
 
 -- Customize buffer behaviour in different scenarios
 local bufferGroup = augroup("buffer", {
@@ -16,6 +15,10 @@ local appearanceGroup = augroup("appearance", {
 	clear = true,
 })
 
+local templatesGroup = augroup("templates", {
+	clear = true,
+})
+
 autocmd("BufWritePost", {
 	group = bufferGroup,
 	pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
@@ -26,7 +29,9 @@ autocmd("BufWritePost", {
 autocmd({ "BufRead", "BufNewFile" }, {
 	group = bufferGroup,
 	pattern = { "*.md", "*.txt" },
-	command = "setlocal spell",
+	callback = function()
+		vim.opt_local.spell = true
+	end,
 	desc = "Spell check markdown files",
 })
 
@@ -69,10 +74,10 @@ autocmd("TextYankPost", {
 
 autocmd("FileType", {
 	group = bufferGroup,
-	pattern = "*.md",
+	pattern = { "markdown", "text" },
 	callback = function()
-		o.spell = true
-		o.spelllang = { "en_us" }
+		vim.opt_local.spell = true
+		vim.opt_local.spelllang = { "en_us" }
 	end,
 	desc = "Enable spell checking in markdown files",
 })
@@ -103,6 +108,27 @@ autocmd("ColorScheme", {
 	command = "highlight VertSplit cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#363646 guifg=#000000",
 	desc = "highlight vertical split with a black on light grey background",
 })
+
+local templates = {
+	["*.html"] = "skeleton.html",
+	["*.scss"] = "skeleton.scss",
+	["*.css"] = "skeleton.scss",
+	LICENCE = "skeleton.LICENCE",
+	LICENSE = "skeleton.LICENCE",
+	[".gitignore"] = "skeleton.gitignore",
+	[".stylelintrc.json"] = "skeleton.stylelintrc",
+	[".eslintrc.json"] = "skeleton.eslintrc",
+	[".prettierrc.json"] = "skeleton.prettierrc",
+}
+
+for pattern, template in pairs(templates) do
+	autocmd("BufNewFile", {
+		group = templatesGroup,
+		pattern = pattern,
+		command = "0r " .. vim.fn.stdpath("config") .. "/templates/" .. template,
+		desc = "Insert template for " .. pattern,
+	})
+end
 
 autocmd({ "BufEnter", "BufNewFile" }, {
 	group = envGroup,

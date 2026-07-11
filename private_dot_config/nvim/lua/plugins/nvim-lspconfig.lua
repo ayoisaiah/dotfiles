@@ -2,7 +2,7 @@ local config = function()
 	local lspconfig = require("lspconfig")
 	local mason_lspconfig = require("mason-lspconfig")
 	local blink = require("blink.cmp")
-	local lsp_configs = require("lsp_configs")
+	local lsp_configs = require("lang.servers")
 	local wk = require("which-key")
 	local builtin = require("telescope.builtin")
 
@@ -108,4 +108,3 @@ return {
 	},
 	config = config,
 }
-
