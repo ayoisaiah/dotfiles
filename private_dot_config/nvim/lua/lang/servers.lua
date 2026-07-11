@@ -1,5 +1,20 @@
 local M = {}
 
+M.ensure_installed = {
+	"lua_ls",
+	"jsonls",
+	"rust_analyzer",
+	"gopls",
+	"html",
+	"ts_ls",
+	"jqls",
+	"bashls",
+	"marksman",
+	"cssls",
+	"sqlls",
+	"yamlls",
+}
+
 M.servers = {
 	lua_ls = {
 		settings = {

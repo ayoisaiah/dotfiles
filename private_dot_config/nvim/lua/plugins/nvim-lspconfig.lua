@@ -73,20 +73,7 @@ local config = function()
 
 	-- Setup mason-lspconfig handlers
 	mason_lspconfig.setup({
-		ensure_installed = {
-			"lua_ls",
-			"jsonls",
-			"rust_analyzer",
-			"gopls",
-			"html",
-			"ts_ls",
-			"jqls",
-			"bashls",
-			"marksman",
-			"cssls",
-			"sqlls",
-			"yamlls",
-		},
+		ensure_installed = lsp_configs.ensure_installed,
 		handlers = {
 			function(server_name)
 				local server_opts = lsp_configs.servers[server_name] or {}

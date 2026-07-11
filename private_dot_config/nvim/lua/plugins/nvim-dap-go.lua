@@ -1,16 +1,11 @@
 local config = function()
+	local debug = require("lang.debuggers")
 	local dapgo = require("dap-go")
 	local wk = require("which-key")
 
-	dapgo.setup({
-		dap_configurations = {},
-	})
+	dapgo.setup(debug.go_dap_options)
 
-	wk.add({
-		{ "<leader>d", group = "Debugger" },
-		{ "<leader>dT", "<cmd>lua require('dap-go').debug_last_test()<CR>", desc = "Debug last run test" },
-		{ "<leader>dt", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug closest test" },
-	})
+	debug.add_go_keymaps(wk)
 end
 
 return {
