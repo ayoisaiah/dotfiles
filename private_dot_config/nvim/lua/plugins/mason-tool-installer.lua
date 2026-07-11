@@ -13,7 +13,6 @@ local config = function()
 
 			-- go
 			"gopls",
-			"golangci_lint_ls",
 			"delve",
 			"go-debug-adapter",
 			"golines",
@@ -30,9 +29,11 @@ local config = function()
 			"prettier",
 			"biome",
 			"djlint",
+			"stylelint",
 
 			-- shell
 			"bashls",
+			"shellcheck",
 
 			-- markdown
 			"marksman",
@@ -42,6 +43,7 @@ local config = function()
 			-- sql
 			"sqlls",
 			"pgformatter",
+			"sqlfluff",
 
 			-- yaml
 			"yamlls",
@@ -56,6 +58,9 @@ local config = function()
 
 			-- python
 			"ruff",
+
+			-- php
+			"php-cs-fixer",
 
 			-- nginx
 			"nginx-config-formatter",

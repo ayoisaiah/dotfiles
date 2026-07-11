@@ -39,11 +39,12 @@ local config = function()
 			sql = { "sqlfluff" },
 			fish = { "fish_indent" },
 			yaml = { "yamlfmt" },
+			php = { "php_cs_fixer" },
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {
 			timeout_ms = 2000,
-			lsp_fallback = true,
+			lsp_format = "fallback",
 		},
 	})
 end

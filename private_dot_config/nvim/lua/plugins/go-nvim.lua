@@ -1,5 +1,8 @@
 local config = function()
-	require("go").setup()
+	require("go").setup({
+		lsp_codelens = false,
+		lsp_on_save = false,
+	})
 
 	local wk = require("which-key")
 

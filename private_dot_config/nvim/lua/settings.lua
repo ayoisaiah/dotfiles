@@ -25,9 +25,9 @@ o.shiftwidth = 2 -- when indenting with '>', use 2 spaces width
 o.relativenumber = true
 o.number = true -- Show line numbers
 
-g.noswapfile = true -- No swap file
-g.nobackup = true
-g.nowritebackup = true
+o.swapfile = false
+o.backup = false
+o.writebackup = false
 
 o.textwidth = 80
 o.formatoptions = o.formatoptions + "t"
@@ -94,9 +94,25 @@ o.updatetime = 100
 o.complete = o.complete + "kspell" -- Enable word completion
 o.completeopt = "menu,menuone,noselect"
 
-local shell = "/bin/bash"
-o.shell = shell
-g["$SHELL"] = shell
+local function first_executable(candidates)
+	for _, candidate in ipairs(candidates) do
+		if candidate and candidate ~= "" and vim.fn.executable(candidate) == 1 then
+			return candidate
+		end
+	end
+end
+
+local shell = first_executable({
+	"/bin/bash",
+	vim.env.SHELL,
+	vim.fn.has("win32") == 1 and "pwsh" or nil,
+	vim.fn.has("win32") == 1 and "powershell" or nil,
+})
+
+if shell then
+	o.shell = shell
+	vim.env.SHELL = shell
+end
 
 g.loaded_matchit = 1 -- Disable matchit plugin
 
@@ -139,7 +155,9 @@ augroup END
 )
 
 vim.diagnostic.config({
-	float = { source = "always", border = border },
+	severity_sort = true,
+	update_in_insert = false,
+	float = { source = "always", border = "rounded" },
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "❌",

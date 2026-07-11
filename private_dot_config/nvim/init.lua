@@ -9,9 +9,10 @@ require("functions")
 
 local fn = vim.fn
 local opt = vim.opt
+local uv = vim.uv or vim.loop
 
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -27,7 +28,24 @@ require("lazy").setup("plugins", {
 	defaults = {
 		lazy = true,
 	},
+	checker = {
+		enabled = true,
+		notify = false,
+	},
 	change_detection = {
 		notify = false,
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"netrw",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })

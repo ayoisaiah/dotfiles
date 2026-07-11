@@ -3,9 +3,10 @@ local config = function()
 	local golangcilint = require("lint").linters.golangcilint
 	golangcilint.args = {
 		"run",
-		"--fix=true",
-		"--fast",
 		"--out-format=json",
+		"--show-stats=false",
+		"--print-issued-lines=false",
+		"--print-linter-name=false",
 	}
 
 	lint.linters_by_ft = {
@@ -23,7 +24,7 @@ local config = function()
 		["yaml.ansible"] = { "ansiblelint" },
 	}
 
-	vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufWritePost", "InsertLeave" }, {
+	vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
 		callback = function()
 			lint.try_lint()
 		end,

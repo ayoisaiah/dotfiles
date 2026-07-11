@@ -11,7 +11,13 @@ local config = function()
 		{ "<leader>l", group = "LSP" },
 		{ "<leader>lW", builtin.lsp_dynamic_workspace_symbols, desc = "Dynamic workspace symbols" },
 		{ "<leader>ld", vim.lsp.buf.definition, desc = "Go to definition" },
-		{ "<leader>lf", vim.lsp.buf.format, desc = "Format buffer" },
+		{
+			"<leader>lf",
+			function()
+				require("conform").format({ async = true, lsp_format = "fallback" })
+			end,
+			desc = "Format buffer",
+		},
 		{ "<leader>li", builtin.lsp_incoming_calls, desc = "Incoming calls" },
 		{ "<leader>lk", vim.lsp.buf.signature_help, desc = "Signature help" },
 		{
@@ -72,7 +78,6 @@ local config = function()
 			"jsonls",
 			"rust_analyzer",
 			"gopls",
-			"golangci_lint_ls",
 			"html",
 			"ts_ls",
 			"jqls",
@@ -80,7 +85,6 @@ local config = function()
 			"marksman",
 			"cssls",
 			"sqlls",
-			"biome",
 			"yamlls",
 		},
 		handlers = {
@@ -104,3 +108,4 @@ return {
 	},
 	config = config,
 }
+
