@@ -36,3 +36,15 @@ nvim-plugins-diff:
 # Revert only the lazy.nvim lockfile to HEAD.
 nvim-plugins-revert-lock:
     git restore -- {{NVIM_LOCK}}
+
+# Prune local plugins no longer configured in lazy.nvim
+nvim-plugins-clean:
+    NVIM_APPNAME={{NVIM_APPNAME}} {{NVIM_BIN}} --headless "+Lazy! clean" "+qa"
+
+# Import updated lazy-lock.json from ~/.config/nvim back to chezmoi
+nvim-lock-import:
+    chezmoi add ~/.config/nvim/lazy-lock.json
+
+# Apply Neovim configurations from chezmoi to ~/.config/nvim
+nvim-apply:
+    chezmoi apply --force
