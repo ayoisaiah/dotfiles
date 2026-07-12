@@ -7,7 +7,17 @@ return {
 	},
 	opts = {
 		keymap = { preset = "enter" },
-		completion = { documentation = { auto_show = true } },
+		appearance = {
+			use_nvim_cmp_as_default = true,
+			nerd_font_variant = "mono",
+		},
+		completion = {
+			menu = { border = "rounded" },
+			documentation = {
+				auto_show = true,
+				window = { border = "rounded" },
+			},
+		},
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer", "lazydev" },
 			providers = {
@@ -15,7 +25,10 @@ return {
 			},
 		},
 		snippets = { preset = "luasnip" },
-		signature = { enabled = true },
+		signature = {
+			enabled = true,
+			window = { border = "rounded" },
+		},
 	},
 	event = "VimEnter",
 }

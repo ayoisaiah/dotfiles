@@ -8,6 +8,7 @@ local config = function()
 	-- LSP mappings
 	wk.add({
 		{ "<leader>l", group = "LSP" },
+		{ "<leader>la", vim.lsp.buf.code_action, desc = "LSP code action" },
 		{ "<leader>lW", builtin.lsp_dynamic_workspace_symbols, desc = "Dynamic workspace symbols" },
 		{ "<leader>ld", vim.lsp.buf.definition, desc = "Go to definition" },
 		{
