@@ -1,5 +1,4 @@
 local config = function()
-	local lspconfig = require("lspconfig")
 	local mason_lspconfig = require("mason-lspconfig")
 	local blink = require("blink.cmp")
 	local lsp_configs = require("lang.servers")
@@ -71,17 +70,21 @@ local config = function()
 		{ "]c", vim.diagnostic.goto_next, desc = "Next diagnostic" },
 	})
 
-	-- Setup mason-lspconfig handlers
+	local function setup_server(server_name)
+		local server_opts = vim.tbl_deep_extend("force", {}, lsp_configs.servers[server_name] or {})
+		server_opts.capabilities = blink.get_lsp_capabilities(server_opts.capabilities)
+		vim.lsp.config(server_name, server_opts)
+	end
+
 	mason_lspconfig.setup({
 		ensure_installed = lsp_configs.ensure_installed,
-		handlers = {
-			function(server_name)
-				local server_opts = lsp_configs.servers[server_name] or {}
-				server_opts.capabilities = blink.get_lsp_capabilities(server_opts.capabilities)
-				lspconfig[server_name].setup(server_opts)
-			end,
-		},
+		automatic_enable = false,
 	})
+
+	for _, server_name in ipairs(lsp_configs.ensure_installed) do
+		setup_server(server_name)
+		vim.lsp.enable(server_name)
+	end
 end
 
 return {

@@ -20,9 +20,20 @@ M.ensure_installed = {
 local function prose_root(...)
 	local markers = { ... }
 
-	return function(fname)
-		local util = require("lspconfig.util")
-		return util.root_pattern(unpack(markers))(fname)
+	return function(bufnr, on_dir)
+		local bufname = vim.api.nvim_buf_get_name(bufnr)
+		if bufname == "" then
+			return
+		end
+
+		local marker = vim.fs.find(markers, {
+			path = vim.fs.dirname(vim.fs.normalize(bufname)),
+			upward = true,
+		})[1]
+
+		if marker then
+			on_dir(vim.fs.dirname(marker))
+		end
 	end
 end
 
