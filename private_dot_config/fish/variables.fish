@@ -15,12 +15,17 @@ set -gx SYSTEMD_EDITOR $EDITOR
 set -gx VISUAL $EDITOR
 set -gx PAGER less
 set -gx PSQL_PAGER "pspg -s 11"
-set -gx SUDO_EDITOR "$HOME/.local/share/bob/nvim-bin/nvim"
+if test -x "$HOME/.local/share/bob/nvim-bin/nvim"
+    set -gx SUDO_EDITOR "$HOME/.local/share/bob/nvim-bin/nvim"
+else
+    set -gx SUDO_EDITOR $EDITOR
+end
 
 # --- General Paths ---
 fish_add_path --global /usr/local/bin
 fish_add_path --global "$HOME/bin"
 fish_add_path --global "$HOME/.local/bin"
+fish_add_path --global --move "$HOME/.local/share/bob/nvim-bin"
 
 # --- Language SDKs ---
 # Go
@@ -60,6 +65,3 @@ fish_add_path --global "$HOME/.local/share/mise/shims"
 
 # Mason-managed Neovim tooling
 fish_add_path --global "$HOME/.local/share/nvim/mason/bin"
-
-# NVIM (Bob)
-fish_add_path --global "$HOME/.local/share/bob/nvim-bin"

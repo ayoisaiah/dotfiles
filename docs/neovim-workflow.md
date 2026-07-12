@@ -2,6 +2,12 @@
 
 This repo treats the Neovim config as a small, testable system. Plugin updates should be isolated, reviewed, and easy to roll back.
 
+## Neovim Provider
+
+Headless verification uses the Bob-managed Neovim binary at `~/.local/share/bob/nvim-bin/nvim`. This avoids relying on a PATH `nvim` that may be an AppImage and may fail in headless or FUSE-limited environments.
+
+Chezmoi installs the preferred provider through `run_onchange_after_install-bob-nvim.sh.tmpl` when `bob` is available. Fish also puts `~/.local/share/bob/nvim-bin` early in `PATH`, so shell and Neovim tooling resolve the same editor binary.
+
 ## Daily Checks
 
 ```sh
@@ -50,9 +56,9 @@ The important rule is that plugin version movement lives in `private_dot_config/
 
 ## Environment Override
 
-The recipes default to `NVIM_APPNAME=nvim`. To test another profile:
+The recipes default to `NVIM_APPNAME=nvim` and `NVIM_BIN=~/.local/share/bob/nvim-bin/nvim`. To test another profile or binary:
 
 ```sh
 NVIM_APPNAME=LazyVim just nvim-check
+NVIM_BIN=/path/to/nvim just nvim-check
 ```
-

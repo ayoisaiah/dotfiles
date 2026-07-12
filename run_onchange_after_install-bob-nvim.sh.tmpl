@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+nvim_bin="${HOME}/.local/share/bob/nvim-bin/nvim"
+
+if [[ -x "${nvim_bin}" ]] && "${nvim_bin}" --version >/dev/null 2>&1; then
+	exit 0
+fi
+
+if ! command -v bob >/dev/null 2>&1; then
+	cat >&2 <<'EOF'
+bob is not installed; skipping Neovim provider setup.
+Install bob or provide a runnable nvim on PATH before using Neovim verification recipes.
+EOF
+	exit 0
+fi
+
+mkdir -p "${HOME}/.local/share/bob/downloads" "${HOME}/.local/share/bob/nvim-bin"
+bob use stable

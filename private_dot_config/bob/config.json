@@ -1,0 +1,11 @@
+{
+  "enable_nightly_info": true,
+  "enable_release_build": false,
+  "downloads_location": "/home/ayo/.local/share/bob/downloads",
+  "installation_location": "/home/ayo/.local/share/bob/nvim-bin",
+  "version_sync_file_location": "/home/ayo/.config/nvim/nvim.version",
+  "rollback_limit": 3,
+  "github_mirror": "https://github.com",
+  "add_neovim_binary_to_path": true,
+  "ignore_running_instances": false
+}
