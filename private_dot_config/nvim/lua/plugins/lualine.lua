@@ -6,7 +6,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	config = config,
 	opts = {
-		options = { theme = "onedark" },
+		options = { theme = "kanagawa" },
 	},
 	lazy = false,
 }
