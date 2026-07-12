@@ -115,4 +115,6 @@ M.textobjects = {
 	},
 }
 
+M.opts.textobjects = M.textobjects.textobjects
+
 return M
