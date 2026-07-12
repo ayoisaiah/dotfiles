@@ -1,5 +1,7 @@
 local M = {}
 
+M.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+
 M.prose_servers = {
 	ltex_plus = true,
 	vale_ls = true,
@@ -24,6 +26,60 @@ local function diagnostic_namespace(client)
 	if ok then
 		return namespace
 	end
+end
+
+function M.spell_words()
+	local ok, lines = pcall(vim.fn.readfile, M.spellfile)
+	if not ok then
+		return {}
+	end
+
+	local words = {}
+	for _, line in ipairs(lines) do
+		local word = vim.trim(line)
+		if word ~= "" and not word:match("^#") and not word:match("^/") and not word:match("^!") then
+			words[#words + 1] = word:gsub("/.*$", "")
+		end
+	end
+
+	table.sort(words)
+	return words
+end
+
+function M.rebuild_spellfile(opts)
+	opts = opts or {}
+
+	vim.cmd("silent! mkspell! " .. vim.fn.fnameescape(M.spellfile))
+
+	if not opts.quiet then
+		vim.notify("Rebuilt " .. M.spellfile .. ".spl")
+	end
+end
+
+function M.open_spellfile()
+	vim.cmd.edit(vim.fn.fnameescape(M.spellfile))
+end
+
+function M.sync_spellfile(opts)
+	opts = opts or {}
+
+	if vim.fn.executable("chezmoi") ~= 1 then
+		return
+	end
+
+	vim.fn.system({ "chezmoi", "re-add", M.spellfile })
+	if vim.v.shell_error == 0 then
+		if not opts.quiet then
+			vim.notify("Synced " .. M.spellfile .. " to chezmoi")
+		end
+	elseif not opts.quiet then
+		vim.notify("Failed to sync " .. M.spellfile .. " to chezmoi", vim.log.levels.WARN)
+	end
+end
+
+function M.after_spellfile_change()
+	M.rebuild_spellfile({ quiet = true })
+	M.sync_spellfile({ quiet = true })
 end
 
 function M.set_prose_diagnostics(bufnr, enabled)
@@ -52,6 +108,7 @@ end
 
 function M.setup_buffer()
 	vim.opt_local.spell = true
+	vim.opt_local.spellfile = M.spellfile
 	vim.opt_local.spelllang = { "en_us" }
 	vim.opt_local.wrap = true
 	vim.opt_local.linebreak = true
@@ -68,8 +125,21 @@ function M.setup_buffer()
 			{ "<leader>mq", vim.diagnostic.setloclist, desc = "Markdown diagnostics" },
 			{ "<leader>mr", "<cmd>RenderMarkdown buf_toggle<CR>", desc = "Toggle rendered buffer" },
 			{ "<leader>mR", "<cmd>RenderMarkdown toggle<CR>", desc = "Toggle rendered markdown" },
+			{ "<leader>mS", M.rebuild_spellfile, desc = "Rebuild spellfile" },
+			{ "<leader>mw", M.open_spellfile, desc = "Open word list" },
 		}, { buffer = 0 })
 	end
+
+	vim.keymap.set("n", "zg", "zg<cmd>lua require('lang.markdown').after_spellfile_change()<CR>", {
+		buffer = true,
+		desc = "Add word to synced spellfile",
+		silent = true,
+	})
+	vim.keymap.set("n", "zug", "zug<cmd>lua require('lang.markdown').after_spellfile_change()<CR>", {
+		buffer = true,
+		desc = "Remove word from synced spellfile",
+		silent = true,
+	})
 end
 
 function M.setup_markdown_nvim_keymaps(bufnr)

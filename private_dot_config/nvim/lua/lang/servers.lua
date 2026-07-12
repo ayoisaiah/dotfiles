@@ -153,6 +153,9 @@ M.servers = {
 		single_file_support = false,
 		settings = {
 			ltex = {
+				dictionary = {
+					["en-US"] = require("lang.markdown").spell_words(),
+				},
 				enabled = { "markdown", "text", "gitcommit" },
 				language = "en-US",
 			},

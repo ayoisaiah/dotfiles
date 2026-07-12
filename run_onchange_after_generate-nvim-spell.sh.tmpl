@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+spellfile="${HOME}/.config/nvim/spell/en.utf-8.add"
+
+if [[ ! -f "${spellfile}" ]]; then
+	exit 0
+fi
+
+if command -v nvim >/dev/null 2>&1 && nvim --version >/dev/null 2>&1; then
+	nvim --headless --clean --cmd "set spellfile=${spellfile}" "+silent! mkspell! ${spellfile}" +qa
+elif command -v vim >/dev/null 2>&1; then
+	vim -Nu NONE -n -es --cmd "set spellfile=${spellfile}" "+silent! mkspell! ${spellfile}" +qa
+fi
