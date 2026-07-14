@@ -1,5 +1,4 @@
 local config = function(_, opts)
-	require("nvim-dap-repl-highlights").setup()
 	require("nvim-treesitter.configs").setup(opts)
 end
 
@@ -8,10 +7,7 @@ return {
 	build = ":TSUpdate",
 	config = config,
 	version = false,
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"LiadOz/nvim-dap-repl-highlights",
-	},
-	event = { "BufReadPost", "BufNewFile" },
+	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+	lazy = false,
 	opts = require("lang.treesitter").opts,
 }
