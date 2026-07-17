@@ -1,13 +1,16 @@
 local config = function(_, opts)
-	require("nvim-treesitter.configs").setup(opts)
+	require("nvim-treesitter").setup(opts)
+	require("lang.treesitter").setup()
 end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
+	branch = "main",
+	build = function()
+		require("nvim-treesitter").install(require("lang.treesitter").ensure_installed):wait(300000)
+	end,
 	config = config,
 	version = false,
-	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 	lazy = false,
 	opts = require("lang.treesitter").opts,
 }
